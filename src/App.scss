@@ -4,7 +4,11 @@
     background: black;
 }
 
-.test {
-    background: red;
+.page {
+    outline: 1px solid red;
     width: 100px;
+    aspect-ratio: 4/3;
+    background: red;
+}
+.html-container {
 }
