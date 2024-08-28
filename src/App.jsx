@@ -14,6 +14,8 @@ function App() {
     // const desk = useLoader(GLTFLoader, "./src/assets/metal_desk/scene.gltf");
     // const lamp = useLoader(GLTFLoader, "./src/assets/table_lamp/scene.gltf");
     const computers = useLoader(GLTFLoader, "./src/assets/old_computers/scene.gltf");
+    let [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z: 0 });
+    let [cameraRotation, setCameraRotation] = useState({ x: 0, y: 0, z: 0 });
 
     const vertices = new Float32Array([
         -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0,
@@ -50,8 +52,100 @@ function App() {
                     <Page></Page>
                 </Html>
             </Canvas>
+
+            <ControlBoard
+                name="Camera Control"
+                objectPosition={cameraPosition}
+                setObjectPosition={setCameraPosition}
+                objectRotation={cameraRotation}
+                setObjectRotation={setCameraRotation}
+            />
         </div>
     );
 }
 
 export default App;
+
+function ControlBoard({ name, objectPosition, setObjectPosition, objectRotation, setObjectRotation }) {
+    return (
+        <div className="controller">
+            <div>{name}</div>
+            <p>Position</p>
+            <PropController property={objectPosition} type="position" setProp={setObjectPosition} axis="x" />
+            <PropController property={objectPosition} type="position" setProp={setObjectPosition} axis="y" />
+            <PropController property={objectPosition} type="position" setProp={setObjectPosition} axis="z" />
+            <button
+                onClick={() => {
+                    navigator.clipboard.writeText([
+                        objectPosition.x.toFixed(2),
+                        objectPosition.y.toFixed(2),
+                        objectPosition.z.toFixed(2),
+                    ]);
+                }}
+            >
+                Copy
+            </button>
+
+            <p>Rotation</p>
+            <PropController property={objectRotation} type="rotation" setProp={setObjectRotation} axis="x" />
+            <PropController property={objectRotation} type="rotation" setProp={setObjectRotation} axis="y" />
+            <PropController property={objectRotation} type="rotation" setProp={setObjectRotation} axis="z" />
+            <button
+                onClick={() => {
+                    navigator.clipboard.writeText([
+                        objectRotation.x.toFixed(2),
+                        objectRotation.y.toFixed(2),
+                        objectRotation.z.toFixed(2),
+                    ]);
+                }}
+            >
+                Copy
+            </button>
+        </div>
+    );
+}
+
+function PropController({ property, axis, setProp, type }) {
+    let [currentAmount, setCurrentAmount] = useState(0.1);
+
+    let changeProp = (type, newValue = 0) => {
+        if (type == "add") {
+            setProp({
+                ...property,
+                [axis]: property[axis] + currentAmount,
+            });
+        } else if (type == "sub") {
+            setProp({
+                ...property,
+                [axis]: property[axis] - currentAmount,
+            });
+        } else if (type == "change") {
+            setProp({
+                ...property,
+                [axis]: parseInt(newValue),
+            });
+        }
+    };
+
+    return (
+        <>
+            <div className="section">
+                <div className="value">
+                    <label>{axis}</label>
+                    <input type="text" value={property[axis].toFixed(2)} />
+                </div>
+                <button onClick={() => changeProp("add")}>+</button>
+                <button onClick={() => changeProp("sub")}>-</button>
+
+                <label>0.01</label>
+                <input type="radio" name={`${type}_${axis}`} onChange={() => setCurrentAmount(0.01)} />
+
+                <label>0.1</label>
+                <input type="radio" name={`${type}_${axis}`} defaultChecked onChange={() => setCurrentAmount(0.1)} />
+
+                <label> 1</label>
+                <input type="radio" name={`${type}_${axis}`} onChange={() => setCurrentAmount(1)} />
+            </div>
+        </>
+    );
+}
