@@ -1,31 +1,100 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import Page from "./components/Page";
+import * as THREE from "three";
 
-import { Environment, OrbitControls, Html, Backdrop, PerspectiveCamera, CameraControls } from "@react-three/drei";
+import { Environment, OrbitControls, Html, PerspectiveCamera, CameraControls } from "@react-three/drei";
 import { Suspense } from "react";
 
 import "./App.scss";
 
 function App() {
     const computers = useLoader(GLTFLoader, "./src/assets/old_computers/scene.gltf");
-    let [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z: 0 });
-    let [cameraRotation, setCameraRotation] = useState({ x: 0, y: 0, z: 0 });
+
+    const default_position = {
+        positionX: 0,
+        positionY: 0,
+        positionZ: 0,
+        targetX: 0,
+        targetY: 0,
+        targetZ: 0,
+    };
+    const page_1 = {
+        positionX: -2.7,
+        positionY: 0.61,
+        positionZ: 1.54,
+        targetX: -8.3,
+        targetY: 0.6,
+        targetZ: -0.4,
+
+        // positionX: -2.34,
+        // positionY: 0.49,
+        // positionZ: 1.66,
+        // targetX: -7.42,
+        // targetY: 1.06,
+        // targetZ: -0.08,
+    };
+    // const page_2_position = {
+    //     position: [-2.7, 0.61, 1.54],
+    //     target: [-8.3, 0.6, -0.4],
+    // };
+    // const page_3_position = {
+    //     position: [-2.7, 0.61, 1.54],
+    //     target: [-8.3, 0.6, -0.4],
+    // };
+
+    let [cameraSettings, setCameraSettings] = useState({
+        positionX: 0,
+        positionY: 0,
+        positionZ: 0,
+        targetX: 0,
+        targetY: 0,
+        targetZ: 0,
+    });
+
+    let [objectSettings, setObjectSettings] = useState({
+        positionX: 0,
+        positionY: 0,
+        positionZ: 0,
+        targetX: 0,
+        targetY: 0,
+        targetZ: 0,
+    });
+
+    const [currentCameraSettings, setCurrentCameraSettings] = useState(page_1);
+
+    let [clicked, setClicked] = useState(false);
+    let cameraControlRef = useRef(null);
+    //Insert this into the element to active control board
+    // position={[objectPosition.x, objectPosition.y, objectPosition.z]}
+    // rotation={[objectRotation.x, objectRotation.y, objectRotation.z]}
+
+    //DEV MODE
+    // useEffect(() => {
+    //     cameraControlRef.current?.setLookAt(
+    //         cameraSettings.positionX,
+    //         cameraSettings.positionY,
+    //         cameraSettings.positionZ,
+    //         cameraSettings.targetX,
+    //         cameraSettings.targetY,
+    //         cameraSettings.targetZ,
+    //         true
+    //     );
+    //     console.log(cameraControlRef.current);
+    // }, [cameraSettings]);
+
+    const DEG45 = Math.PI / 4;
 
     return (
         <div id="canvas-container">
             <Canvas>
-                {/* <PerspectiveCamera
-                    makeDefault
-                    fov={75}
-                    position={[cameraPosition.x, cameraPosition.y, cameraPosition.z]}
-                    rotation={[cameraRotation.x, cameraRotation.y, cameraRotation.z]}
-                /> */}
+                {/* <CameraControls enabled={true} makeDefault ref={cameraControlRef} /> */}
+                <ScrollCamera cameraSettings={currentCameraSettings} />
+                {/* <PerspectiveCamera position={[0, 0, 0]} /> */}
 
-                {/* PAGE1 */}
-                <PerspectiveCamera makeDefault position={[-2.7, 0.6, 1.6]} fov={75} rotation={[0.0, 1.2, 0.0]} />
+                <OrbitControls makeDefault></OrbitControls>
 
                 <Suspense fallback={null}>
                     <ambientLight color="grey" intensity={Math.PI} />
@@ -39,8 +108,6 @@ function App() {
                     />
 
                     <primitive scale={1} position={[0, -3, 0]} object={computers.scene} />
-
-                    {/* <OrbitControls zoom0={true}></OrbitControls> */}
                 </Suspense>
 
                 <Html
@@ -55,50 +122,35 @@ function App() {
                 </Html>
             </Canvas>
 
-            <ControlBoard
-                name="Camera Control"
-                objectPosition={cameraPosition}
-                setObjectPosition={setCameraPosition}
-                objectRotation={cameraRotation}
-                setObjectRotation={setCameraRotation}
-            />
+            <ControlBoard name="Camera controller" property={cameraSettings} setProperty={setCameraSettings} />
+            <ControlBoard name="Secondary Control Board" property={objectSettings} setProperty={setObjectSettings} />
         </div>
     );
 }
 
 export default App;
 
-function ControlBoard({ name, objectPosition, setObjectPosition, objectRotation, setObjectRotation }) {
+function ControlBoard({ name, property, setProperty }) {
     return (
         <div className="controller">
             <div>{name}</div>
             <p>Position</p>
-            <PropController property={objectPosition} type="position" setProp={setObjectPosition} axis="x" />
-            <PropController property={objectPosition} type="position" setProp={setObjectPosition} axis="y" />
-            <PropController property={objectPosition} type="position" setProp={setObjectPosition} axis="z" />
-            <button
-                onClick={() => {
-                    navigator.clipboard.writeText([
-                        objectPosition.x.toFixed(2),
-                        objectPosition.y.toFixed(2),
-                        objectPosition.z.toFixed(2),
-                    ]);
-                }}
-            >
-                Copy
-            </button>
+            <PropController property={property} name={name} setProp={setProperty} modifyKey="positionX" />
+            <PropController property={property} name={name} setProp={setProperty} modifyKey="positionY" />
+            <PropController property={property} name={name} setProp={setProperty} modifyKey="positionZ" />
 
-            <p>Rotation</p>
-            <PropController property={objectRotation} type="rotation" setProp={setObjectRotation} axis="x" />
-            <PropController property={objectRotation} type="rotation" setProp={setObjectRotation} axis="y" />
-            <PropController property={objectRotation} type="rotation" setProp={setObjectRotation} axis="z" />
+            <p>Target</p>
+            <PropController property={property} name={name} setProp={setProperty} modifyKey="targetX" />
+            <PropController property={property} name={name} setProp={setProperty} modifyKey="targetY" />
+            <PropController property={property} name={name} setProp={setProperty} modifyKey="targetZ" />
             <button
                 onClick={() => {
-                    navigator.clipboard.writeText([
-                        objectRotation.x.toFixed(2),
-                        objectRotation.y.toFixed(2),
-                        objectRotation.z.toFixed(2),
-                    ]);
+                    let res = "";
+
+                    for (const [key, value] of Object.entries(property)) {
+                        res += `${key}: ${value.toFixed(2)},`;
+                    }
+                    navigator.clipboard.writeText(res);
                 }}
             >
                 Copy
@@ -107,24 +159,19 @@ function ControlBoard({ name, objectPosition, setObjectPosition, objectRotation,
     );
 }
 
-function PropController({ property, axis, setProp, type }) {
+function PropController({ property, modifyKey, setProp, name }) {
     let [currentAmount, setCurrentAmount] = useState(0.1);
 
-    let changeProp = (type, newValue = 0) => {
-        if (type == "add") {
+    let changeProp = (actionType) => {
+        if (actionType == "add") {
             setProp({
                 ...property,
-                [axis]: property[axis] + currentAmount,
+                [modifyKey]: property[modifyKey] + currentAmount,
             });
-        } else if (type == "sub") {
+        } else if (actionType == "sub") {
             setProp({
                 ...property,
-                [axis]: property[axis] - currentAmount,
-            });
-        } else if (type == "change") {
-            setProp({
-                ...property,
-                [axis]: parseInt(newValue),
+                [modifyKey]: property[modifyKey] - currentAmount,
             });
         }
     };
@@ -133,21 +180,40 @@ function PropController({ property, axis, setProp, type }) {
         <>
             <div className="section">
                 <div className="value">
-                    <label>{axis}</label>
-                    <input type="text" value={property[axis].toFixed(2)} />
+                    <label>{modifyKey}</label>
+                    <span>{property[modifyKey].toFixed(2)}</span>
                 </div>
                 <button onClick={() => changeProp("add")}>+</button>
                 <button onClick={() => changeProp("sub")}>-</button>
 
                 <label>0.01</label>
-                <input type="radio" name={`${type}_${axis}`} onChange={() => setCurrentAmount(0.01)} />
+                <input type="radio" name={`${name}_${modifyKey}`} onChange={() => setCurrentAmount(0.01)} />
 
                 <label>0.1</label>
-                <input type="radio" name={`${type}_${axis}`} defaultChecked onChange={() => setCurrentAmount(0.1)} />
+                <input
+                    type="radio"
+                    name={`${name}_${modifyKey}`}
+                    defaultChecked
+                    onChange={() => setCurrentAmount(0.1)}
+                />
 
                 <label> 1</label>
-                <input type="radio" name={`${type}_${axis}`} onChange={() => setCurrentAmount(1)} />
+                <input type="radio" name={`${name}_${modifyKey}`} onChange={() => setCurrentAmount(1)} />
             </div>
         </>
     );
+}
+
+function ScrollCamera({ cameraSettings }) {
+    const vec = new THREE.Vector3();
+    useFrame((state) => {
+        state.camera.lookAt(cameraSettings.targetX, cameraSettings.targetY, cameraSettings.targetZ);
+        state.camera.position.lerp(
+            vec.set(cameraSettings.positionX, cameraSettings.positionY, cameraSettings.positionZ),
+            0.02
+        );
+        state.camera.updateProjectionMatrix();
+    });
+
+    return null;
 }

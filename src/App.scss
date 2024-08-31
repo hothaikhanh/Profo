@@ -45,9 +45,8 @@
     gap: 8px;
     align-items: center;
 }
-.value > label {
-}
-.value > input {
+
+.value > span {
     width: 40px;
     height: 32px;
     outline: 1px solid grey;
@@ -55,4 +54,7 @@
     color: white;
     border: none;
     text-align: center;
+}
+.controller + .controller {
+    right: 0;
 }
