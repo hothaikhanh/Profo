@@ -7,7 +7,18 @@ export default function Page() {
             {/* desc */}
             {/* skills */}
             {/* project */}
-            helo there
+
+            <div className="content-container">
+                <header className="page-header">
+                    <span>information</span>
+                </header>
+                <div className="page-content">
+                    <div className="top">
+                        <div className="pfp"></div>
+                        <div className="desc"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

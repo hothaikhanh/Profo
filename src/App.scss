@@ -1,3 +1,5 @@
+$primary-color: #419873;
+
 #canvas-container {
     width: 100vw;
     height: 100vh;
@@ -10,6 +12,7 @@
     background: black;
     color: white;
     padding: 42px;
+    font-family: "pixelFont", Arial, Helvetica, sans-serif;
 }
 
 .controller {
@@ -57,4 +60,60 @@
 }
 .controller + .controller {
     right: 0;
+}
+
+@font-face {
+    font-family: "pixelFont";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../src//assets/fonts/SVN-Determination\ Sans.otf") format("woff");
+}
+
+.content-container {
+    height: 100%;
+    border: 2px solid $primary-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-header {
+    width: fit-content;
+    padding: 12px;
+    background: black;
+    position: relative;
+    top: -25px;
+    border: 2px solid $primary-color;
+    text-transform: uppercase;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+        height: 32px;
+        line-height: 24px;
+    }
+}
+
+.page-content {
+    margin: 4px;
+    background: black;
+    flex-grow: 1;
+    .top {
+        display: flex;
+        gap: 12px;
+        width: 100%;
+    }
+}
+
+.pfp {
+    width: 300px;
+    height: 500px;
+    outline: 2px solid $primary-color;
+}
+
+.desc {
+    width: 700px;
+    height: 500px;
+    outline: 2px solid $primary-color;
 }
