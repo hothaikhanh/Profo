@@ -6,6 +6,7 @@ import { Environment, OrbitControls, Html, PerspectiveCamera, CameraControls } f
 
 import { useState, useRef, Suspense } from "react";
 import Page from "./components/Page/Page";
+import AboutPage from "./components/AboutPage/AboutPage";
 
 import "./App.scss";
 
@@ -118,6 +119,7 @@ function App() {
                     fov={75}
                 >
                     <Page title={"Info"}>
+                        <AboutPage></AboutPage>
                     </Page>
                 </Html>
             </Canvas>

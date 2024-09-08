@@ -1,0 +1,208 @@
+@use "../../variables.scss" as *;
+@mixin cell {
+    border: $default-border;
+}
+@mixin text-box {
+    border: $default-border;
+    text-transform: uppercase;
+    padding: 6px 12px;
+}
+
+$cell-gap: 12px;
+
+.about-page {
+    display: flex;
+    flex-direction: column;
+    gap: $cell-gap;
+    height: 100%;
+
+    .top-content {
+        display: flex;
+        width: 100%;
+        gap: $cell-gap;
+        height: max-content;
+        flex-grow: 1;
+
+        .pfp {
+            @include cell;
+            width: 300px;
+            flex-shrink: 0;
+        }
+        .side-content {
+            display: flex;
+            flex-direction: column;
+            gap: $cell-gap;
+            .desc {
+                @include cell;
+                flex-grow: 1;
+            }
+            .download-cv {
+                @include cell;
+                flex-grow: 1;
+            }
+        }
+    }
+}
+
+.desc {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+
+    .row {
+        display: flex;
+        gap: 12px;
+        align-items: flex-end;
+    }
+    .row + .row {
+        margin-top: 24px;
+    }
+    .row + .box {
+        margin-top: 16px;
+    }
+    .box {
+        background: $primary-color;
+        padding: 20px;
+        padding-right: 32px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .title {
+        @include text-box;
+        @include text-with-no-upper-space(20px);
+        color: black;
+        background: $primary-color;
+    }
+    .current-status {
+        @include text-box;
+        @include text-with-no-upper-space(20px);
+        background: black;
+        display: flex;
+        gap: 8px;
+        svg {
+            fill: $primary-color;
+            width: 8px;
+        }
+    }
+
+    .introduction {
+        @include text-with-no-upper-space(24px);
+        text-transform: uppercase;
+    }
+    .my-name {
+        @include text-with-no-upper-space(40px);
+        color: $primary-color;
+        text-transform: uppercase;
+    }
+
+    .job-title {
+        color: black;
+        @include text-with-no-upper-space(40px);
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+    .details {
+        font-size: 1rem;
+        font-family: $basic-font;
+        font-weight: 400;
+        text-align: justify;
+        color: black;
+    }
+}
+
+.download-cv {
+    background: black;
+    color: $primary-color;
+    text-transform: uppercase;
+    padding: 10px;
+    gap: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+        fill: $primary-color;
+    }
+    span {
+        @include text-with-no-upper-space(24px);
+    }
+}
+
+.bottom-content {
+    display: flex;
+    width: 100%;
+    height: max-content;
+    gap: $cell-gap;
+
+    > div {
+        width: 100%;
+        @include cell;
+        padding: 20px;
+        height: 100%;
+        display: flex;
+        gap: 16px;
+        flex-direction: column;
+    }
+    .title {
+        @include text-box;
+        @include text-with-no-upper-space(20px);
+        background: $primary-color;
+        color: black;
+        text-align: center;
+    }
+}
+
+.tech {
+    .tech-list {
+        background: black;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .tech-item {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        span {
+            text-transform: uppercase;
+            @include text-with-no-upper-space(20px);
+        }
+        svg {
+            height: 24px;
+            fill: white;
+        }
+    }
+}
+
+.related-tech {
+    .content-container {
+        display: flex;
+        gap: 8px;
+    }
+    .toggle-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        button {
+            background: black;
+            border: $default-border;
+            color: white;
+            padding: 12px;
+            text-wrap: nowrap;
+        }
+    }
+    .display-content {
+        border: $default-border;
+        flex-grow: 1;
+        padding: 12px 24px;
+        margin: 0;
+        font-family: $basic-font;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+}
