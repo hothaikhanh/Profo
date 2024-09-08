@@ -1,12 +1,11 @@
-import { useState, useRef, useEffect } from "react";
+import * as THREE from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import Page from "./components/Page";
-import * as THREE from "three";
-
 import { Environment, OrbitControls, Html, PerspectiveCamera, CameraControls } from "@react-three/drei";
-import { Suspense } from "react";
+
+import { useState, useRef, Suspense } from "react";
+import Page from "./components/Page/Page";
 
 import "./App.scss";
 
@@ -114,16 +113,17 @@ function App() {
                     occlude="blending"
                     scale={0.038}
                     transform
-                    position={[-3.24, 0.6, 1.36]}
+                    position={[-3.24, 0.61, 1.36]}
                     rotation={[0.0, 1.22, 0.0]}
                     fov={75}
                 >
-                    <Page></Page>
+                    <Page title={"Info"}>
+                    </Page>
                 </Html>
             </Canvas>
 
-            <ControlBoard name="Camera controller" property={cameraSettings} setProperty={setCameraSettings} />
-            <ControlBoard name="Secondary Control Board" property={objectSettings} setProperty={setObjectSettings} />
+            {/* <ControlBoard name="Camera controller" property={cameraSettings} setProperty={setCameraSettings} />
+            <ControlBoard name="Secondary Control Board" property={objectSettings} setProperty={setObjectSettings} /> */}
         </div>
     );
 }

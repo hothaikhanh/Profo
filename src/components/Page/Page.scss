@@ -1,0 +1,65 @@
+@use "../../variables.scss" as *;
+
+.page {
+    width: 1200px;
+    height: 880px;
+    background: black;
+    color: white;
+    padding: 60px;
+    position: relative;
+    font-family: $pixel-font;
+
+    .outer-border {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        padding: 40px;
+        p {
+            margin: 0;
+            position: absolute;
+            border: $default-border;
+        }
+        .top,
+        .bottom {
+            width: 100%;
+        }
+
+        .left,
+        .right {
+            height: 100%;
+        }
+        .top,
+        .left {
+            top: 0;
+            left: 0;
+        }
+
+        .right,
+        .bottom {
+            right: 0;
+            bottom: 0;
+        }
+    }
+
+    .header {
+        width: 300px;
+        padding: 12px 80px;
+        background: black;
+        position: absolute;
+        top: 5%;
+        margin-left: 40px;
+        transform: translateY(-25%);
+        border: $default-border;
+        text-transform: uppercase;
+        font-size: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 5;
+        color: $primary-color;
+        span {
+            height: 32px;
+            line-height: 24px;
+        }
+    }
+}
