@@ -1,0 +1,12 @@
+$primary-color: #419873;
+$default-border: 2px solid $primary-color;
+
+@mixin text-with-no-upper-space($text-size) {
+    font-size: $text-size;
+    line-height: calc($text-size * 1.5 / 3);
+    height: calc($text-size * 2.25 / 3);
+    box-sizing: content-box;
+}
+
+$pixel-font: "pixelFont", Arial, Helvetica, sans-serif;
+$basic-font: "Noto Sans", Arial, Helvetica, sans-serif;
