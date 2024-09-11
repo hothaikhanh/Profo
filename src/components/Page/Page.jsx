@@ -3,7 +3,7 @@ import "./Page.scss";
 
 export default function Page({ title, children }) {
     return (
-        <div className="page">
+        <div className="page crt">
             <header className="header">
                 <span>{title}</span>
             </header>
