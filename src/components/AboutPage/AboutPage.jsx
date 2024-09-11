@@ -1,7 +1,90 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "./AboutPage.scss";
 
 export default function AboutPage() {
+    const techIconURL = "/src/assets/icons/tech_logos/";
+    const technologies = [
+        {
+            name: "Javascript",
+            icon: "js.svg",
+        },
+        {
+            name: "ReactJs",
+            icon: "reactjs.svg",
+        },
+        {
+            name: "NodeJs",
+            icon: "nodejs.svg",
+        },
+        {
+            name: "Vite",
+            icon: "vite.svg",
+        },
+        {
+            name: "Express",
+            icon: "express.svg",
+        },
+
+        {
+            name: "AngularJs",
+            icon: "angular.svg",
+        },
+        {
+            name: "Tailwind",
+            icon: "tailwind.svg",
+        },
+        {
+            name: "Git",
+            icon: "git.svg",
+        },
+        {
+            name: "ThreeJs",
+            icon: "threejs.svg",
+        },
+        {
+            name: "Html",
+            icon: "html.svg",
+        },
+        {
+            name: "CSS",
+            icon: "css.svg",
+        },
+        {
+            name: "SASS",
+            icon: "sass.svg",
+        },
+        {
+            name: "Figma",
+            icon: "figma.svg",
+        },
+    ];
+
+    const relatedSkills = [
+        {
+            name: "English",
+            content: [
+                "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, non!",
+                "English English  English",
+            ],
+        },
+
+        {
+            name: "Graphic Design",
+            content: [
+                "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, non!",
+                "Graphic Design Graphic Design Graphic Design",
+            ],
+        },
+        {
+            name: "Video Editing",
+            content: [
+                "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, non!",
+                "Video Editing Video Editing Video Editing",
+            ],
+        },
+    ];
+    const [toggleSkill, setToggleSkill] = useState(relatedSkills[0].name);
+
     return (
         <div className="about-page">
             <div className="top-content">
@@ -44,53 +127,62 @@ export default function AboutPage() {
                 <div className="tech">
                     <div className="title">technologies</div>
                     <div className="tech-list">
-                        <div className="tech-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                <path d="M0 32v448h448V32H0zm243.8 349.4c0 43.6-25.6 63.5-62.9 63.5-33.7 0-53.2-17.4-63.2-38.5l34.3-20.7c6.6 11.7 12.6 21.6 27.1 21.6 13.8 0 22.6-5.4 22.6-26.5V237.7h42.1v143.7zm99.6 63.5c-39.1 0-64.4-18.6-76.7-43l34.3-19.8c9 14.7 20.8 25.6 41.5 25.6 17.4 0 28.6-8.7 28.6-20.8 0-14.4-11.4-19.5-30.7-28l-10.5-4.5c-30.4-12.9-50.5-29.2-50.5-63.5 0-31.6 24.1-55.6 61.6-55.6 26.8 0 46 9.3 59.8 33.7L368 290c-7.2-12.9-15-18-27.1-18-12.3 0-20.1 7.8-20.1 18 0 12.6 7.8 17.7 25.9 25.6l10.5 4.5c35.8 15.3 55.9 31 55.9 66.2 0 37.8-29.8 58.6-69.7 58.6z" />
-                            </svg>
-                            <span>Javascript</span>
-                        </div>
-                        <div className="tech-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                <path d="M0 32v448h448V32H0zm243.8 349.4c0 43.6-25.6 63.5-62.9 63.5-33.7 0-53.2-17.4-63.2-38.5l34.3-20.7c6.6 11.7 12.6 21.6 27.1 21.6 13.8 0 22.6-5.4 22.6-26.5V237.7h42.1v143.7zm99.6 63.5c-39.1 0-64.4-18.6-76.7-43l34.3-19.8c9 14.7 20.8 25.6 41.5 25.6 17.4 0 28.6-8.7 28.6-20.8 0-14.4-11.4-19.5-30.7-28l-10.5-4.5c-30.4-12.9-50.5-29.2-50.5-63.5 0-31.6 24.1-55.6 61.6-55.6 26.8 0 46 9.3 59.8 33.7L368 290c-7.2-12.9-15-18-27.1-18-12.3 0-20.1 7.8-20.1 18 0 12.6 7.8 17.7 25.9 25.6l10.5 4.5c35.8 15.3 55.9 31 55.9 66.2 0 37.8-29.8 58.6-69.7 58.6z" />
-                            </svg>
-                            <span>Javascript</span>
-                        </div>
-                        <div className="tech-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                <path d="M0 32v448h448V32H0zm243.8 349.4c0 43.6-25.6 63.5-62.9 63.5-33.7 0-53.2-17.4-63.2-38.5l34.3-20.7c6.6 11.7 12.6 21.6 27.1 21.6 13.8 0 22.6-5.4 22.6-26.5V237.7h42.1v143.7zm99.6 63.5c-39.1 0-64.4-18.6-76.7-43l34.3-19.8c9 14.7 20.8 25.6 41.5 25.6 17.4 0 28.6-8.7 28.6-20.8 0-14.4-11.4-19.5-30.7-28l-10.5-4.5c-30.4-12.9-50.5-29.2-50.5-63.5 0-31.6 24.1-55.6 61.6-55.6 26.8 0 46 9.3 59.8 33.7L368 290c-7.2-12.9-15-18-27.1-18-12.3 0-20.1 7.8-20.1 18 0 12.6 7.8 17.7 25.9 25.6l10.5 4.5c35.8 15.3 55.9 31 55.9 66.2 0 37.8-29.8 58.6-69.7 58.6z" />
-                            </svg>
-                            <span>Javascript</span>
-                        </div>
-                        <div className="tech-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                <path d="M0 32v448h448V32H0zm243.8 349.4c0 43.6-25.6 63.5-62.9 63.5-33.7 0-53.2-17.4-63.2-38.5l34.3-20.7c6.6 11.7 12.6 21.6 27.1 21.6 13.8 0 22.6-5.4 22.6-26.5V237.7h42.1v143.7zm99.6 63.5c-39.1 0-64.4-18.6-76.7-43l34.3-19.8c9 14.7 20.8 25.6 41.5 25.6 17.4 0 28.6-8.7 28.6-20.8 0-14.4-11.4-19.5-30.7-28l-10.5-4.5c-30.4-12.9-50.5-29.2-50.5-63.5 0-31.6 24.1-55.6 61.6-55.6 26.8 0 46 9.3 59.8 33.7L368 290c-7.2-12.9-15-18-27.1-18-12.3 0-20.1 7.8-20.1 18 0 12.6 7.8 17.7 25.9 25.6l10.5 4.5c35.8 15.3 55.9 31 55.9 66.2 0 37.8-29.8 58.6-69.7 58.6z" />
-                            </svg>
-                            <span>Javascript</span>
-                        </div>
-                        <div className="tech-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                <path d="M0 32v448h448V32H0zm243.8 349.4c0 43.6-25.6 63.5-62.9 63.5-33.7 0-53.2-17.4-63.2-38.5l34.3-20.7c6.6 11.7 12.6 21.6 27.1 21.6 13.8 0 22.6-5.4 22.6-26.5V237.7h42.1v143.7zm99.6 63.5c-39.1 0-64.4-18.6-76.7-43l34.3-19.8c9 14.7 20.8 25.6 41.5 25.6 17.4 0 28.6-8.7 28.6-20.8 0-14.4-11.4-19.5-30.7-28l-10.5-4.5c-30.4-12.9-50.5-29.2-50.5-63.5 0-31.6 24.1-55.6 61.6-55.6 26.8 0 46 9.3 59.8 33.7L368 290c-7.2-12.9-15-18-27.1-18-12.3 0-20.1 7.8-20.1 18 0 12.6 7.8 17.7 25.9 25.6l10.5 4.5c35.8 15.3 55.9 31 55.9 66.2 0 37.8-29.8 58.6-69.7 58.6z" />
-                            </svg>
-                            <span>Javascript</span>
-                        </div>
+                        {technologies.map((tech) => {
+                            return (
+                                <div className="tech-item">
+                                    <img src={`${techIconURL}${tech.icon}`} alt="" />
+                                    <span>{tech.name}</span>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
                 <div className="related-tech">
                     <div className="title">related skills</div>
                     <div className="content-container">
                         <div className="toggle-btns">
-                            <button>English</button>
-                            <button>Video Editing</button>
-                            <button>Graphic Design</button>
+                            {relatedSkills.map((skill, index) => {
+                                return (
+                                    <SkillRadioButton
+                                        key={index}
+                                        skillName={skill.name}
+                                        skillGroup="relatedSkill"
+                                        setToggleSkill={setToggleSkill}
+                                        checked={toggleSkill == skill.name}
+                                    />
+                                );
+                            })}
                         </div>
                         <ul className="display-content">
-                            <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, vitae!</li>
-                            <li>Lorem ipsum dolor sit amet.</li>
+                            {relatedSkills
+                                .filter((skill) => {
+                                    return skill.name == toggleSkill;
+                                })[0]
+                                .content.map((line, index) => {
+                                    return <li key={index}>{line}</li>;
+                                })}
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+    );
+}
+
+function SkillRadioButton({ skillName, skillGroup, setToggleSkill, checked }) {
+    let uniqueId = `${skillGroup}_${skillName}`;
+
+    return (
+        <>
+            <input
+                type="radio"
+                id={uniqueId}
+                value={skillName}
+                name={skillGroup}
+                checked={checked}
+                onChange={() => setToggleSkill(skillName)}
+            />
+            <label htmlFor={uniqueId}>{skillName}</label>
+        </>
     );
 }
