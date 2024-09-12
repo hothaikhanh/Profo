@@ -9,6 +9,7 @@ import Page from "./components/Page/Page";
 import AboutPage from "./components/AboutPage/AboutPage";
 
 import "./App.scss";
+import HistoryPage from "./components/HistoryPage/HistoryPage";
 
 function App() {
     const computers = useLoader(GLTFLoader, "./src/assets/old_computers/scene.gltf");
@@ -118,8 +119,9 @@ function App() {
                     rotation={[0.0, 1.22, 0.0]}
                     fov={75}
                 >
-                    <Page title={"Info"}>
-                        <AboutPage></AboutPage>
+                    <Page title={"Work History"}>
+                        <HistoryPage></HistoryPage>
+                        {/* <AboutPage></AboutPage> */}
                     </Page>
                 </Html>
             </Canvas>
