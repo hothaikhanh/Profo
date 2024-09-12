@@ -24,12 +24,14 @@
         .bottom {
             width: 50%;
             border-top: none;
+            animation: horizontal-borders 30s infinite steps(60) alternate;
         }
 
         .left,
         .right {
-            height: 90%;
+            height: 50%;
             border-right: none;
+            animation: vertical-borders 30s infinite steps(60) alternate-reverse;
         }
         .top,
         .left {
@@ -70,13 +72,13 @@
 /* REGULAR SCANLINES SETTINGS */
 
 // width of 1 scanline (min.: 1px)
-$scan-width: 1px;
+$scan-width: 2px;
 // emulates a damage-your-eyes bad pre-2000 CRT screen ♥ (true, false)
 $scan-crt: true;
 // frames-per-second (should be > 1), only applies if $scan-crt: true;
 $scan-fps: 60;
 // scanline-color (rgba)
-$scan-color: rgba(#000, 0.3);
+$scan-color: rgba(#000, 0.1);
 // set z-index on 2147483648 or more to enable scanlines on Chrome fullscreen (doesn't work in Firefox or IE);
 $scan-z-index: 2147483648;
 
@@ -154,5 +156,25 @@ $scan-opacity: 0.7;
     0% {
         background-position: 0 50%;
         // bottom: 0%; // to have a continuous scanline move, use this line (here in 0% step) instead of transform and write, in &:before, { position: absolute; bottom: 100%; }
+    }
+}
+
+@keyframes vertical-borders {
+    0% {
+        height: 50%;
+    }
+
+    100% {
+        height: 0%;
+    }
+}
+
+@keyframes horizontal-borders {
+    0% {
+        width: 50%;
+    }
+
+    100% {
+        width: 0%;
     }
 }
