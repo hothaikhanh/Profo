@@ -9,10 +9,10 @@ export default function Page({ title, children }) {
             </header>
 
             <div className="outer-border">
-                <p className="top"></p>
-                <p className="right"></p>
-                <p className="bottom"></p>
-                <p className="left"></p>
+                <p className="top-border"></p>
+                <p className="right-border"></p>
+                <p className="bottom-border"></p>
+                <p className="left-border"></p>
 
                 {children}
             </div>

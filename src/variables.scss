@@ -12,3 +12,14 @@ $default-border: 2px solid $primary-color;
 
 $pixel-font: "pixelFont", Arial, Helvetica, sans-serif;
 $basic-font: "Noto Sans", Arial, Helvetica, sans-serif;
+
+$cell-gap: 12px;
+
+@mixin cell {
+    border: $default-border;
+}
+@mixin text-box {
+    border: $default-border;
+    text-transform: uppercase;
+    padding: 6px 12px;
+}

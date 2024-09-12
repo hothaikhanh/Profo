@@ -1,14 +1,4 @@
 @use "../../variables.scss" as *;
-@mixin cell {
-    border: $default-border;
-}
-@mixin text-box {
-    border: $default-border;
-    text-transform: uppercase;
-    padding: 6px 12px;
-}
-
-$cell-gap: 12px;
 
 .about-page {
     display: flex;
