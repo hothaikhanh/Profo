@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./AboutPage.scss";
+import { HoverButton, RadioButton } from "../Buttons/Buttons";
 
 export default function AboutPage() {
     const techIconURL = "/src/assets/icons/tech_logos/";
@@ -89,7 +90,7 @@ export default function AboutPage() {
         <div className="about-page">
             <div className="top-content ">
                 <div className="pfp">
-                    <img src="/src/assets/img/pfp.png" alt="" />
+                    <img src="/src/assets/img/pfp-4.png" alt="" />
                     <div className="filter"></div>
                 </div>
                 <div className="side-content">
@@ -118,12 +119,14 @@ export default function AboutPage() {
                         </div>
                     </div>
 
-                    <button className="download-cv ">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20px">
-                            <path d="M364.2 83.8c-24.4-24.4-64-24.4-88.4 0l-184 184c-42.1 42.1-42.1 110.3 0 152.4s110.3 42.1 152.4 0l152-152c10.9-10.9 28.7-10.9 39.6 0s10.9 28.7 0 39.6l-152 152c-64 64-167.6 64-231.6 0s-64-167.6 0-231.6l184-184c46.3-46.3 121.3-46.3 167.6 0s46.3 121.3 0 167.6l-176 176c-28.6 28.6-75 28.6-103.6 0s-28.6-75 0-103.6l144-144c10.9-10.9 28.7-10.9 39.6 0s10.9 28.7 0 39.6l-144 144c-6.7 6.7-6.7 17.7 0 24.4s17.7 6.7 24.4 0l176-176c24.4-24.4 24.4-64 0-88.4z" />
-                        </svg>
-                        <span>download cv</span>
-                    </button>
+                    <HoverButton>
+                        <div className="download-cv">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20px">
+                                <path d="M364.2 83.8c-24.4-24.4-64-24.4-88.4 0l-184 184c-42.1 42.1-42.1 110.3 0 152.4s110.3 42.1 152.4 0l152-152c10.9-10.9 28.7-10.9 39.6 0s10.9 28.7 0 39.6l-152 152c-64 64-167.6 64-231.6 0s-64-167.6 0-231.6l184-184c46.3-46.3 121.3-46.3 167.6 0s46.3 121.3 0 167.6l-176 176c-28.6 28.6-75 28.6-103.6 0s-28.6-75 0-103.6l144-144c10.9-10.9 28.7-10.9 39.6 0s10.9 28.7 0 39.6l-144 144c-6.7 6.7-6.7 17.7 0 24.4s17.7 6.7 24.4 0l176-176c24.4-24.4 24.4-64 0-88.4z" />
+                            </svg>
+                            <span>download cv</span>
+                        </div>
+                    </HoverButton>
                 </div>
             </div>
             <div className="bottom-content">
@@ -146,13 +149,15 @@ export default function AboutPage() {
                         <div className="toggle-btns">
                             {relatedSkills.map((skill, index) => {
                                 return (
-                                    <SkillRadioButton
+                                    <RadioButton
                                         key={index}
-                                        skillName={skill.name}
-                                        skillGroup="relatedSkill"
-                                        setToggleSkill={setToggleSkill}
+                                        btnName={skill.name}
+                                        btnGroup="relatedSkill"
+                                        setToggleBtn={setToggleSkill}
                                         checked={toggleSkill == skill.name}
-                                    />
+                                    >
+                                        <span>{skill.name}</span>
+                                    </RadioButton>
                                 );
                             })}
                         </div>
@@ -169,23 +174,5 @@ export default function AboutPage() {
                 </div>
             </div>
         </div>
-    );
-}
-
-function SkillRadioButton({ skillName, skillGroup, setToggleSkill, checked }) {
-    let uniqueId = `${skillGroup}_${skillName}`;
-
-    return (
-        <>
-            <input
-                type="radio"
-                id={uniqueId}
-                value={skillName}
-                name={skillGroup}
-                checked={checked}
-                onChange={() => setToggleSkill(skillName)}
-            />
-            <label htmlFor={uniqueId}>{skillName}</label>
-        </>
     );
 }
