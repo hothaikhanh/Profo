@@ -1,0 +1,140 @@
+@use "../../variables.scss" as *;
+
+.button-type-hover {
+    flex-grow: 1;
+    color: $primary-color;
+    text-transform: uppercase;
+    border: none;
+    position: relative;
+    background-color: $primary-color;
+    padding: 1rem;
+    cursor: pointer;
+
+    .button-border {
+        border: 2px solid;
+        border-color: $primary-color;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: all 0.3s linear;
+    }
+
+    .button-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        mix-blend-mode: difference;
+    }
+
+    .button-background {
+        width: 100%;
+        background: black;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &:hover {
+        .button-border {
+            border-color: white;
+        }
+        .button-background {
+            animation: fill-in 0.3s steps(6) forwards;
+        }
+        .button-content {
+            scale: 1.2;
+        }
+    }
+
+    &:not(:hover) {
+        .button-border {
+            border-color: $primary-color;
+        }
+        .button-background {
+            animation: fill-out 0.3s steps(6) forwards;
+        }
+        .button-content {
+            scale: 1;
+        }
+    }
+}
+
+.button-type-radio {
+    display: none;
+    + label {
+        color: white;
+        position: relative;
+        flex-grow: 1;
+        background: $primary-color;
+        cursor: pointer;
+
+        .button-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: black;
+            right: 0;
+        }
+        .button-content {
+            padding: 12px;
+            position: relative;
+        }
+        .button-border {
+            border: $default-border;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &:not(:checked) + label {
+        .button-background {
+            animation: fill-out 0.2s steps(4) forwards;
+        }
+    }
+
+    &:hover + label {
+        .button-background {
+            background: $secondary-color;
+        }
+        .button-border {
+            border-color: white;
+        }
+    }
+    &:checked + label {
+        color: black;
+        .button-background {
+            animation: fill-in 0.2s steps(4) forwards;
+        }
+        .button-border {
+            border-color: white;
+        }
+    }
+}
+
+@keyframes fill-in {
+    0% {
+        width: 100%;
+    }
+
+    100% {
+        width: 0%;
+    }
+}
+
+@keyframes fill-out {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
