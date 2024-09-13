@@ -7,10 +7,10 @@ import { Environment, OrbitControls, Html, PerspectiveCamera, CameraControls } f
 import { useState, useRef, Suspense } from "react";
 import Page from "./components/Page/Page";
 import AboutPage from "./components/AboutPage/AboutPage";
-
-import "./App.scss";
 import HistoryPage from "./components/HistoryPage/HistoryPage";
 import ProjectPage from "./components/ProjectPage/ProjectPage";
+import ContactPage from "./components/ContactPage/ContactPage";
+import "./App.scss";
 
 function App() {
     const computers = useLoader(GLTFLoader, "./src/assets/old_computers/scene.gltf");
@@ -120,11 +120,21 @@ function App() {
                     rotation={[0.0, 1.22, 0.0]}
                     fov={75}
                 >
-                    <Page title={"Work History"}>
-                        {/* <HistoryPage></HistoryPage> */}
-                        {/* <AboutPage></AboutPage> */}
-                        <ProjectPage></ProjectPage>
+                    <Page title={"About me"}>
+                        <AboutPage></AboutPage>
                     </Page>
+
+                    {/* <Page title={"work history"}>
+                        <HistoryPage></HistoryPage>
+                    </Page> */}
+
+                    {/* <Page title={"my projects"}>
+                        <ProjectPage></ProjectPage>
+                    </Page> */}
+
+                    {/* <Page hasFrame={false}>
+                        <ContactPage></ContactPage>
+                    </Page> */}
                 </Html>
             </Canvas>
 

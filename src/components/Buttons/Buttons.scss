@@ -28,6 +28,9 @@
         transform: translate(-50%, -50%);
         mix-blend-mode: difference;
         text-wrap: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .button-background {
