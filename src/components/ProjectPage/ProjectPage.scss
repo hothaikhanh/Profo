@@ -1,0 +1,122 @@
+@use "../../variables.scss" as *;
+
+.project-page {
+    display: flex;
+    gap: $cell-gap;
+    height: 100%;
+    @include cell;
+    justify-content: space-between;
+    padding: $cell-gap;
+    position: relative;
+    .side-bar {
+        position: relative;
+        height: 100%;
+        display: flex;
+        gap: $cell-gap;
+        flex-direction: column;
+
+        .project-info {
+            color: black;
+            background: $primary-color;
+            padding: $cell-gap;
+            padding-left: 24px;
+            padding-bottom: 24px;
+            padding-right: 24px;
+            flex-grow: 1;
+
+            .project-title {
+                margin-top: 4px;
+            }
+            .project-desc {
+                font-family: $basic-font;
+                font-weight: 600;
+                text-align: justify;
+            }
+        }
+
+        .tech {
+            @include cell;
+
+            padding: $cell-gap;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: $cell-gap;
+
+            .title {
+                @include text-box;
+                @include text-with-no-upper-space(20px);
+                background: $primary-color;
+                color: black;
+                text-align: center;
+            }
+            .tech-list {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            .tech-item {
+                background: $secondary-color;
+                flex-grow: 1;
+                padding: 4px 8px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                span {
+                    @include text-with-no-upper-space(16px);
+                }
+                img {
+                    height: 20px;
+                }
+            }
+        }
+    }
+    .main-content {
+        height: 100%;
+        flex-grow: 1;
+        aspect-ratio: 1/1;
+        position: relative;
+        align-items: flex-end;
+        justify-content: flex-end;
+        display: flex;
+        .nav-btns {
+            display: flex;
+            flex-direction: column;
+            gap: $cell-gap;
+            width: 50%;
+
+            .btn-row {
+                display: flex;
+                gap: $cell-gap;
+            }
+        }
+
+        .preview {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            .filter {
+                background-image: radial-gradient(ellipse, rgba($color: black, $alpha: 0) 0%, black 80%);
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+            }
+            img {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background-color: red;
+                object-fit: cover;
+            }
+        }
+    }
+}
