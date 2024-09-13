@@ -133,9 +133,9 @@ export default function AboutPage() {
                 <div className="tech">
                     <div className="title">technologies</div>
                     <div className="tech-list">
-                        {technologies.map((tech) => {
+                        {technologies.map((tech, index) => {
                             return (
-                                <div className="tech-item">
+                                <div className="tech-item" key={index}>
                                     <img src={`${techIconURL}${tech.icon}`} alt="" />
                                     <span>{tech.name}</span>
                                 </div>
