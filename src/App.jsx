@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useLoader } from "@react-three/fiber";
+import { Canvas, useFrame, useThree, useLoader } from "@react-three/fiber";
+import {} from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import {
     Environment,
@@ -11,10 +11,13 @@ import {
     ScrollControls,
     Scroll,
     useScroll,
-    Text3D,
-    Center,
     Text,
+    useHelper,
+    Plane,
 } from "@react-three/drei";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useControls } from "leva";
 
 import { useState, useRef, Suspense, useEffect } from "react";
 import Page from "./components/Page/Page";
@@ -23,63 +26,52 @@ import HistoryPage from "./components/HistoryPage/HistoryPage";
 import ProjectPage from "./components/ProjectPage/ProjectPage";
 import ContactPage from "./components/ContactPage/ContactPage";
 import "./App.scss";
-import { TextGeometry } from "three/examples/jsm/Addons.js";
 
 function App() {
     const computers = useLoader(GLTFLoader, "./src/assets/old_computers/scene.gltf");
-    const camera_positions = [
-        { positionX: 0.0, positionY: 0.8, positionZ: 5.0, targetX: 0.0, targetY: 0.0, targetZ: 0.0 },
-        { positionX: -2.7, positionY: 0.61, positionZ: 1.54, targetX: -8.3, targetY: 0.6, targetZ: -0.4 },
-        {
-            positionX: -2.0,
-            positionY: -1.75,
-            positionZ: -0.15,
-            targetX: -2.57,
-            targetY: -1.75,
-            targetZ: -0.44,
-        },
-        { positionX: -0.72, positionY: 0.11, positionZ: -1.35, targetX: -1.27, targetY: 0.11, targetZ: -1.7 },
-        { positionX: 0.26, positionY: -0.84, positionZ: -1.81, targetX: 0.26, targetY: -0.84, targetZ: -2.42 },
-        { positionX: 1.56, positionY: -1.99, positionZ: -1.02, targetX: 1.76, targetY: -1.99, targetZ: -1.55 },
-        { positionX: 2.64, positionY: -0.35, positionZ: 0.28, targetX: 3.46, targetY: -0.35, targetZ: -0.53 },
+    const screenConfigs = [
+        { position: [-3.24, 0.61, 1.36], rotation: [0.0, 1.22, 0.0] }, //about me
+        { position: [-2.56, -1.76, -0.44], rotation: [0.0, 1.09, 0.0] }, //works
+        { position: [-1.27, 0.11, -1.7], rotation: [0.0, 1.0, 0] }, //project 1
+        { position: [0.26, -0.86, -2.42], rotation: [0.0, 0.0, 0.0] }, //project 2
+        { position: [1.78, -2.0, -1.59], rotation: [0.0, -0.36, 0.0] }, //project 3
+        { position: [2.98, -0.35, -0.09], rotation: [0.0, -0.8, 0.0] }, //contactme
+        { position: [-3.8, 1.91, -2.48], rotation: [0.0, 0.54, 0.0] }, //blank1
+        { position: [0.97, 1.9, -4.02], rotation: [0.0, -0.1, 0.0] }, //blank2
+        { position: [4.52, 1.9, -1.46], rotation: [0.0, -1.05, 0.0] }, //blank3
     ];
-    const screen_positions = [
-        { position: [-3.24, 0.61, 1.36], rotation: [0.0, 1.22, 0.0] },
-        { position: [-2.56, -1.76, -0.44], rotation: [0.0, 1.09, 0.0] },
-        { position: [-1.27, 0.11, -1.7], rotation: [0.0, 1.0, 0] },
-        { position: [0.26, -0.86, -2.42], rotation: [0.0, 0.0, 0.0] },
-        { position: [1.78, -2.0, -1.59], rotation: [0.0, -0.36, 0.0] },
-        { position: [2.98, -0.35, -0.09], rotation: [0.0, -0.8, 0.0] },
-        { position: [-3.8, 1.91, -2.48], rotation: [0.0, 0.54, 0.0] },
-        { position: [0.97, 1.9, -4.02], rotation: [0.0, -0.1, 0.0] },
-        { position: [4.52, 1.9, -1.46], rotation: [0.0, -1.05, 0.0] },
+    const [spotLightScreenIndex, setSpotLightScreenIndex] = useState(null);
+
+    const cameraConfigs = [
+        { position: [0.0, 0.8, 5.0], target: [0.0, 0.0, 0.0] }, //show default
+        { position: [-2.7, 0.61, 1.54], target: screenConfigs[0].position }, //show about me
+        { position: [-2.0, -1.75, -0.15], target: screenConfigs[1].position }, //show works
+        { position: [-0.72, 0.11, -1.35], target: screenConfigs[2].position }, //show project 1
+        { position: [0.26, -0.86, -1.81], target: screenConfigs[3].position }, //show project 2
+        { position: [1.56, -2, -1.02], target: screenConfigs[4].position }, //show project 3
+        { position: [2.64, -0.35, 0.28], target: screenConfigs[5].position }, //show contactme
     ];
-    const [activeCameraPositon, setActiveCameraPositon] = useState(0);
+    const [activeCameraConfig, setActiveCameraConfig] = useState(0);
+
     const cameraControlRef = useRef();
 
+    //Update camera when viewing a screen
     useEffect(() => {
         cameraControlRef.current?.setLookAt(
-            camera_positions[activeCameraPositon].positionX,
-            camera_positions[activeCameraPositon].positionY,
-            camera_positions[activeCameraPositon].positionZ,
-            camera_positions[activeCameraPositon].targetX,
-            camera_positions[activeCameraPositon].targetY,
-            camera_positions[activeCameraPositon].targetZ,
+            cameraConfigs[activeCameraConfig].position[0],
+            cameraConfigs[activeCameraConfig].position[1],
+            cameraConfigs[activeCameraConfig].position[2],
+            cameraConfigs[activeCameraConfig].target[0],
+            cameraConfigs[activeCameraConfig].target[1],
+            cameraConfigs[activeCameraConfig].target[2],
             true
         );
-    }, [activeCameraPositon]);
+    }, [activeCameraConfig]);
 
-    const [scrollActive, setScrollActive] = useState(false);
-
-    const [y, setY] = useState(window.scrollY);
-
-    useEffect(() => {
-        window.addEventListener("scroll", (e) => console.log(e));
-    }, [y]);
     //DEV TOOLS
     const devMode = false;
     const allowMouse = true;
-    const [devCameraSettings, setDevCameraSettings] = useState(camera_positions[0]);
+    const [devCameraSettings, setDevCameraSettings] = useState(cameraConfigs[0]);
     const [objectSettings, setObjectSettings] = useState({
         positionX: 0,
         positionY: 0,
@@ -92,29 +84,6 @@ function App() {
     const devObjectRotation = [objectSettings.targetX, objectSettings.targetY, objectSettings.targetZ];
     //DEV TOOLS
 
-    function updateCamera(newSettings) {
-        cameraControlRef.current.setLookAt(
-            newSettings.positionX,
-            newSettings.positionY,
-            newSettings.positionZ,
-            newSettings.targetX,
-            newSettings.targetY,
-            newSettings.targetZ,
-            true
-        );
-    }
-    function handleScroll(event) {}
-
-    useEffect(() => {
-        // let scroll = document.querySelector(`[data-camera-controls-version]`);
-        // if (scroll) {
-        //
-        //     scroll.addEventListener("scroll", (e) => {
-        //         console.log(e.target);
-        //     });
-        // }
-    }, [scrollActive]);
-
     return (
         <div id="canvas-container">
             <Canvas>
@@ -124,33 +93,133 @@ function App() {
                     damping={0}
                     infinite={true}
                     prepend={true}
-                    style={{
-                        // zIndex: 999999999,
-                        scrollbarWidth: "none",
-                    }}
+                    style={{ scrollbarWidth: "none" }}
                 >
                     <Scroll>
-                        <Screens screen_positions={screen_positions} />
                         <ScrollObject
-                            setScrollActive={setScrollActive}
-                            setActiveCameraPositon={setActiveCameraPositon}
-                            activeCameraPositon={activeCameraPositon}
-                            camera_positions={camera_positions}
+                            setActiveCameraConfig={setActiveCameraConfig}
+                            activeCameraConfig={activeCameraConfig}
+                            cameraConfigs={cameraConfigs}
                         />
                     </Scroll>
                 </ScrollControls>
 
-                <MainCamera cameraControlRef={cameraControlRef} allowMouse={allowMouse} />
-
-                <ambientLight color="grey" intensity={Math.PI} />
-                <spotLight
-                    color="green"
-                    position={[0, 5, 0]}
-                    angle={1}
-                    penumbra={0.4}
-                    decay={0.1}
-                    intensity={Math.PI * 2}
+                <CameraControls
+                    enabled={true}
+                    makeDefault
+                    ref={cameraControlRef}
+                    mouseButtons={{
+                        left: allowMouse ? 1 : 0,
+                        right: allowMouse ? 2 : 0,
+                        wheel: allowMouse ? 8 : 0,
+                        middle: allowMouse ? 8 : 0,
+                    }}
                 />
+
+                <group>
+                    <ScreenContainer
+                        screenConfigs={screenConfigs}
+                        screenIndex={0}
+                        scale={0.038}
+                        title={"About Me"}
+                        setActiveCameraConfig={setActiveCameraConfig}
+                        setSpotLightScreenIndex={setSpotLightScreenIndex}
+                        activeCameraConfig={activeCameraConfig}
+                    >
+                        <Page title={"About me"}>
+                            <AboutPage></AboutPage>
+                        </Page>
+                    </ScreenContainer>
+
+                    <ScreenContainer
+                        screenConfigs={screenConfigs}
+                        screenIndex={1}
+                        scale={0.041}
+                        title={"Work History"}
+                        setActiveCameraConfig={setActiveCameraConfig}
+                        setSpotLightScreenIndex={setSpotLightScreenIndex}
+                        activeCameraConfig={activeCameraConfig}
+                    >
+                        <Page title={"work history"}>
+                            <HistoryPage></HistoryPage>
+                        </Page>
+                    </ScreenContainer>
+
+                    <ScreenContainer
+                        screenConfigs={screenConfigs}
+                        screenIndex={2}
+                        scale={0.041}
+                        title={"Project #1"}
+                        setActiveCameraConfig={setActiveCameraConfig}
+                        setSpotLightScreenIndex={setSpotLightScreenIndex}
+                        activeCameraConfig={activeCameraConfig}
+                    >
+                        <Page title={"my projects"}>
+                            <ProjectPage></ProjectPage>
+                        </Page>
+                    </ScreenContainer>
+
+                    <ScreenContainer
+                        screenConfigs={screenConfigs}
+                        screenIndex={3}
+                        scale={0.041}
+                        title={"Project #2"}
+                        setActiveCameraConfig={setActiveCameraConfig}
+                        setSpotLightScreenIndex={setSpotLightScreenIndex}
+                        activeCameraConfig={activeCameraConfig}
+                    >
+                        <Page title={"my projects"}>
+                            <ProjectPage></ProjectPage>
+                        </Page>
+                    </ScreenContainer>
+
+                    <ScreenContainer
+                        screenConfigs={screenConfigs}
+                        screenIndex={4}
+                        scale={0.041}
+                        title={"Project #3"}
+                        setActiveCameraConfig={setActiveCameraConfig}
+                        setSpotLightScreenIndex={setSpotLightScreenIndex}
+                        activeCameraConfig={activeCameraConfig}
+                    >
+                        <Page title={"my projects"}>
+                            <ProjectPage></ProjectPage>
+                        </Page>
+                    </ScreenContainer>
+
+                    <ScreenContainer
+                        screenConfigs={screenConfigs}
+                        screenIndex={5}
+                        scale={0.041}
+                        title={"Contacts"}
+                        setActiveCameraConfig={setActiveCameraConfig}
+                        setSpotLightScreenIndex={setSpotLightScreenIndex}
+                        activeCameraConfig={activeCameraConfig}
+                    >
+                        <Page>
+                            <ContactPage></ContactPage>
+                        </Page>
+                    </ScreenContainer>
+
+                    {/* EMPTY SCREENS */}
+                    <ScreenContainer screenConfigs={screenConfigs} screenIndex={6} scale={0.041}>
+                        <Page />
+                    </ScreenContainer>
+                    <ScreenContainer screenConfigs={screenConfigs} screenIndex={7} scale={0.041}>
+                        <Page />
+                    </ScreenContainer>
+                    <ScreenContainer screenConfigs={screenConfigs} screenIndex={8} scale={0.041}>
+                        <Page />
+                    </ScreenContainer>
+                </group>
+
+                <DynamicSpotLight
+                    screenConfigs={screenConfigs}
+                    spotLightScreenIndex={spotLightScreenIndex}
+                    activeCameraConfig={activeCameraConfig}
+                />
+                <ambientLight color="#419873" intensity={1.8} />
+
                 <Suspense fallback={null}>
                     <primitive scale={1} position={[0, -3, 0]} object={computers.scene} />
                 </Suspense>
@@ -158,19 +227,39 @@ function App() {
 
             {/* NAV BAR */}
             <div className="bottom-nav">
-                <button className="nav-btn" onClick={() => setActiveCameraPositon(0)}>
+                <button className="nav-btn" onClick={() => setActiveCameraConfig(0)}>
                     Home
                 </button>
-                <button className="nav-btn" onClick={() => setActiveCameraPositon(1)}>
+                <button
+                    className="nav-btn"
+                    onClick={() => setActiveCameraConfig(1)}
+                    onMouseEnter={() => setSpotLightScreenIndex(0)}
+                    onMouseLeave={() => setSpotLightScreenIndex(null)}
+                >
                     About me
                 </button>
-                <button className="nav-btn" onClick={() => setActiveCameraPositon(2)}>
+                <button
+                    className="nav-btn"
+                    onClick={() => setActiveCameraConfig(2)}
+                    onMouseEnter={() => setSpotLightScreenIndex(1)}
+                    onMouseLeave={() => setSpotLightScreenIndex(null)}
+                >
                     Work Experience
                 </button>
-                <button className="nav-btn" onClick={() => setActiveCameraPositon(3)}>
+                <button
+                    className="nav-btn"
+                    onClick={() => setActiveCameraConfig(3)}
+                    onMouseEnter={() => setSpotLightScreenIndex(2)}
+                    onMouseLeave={() => setSpotLightScreenIndex(null)}
+                >
                     Projects
                 </button>
-                <button className="nav-btn" onClick={() => setActiveCameraPositon(6)}>
+                <button
+                    className="nav-btn"
+                    onClick={() => setActiveCameraConfig(6)}
+                    onMouseEnter={() => setSpotLightScreenIndex(5)}
+                    onMouseLeave={() => setSpotLightScreenIndex(null)}
+                >
                     Contact
                 </button>
             </div>
@@ -195,6 +284,158 @@ function App() {
 }
 
 export default App;
+
+function ScrollObject({ setActiveCameraConfig, activeCameraConfig, cameraConfigs }) {
+    const data = useScroll();
+    let allowScroll = useRef(false),
+        prevScroll = useRef(null),
+        currentScroll = useRef(null);
+
+    let nextScreen = () => {
+        if (activeCameraConfig == cameraConfigs.length - 1) {
+            setActiveCameraConfig(0);
+            return;
+        }
+        setActiveCameraConfig(activeCameraConfig + 1);
+    };
+    let prevScrren = () => {
+        if (activeCameraConfig == 0) {
+            setActiveCameraConfig(cameraConfigs.length - 1);
+            return;
+        }
+        setActiveCameraConfig(activeCameraConfig - 1);
+    };
+
+    useFrame(() => {
+        if (data.delta !== 0 && allowScroll.current === false) {
+            allowScroll.current = true;
+
+            prevScroll.current = data.offset;
+            // console.log("START from: " + data.offset);
+        } else if (data.delta !== 0 && currentScroll.current == null) {
+            currentScroll.current = data.offset;
+            if (currentScroll.current > prevScroll.current) {
+                nextScreen();
+                // console.log("GOING DOWN: " + currentScroll.current + " -> " + prevScroll.current);
+            } else {
+                prevScrren();
+                // console.log("GOING UP: " + currentScroll.current + " -> " + prevScroll.current);
+            }
+        } else if (data.delta == 0 && allowScroll.current === true) {
+            allowScroll.current = false;
+            // console.log("END at: " + data.offset);
+            prevScroll.current = null;
+            currentScroll.current = null;
+        }
+    });
+    return null;
+}
+
+function ScreenContainer({
+    screenConfigs,
+    setActiveCameraConfig = () => {},
+    setSpotLightScreenIndex = () => {},
+    screenIndex,
+    activeCameraConfig,
+    scale,
+    children,
+    title = null,
+}) {
+    const { gl } = useThree();
+    const titleText = useRef(null);
+    const titleArrow = useRef(null);
+    const defaultFontSize = 0.2;
+    const defaultFillOpacity = 1;
+
+    useGSAP(() => {
+        //show text when is at homepage
+        if (activeCameraConfig === 0) {
+            gsap.to(titleText.current, {
+                fillOpacity: defaultFillOpacity,
+                fontSize: defaultFontSize,
+                duration: 0.3,
+                delay: 0.8,
+            });
+            gsap.to(titleArrow.current, {
+                fillOpacity: defaultFillOpacity,
+                fontSize: defaultFontSize,
+                duration: 0.3,
+                delay: 0.8,
+            });
+        } else {
+            gsap.to(titleText.current, {
+                fillOpacity: 0,
+                fontSize: 0,
+                duration: 0.3,
+            });
+            gsap.to(titleArrow.current, {
+                fillOpacity: 0,
+                fontSize: 0,
+                duration: 0.3,
+            });
+        }
+    }, [activeCameraConfig]);
+
+    return (
+        <group>
+            {title ? (
+                <mesh>
+                    <Text
+                        font={"./src/assets/fonts/SVN-Determination Sans.otf"}
+                        characters="abcdefghijklmnopqrstuvwxyz0123456789!"
+                        position={[
+                            screenConfigs[screenIndex].position[0],
+                            screenConfigs[screenIndex].position[1] + 1.2,
+                            screenConfigs[screenIndex].position[2],
+                        ]}
+                        rotation={screenConfigs[screenIndex].rotation}
+                        fontSize={0}
+                        fillOpacity={0}
+                        ref={titleText}
+                    >
+                        {title}
+                    </Text>
+                    <Text
+                        font={"./src/assets/fonts/SVN-Determination Sans.otf"}
+                        characters="v"
+                        position={[
+                            screenConfigs[screenIndex].position[0],
+                            screenConfigs[screenIndex].position[1] + 1,
+                            screenConfigs[screenIndex].position[2],
+                        ]}
+                        rotation={screenConfigs[screenIndex].rotation}
+                        fontSize={0}
+                        fillOpacity={0}
+                        ref={titleArrow}
+                    >
+                        v
+                    </Text>
+                </mesh>
+            ) : null}
+            <Html
+                position={screenConfigs[screenIndex].position}
+                rotation={screenConfigs[screenIndex].rotation}
+                occlude="blending"
+                scale={scale}
+                transform
+                fov={75}
+                portal={{ current: gl.domElement.parentNode }}
+            >
+                <div
+                    onClick={() => setActiveCameraConfig(screenIndex + 1)}
+                    onMouseEnter={() => {
+                        setSpotLightScreenIndex(screenIndex);
+                    }}
+                    onMouseLeave={() => {
+                        if (activeCameraConfig === 0) setSpotLightScreenIndex(null);
+                    }}
+                >
+                    {children}
+                </div>
+            </Html>
+        </group>
+    );
+}
 
 function ControlBoard({ name, property, setProperty }) {
     return (
@@ -270,174 +511,73 @@ function PropController({ property, modifyKey, setProp, name }) {
     );
 }
 
-function MainCamera({ cameraControlRef, allowMouse }) {
-    return (
-        <CameraControls
-            enabled={true}
-            makeDefault
-            ref={cameraControlRef}
-            mouseButtons={{
-                left: allowMouse ? 1 : 0,
-                right: allowMouse ? 2 : 0,
-                wheel: allowMouse ? 8 : 0,
-                // wheel: 8,
+function DynamicSpotLight({ screenConfigs, spotLightScreenIndex, activeCameraConfig }) {
+    const spotlight = useRef();
+    const target = useRef();
+    let lightIntensity = 10;
+    let lightDistance = 30;
 
-                middle: allowMouse ? 8 : 0,
-            }}
-        />
-    );
-}
+    let idlePosition = [0, 0, 0];
 
-function ScrollObject({ setScrollActive, setActiveCameraPositon, activeCameraPositon, camera_positions }) {
-    const data = useScroll();
-    setScrollActive(true);
-    let allowScroll = useRef(false),
-        prevScroll = useRef(null),
-        currentScroll = useRef(null);
-
-    let nextScreen = () => {
-        if (activeCameraPositon == camera_positions.length - 1) {
-            setActiveCameraPositon(0);
-            return;
+    useGSAP(() => {
+        if (spotLightScreenIndex !== null && activeCameraConfig === 0) {
+            gsap.to(spotlight.current, { intensity: lightIntensity, distance: lightDistance, duration: 0.3 });
+            gsap.to(target.current.position, {
+                x: screenConfigs[spotLightScreenIndex].position[0],
+                y: screenConfigs[spotLightScreenIndex].position[1],
+                z: screenConfigs[spotLightScreenIndex].position[2],
+                duration: 0.3,
+            });
         }
-        setActiveCameraPositon(activeCameraPositon + 1);
-    };
-    let prevScrren = () => {
-        if (activeCameraPositon == 0) {
-            setActiveCameraPositon(camera_positions.length - 1);
-            return;
+    }, [spotLightScreenIndex]);
+
+    useGSAP(() => {
+        if (activeCameraConfig !== 0) {
+            gsap.to(spotlight.current, { intensity: 0, distance: 0, duration: 0.5, delay: 0.5 });
+            gsap.to(target.current.position, {
+                x: 0,
+                y: 0,
+                z: 0,
+                duration: 0.3,
+            });
         }
-        setActiveCameraPositon(activeCameraPositon - 1);
-    };
+    }, [activeCameraConfig]);
+
+    // useHelper(spotlight, THREE.SpotLightHelper, "white");
+    // const { intensity, penumbra, positionX, positionY, positionZ, angle, distance, target_X, target_Y, target_Z } =
+    //     useControls({
+    //         intensity: { value: 20, min: 0, max: 50 },
+    //         penumbra: { value: 0, min: 0, max: 1 },
+
+    //         positionX: { value: 0, min: -20, max: 20 },
+    //         positionY: { value: 2, min: -20, max: 20 },
+    //         positionZ: { value: 0, min: -20, max: 20 },
+
+    //         target_X: { value: 0, min: -20, max: 20 },
+    //         target_Y: { value: 0, min: -20, max: 20 },
+    //         target_Z: { value: 0, min: -20, max: 20 },
+
+    //         angle: { value: 0.1, min: 0, max: 1 },
+    //         distance: { value: 20, min: 0, max: 50 },
+    //     });
 
     useFrame(() => {
-        if (data.delta !== 0 && allowScroll.current === false) {
-            allowScroll.current = true;
-
-            prevScroll.current = data.offset;
-            console.log("START from: " + data.offset);
-        } else if (data.delta !== 0 && currentScroll.current == null) {
-            currentScroll.current = data.offset;
-            if (currentScroll.current > prevScroll.current) {
-                nextScreen();
-                console.log("GOING DOWN: " + currentScroll.current + " -> " + prevScroll.current);
-            } else {
-                prevScrren();
-                console.log("GOING UP: " + currentScroll.current + " -> " + prevScroll.current);
-            }
-        } else if (data.delta == 0 && allowScroll.current === true) {
-            allowScroll.current = false;
-            console.log("END at: " + data.offset);
-            prevScroll.current = null;
-            currentScroll.current = null;
-        }
+        spotlight.current.target = target.current;
     });
-    return null;
-}
 
-function Screens({ screen_positions }) {
-    const { gl } = useThree();
     return (
-        <group>
-            <ScreenContainer screen_positions={screen_positions[0]} gl={gl} scale={0.038} title={"About Me"}>
-                <Page title={"About me"}>
-                    <AboutPage></AboutPage>
-                </Page>
-            </ScreenContainer>
-
-            <ScreenContainer screen_positions={screen_positions[1]} gl={gl} scale={0.041} title={"Work History"}>
-                <Page title={"work history"}>
-                    <HistoryPage></HistoryPage>
-                </Page>
-            </ScreenContainer>
-
-            <ScreenContainer screen_positions={screen_positions[2]} gl={gl} scale={0.041} title={"Project #1"}>
-                <Page title={"my projects"}>
-                    <ProjectPage></ProjectPage>
-                </Page>
-            </ScreenContainer>
-
-            <ScreenContainer screen_positions={screen_positions[3]} gl={gl} scale={0.041} title={"Project #2"}>
-                <Page title={"my projects"}>
-                    <ProjectPage></ProjectPage>
-                </Page>
-            </ScreenContainer>
-
-            <ScreenContainer screen_positions={screen_positions[4]} gl={gl} scale={0.041} title={"Project #3"}>
-                <Page title={"my projects"}>
-                    <ProjectPage></ProjectPage>
-                </Page>
-            </ScreenContainer>
-
-            <ScreenContainer screen_positions={screen_positions[5]} gl={gl} scale={0.041} title={"Contacts"}>
-                <Page hasFrame={false}>
-                    <ContactPage></ContactPage>
-                </Page>
-            </ScreenContainer>
-
-            {/* EMPTY SCREENS */}
-            <ScreenContainer screen_positions={screen_positions[6]} gl={gl} scale={0.041} title={null}>
-                <Page hasFrame={false}></Page>
-            </ScreenContainer>
-            <ScreenContainer screen_positions={screen_positions[7]} gl={gl} scale={0.041} title={null}>
-                <Page hasFrame={false}></Page>
-            </ScreenContainer>
-            <ScreenContainer screen_positions={screen_positions[8]} gl={gl} scale={0.041} title={null}>
-                <Page hasFrame={false}></Page>
-            </ScreenContainer>
-        </group>
-    );
-}
-
-function ScreenContainer({ screen_positions, gl, scale, children, title }) {
-    let floatDistance = 1;
-    let textOpacity = 1;
-    let fontSize = 1;
-    return (
-        <group>
-            {title ? (
-                <mesh>
-                    <Text
-                        font={"./src/assets/fonts/SVN-Determination Sans.otf"}
-                        characters="abcdefghijklmnopqrstuvwxyz0123456789!"
-                        position={[
-                            screen_positions.position[0],
-                            screen_positions.position[1] + 1.2 * floatDistance,
-                            screen_positions.position[2],
-                        ]}
-                        rotation={screen_positions.rotation}
-                        fontSize={fontSize * 0.3}
-                        fillOpacity={textOpacity}
-                    >
-                        {title}
-                    </Text>
-                    <Text
-                        font={"./src/assets/fonts/SVN-Determination Sans.otf"}
-                        characters="v"
-                        position={[
-                            screen_positions.position[0],
-                            screen_positions.position[1] + 0.8 * floatDistance,
-                            screen_positions.position[2],
-                        ]}
-                        rotation={screen_positions.rotation}
-                        fontSize={fontSize * 0.3}
-                        fillOpacity={textOpacity}
-                    >
-                        v
-                    </Text>
-                </mesh>
-            ) : null}
-            <Html
-                position={screen_positions.position}
-                rotation={screen_positions.rotation}
-                occlude="blending"
-                scale={scale}
-                transform
-                fov={75}
-                portal={{ current: gl.domElement.parentNode }}
-            >
-                <div onClick={() => alert("clicked")}>{children}</div>
-            </Html>
-        </group>
+        <mesh>
+            <spotLight
+                ref={spotlight}
+                color="white"
+                position={[0, 20, 5]}
+                decay={0}
+                angle={0.05}
+                penumbra={0}
+                intensity={0}
+                distance={0}
+            />
+            <mesh ref={target} position={idlePosition}></mesh>
+        </mesh>
     );
 }
