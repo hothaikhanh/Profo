@@ -1,10 +1,10 @@
 import React from "react";
 import "./Page.scss";
 
-export default function Page({ title, children, hasFrame = true }) {
+export default function Page({ title, children }) {
     return (
         <div className="page crt">
-            {hasFrame ? (
+            {title ? (
                 <>
                     <header className="header">
                         <span>{title}</span>

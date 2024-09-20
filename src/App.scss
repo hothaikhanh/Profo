@@ -72,23 +72,29 @@
     z-index: 99999999;
     transform: translateX(-50%);
     left: 50%;
-    width: 50%;
     @include cell;
     background-color: black;
-    color: $primary-color;
-    padding: $cell-gap;
+
     display: flex;
     justify-content: space-around;
     align-items: center;
-    font-family: $pixel-font;
-    padding: 24px;
+    gap: $cell-gap;
+    padding: 0 24px;
     .nav-btn {
+        font-family: $pixel-font;
         background-color: transparent;
         color: $primary-color;
         border: none;
         flex-grow: 1;
+        padding: 24px;
+        text-wrap: nowrap;
+        font-size: 16px;
         &:hover {
-            scale: 1.5;
+            color: white;
+        }
+        &.active {
+            background-color: $primary-color;
+            color: black;
         }
     }
 }

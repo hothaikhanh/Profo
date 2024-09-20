@@ -245,6 +245,7 @@ function App() {
                     activeCameraConfig={activeCameraConfig}
                 />
                 <ambientLight color="#419873" intensity={1.8} />
+                {/* <ambientLight color="white" intensity={5} /> */}
 
                 <Suspense fallback={null}>
                     <primitive scale={1} position={[0, -3, 0]} object={computers.scene} />
@@ -254,11 +255,14 @@ function App() {
 
             {/* NAV BAR */}
             <div className="bottom-nav">
-                <button className="nav-btn" onClick={() => setActiveCameraConfig(0)}>
+                <button
+                    className={"nav-btn" + " " + (activeCameraConfig == 0 ? "active" : "")}
+                    onClick={() => setActiveCameraConfig(0)}
+                >
                     Home
                 </button>
                 <button
-                    className="nav-btn"
+                    className={"nav-btn" + " " + (activeCameraConfig == 1 ? "active" : "")}
                     onClick={() => setActiveCameraConfig(1)}
                     onMouseEnter={() => setSpotLightScreenIndex(0)}
                     onMouseLeave={() => setSpotLightScreenIndex(null)}
@@ -266,7 +270,7 @@ function App() {
                     About me
                 </button>
                 <button
-                    className="nav-btn"
+                    className={"nav-btn" + " " + (activeCameraConfig == 2 ? "active" : "")}
                     onClick={() => setActiveCameraConfig(2)}
                     onMouseEnter={() => setSpotLightScreenIndex(1)}
                     onMouseLeave={() => setSpotLightScreenIndex(null)}
@@ -274,15 +278,31 @@ function App() {
                     Work Experience
                 </button>
                 <button
-                    className="nav-btn"
+                    className={"nav-btn" + " " + (activeCameraConfig == 3 ? "active" : "")}
                     onClick={() => setActiveCameraConfig(3)}
                     onMouseEnter={() => setSpotLightScreenIndex(2)}
                     onMouseLeave={() => setSpotLightScreenIndex(null)}
                 >
-                    Projects
+                    Projects #1
                 </button>
                 <button
-                    className="nav-btn"
+                    className={"nav-btn" + " " + (activeCameraConfig == 4 ? "active" : "")}
+                    onClick={() => setActiveCameraConfig(4)}
+                    onMouseEnter={() => setSpotLightScreenIndex(3)}
+                    onMouseLeave={() => setSpotLightScreenIndex(null)}
+                >
+                    Projects #2
+                </button>
+                <button
+                    className={"nav-btn" + " " + (activeCameraConfig == 5 ? "active" : "")}
+                    onClick={() => setActiveCameraConfig(5)}
+                    onMouseEnter={() => setSpotLightScreenIndex(4)}
+                    onMouseLeave={() => setSpotLightScreenIndex(null)}
+                >
+                    Projects #3
+                </button>
+                <button
+                    className={"nav-btn" + " " + (activeCameraConfig == 6 ? "active" : "")}
                     onClick={() => setActiveCameraConfig(6)}
                     onMouseEnter={() => setSpotLightScreenIndex(5)}
                     onMouseLeave={() => setSpotLightScreenIndex(null)}
