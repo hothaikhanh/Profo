@@ -85,9 +85,34 @@ function App() {
     const devObjectRotation = [objectSettings.targetX, objectSettings.targetY, objectSettings.targetZ];
     //DEV TOOLS
 
+    const { posX, posY, posZ, rotX, rotY, rotZ, scaleX, scaleY, scalez, color } = useControls({
+        posX: { value: 0, min: -20, max: 20 },
+        posY: { value: 0, min: -20, max: 20 },
+        posZ: { value: 0, min: -20, max: 20 },
+        rotX: { value: 0, min: -20, max: 20 },
+        rotY: { value: 0, min: -20, max: 20 },
+        rotZ: { value: 0, min: -20, max: 20 },
+        scaleX: { value: 1, min: -20, max: 20 },
+        scaleY: { value: 1, min: -20, max: 20 },
+        scalez: { value: 1, min: -20, max: 20 },
+        color: { r: 200, b: 125, g: 106, a: 0.4 },
+    });
+
     return (
         <div id="canvas-container">
             <Canvas>
+                <Text
+                    font={"./src/assets/fonts/SVN-Determination Sans.otf"}
+                    characters="hothaikn.dev"
+                    position={[0, 4.4, -6.6]}
+                    rotation={[0, 0, 0]}
+                    fontSize={4}
+                    fillOpacity={1}
+                    scale={[0.9, 1.3, 1.0]}
+                    color={"#173527"}
+                >
+                    HOTHAIKHANH.DEV
+                </Text>
                 <ScrollControls
                     pages={1}
                     distance={50}
