@@ -27,6 +27,7 @@ import HistoryPage from "./components/HistoryPage/HistoryPage";
 import ProjectPage from "./components/ProjectPage/ProjectPage";
 import ContactPage from "./components/ContactPage/ContactPage";
 import "./App.scss";
+import BlankPage from "./components/BlankPage/BlankPage";
 
 function App() {
     const computers = useLoader(GLTFLoader, "./src/assets/old_computers/scene.gltf");
