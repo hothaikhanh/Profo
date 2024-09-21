@@ -32,15 +32,78 @@ import BlankPage from "./components/BlankPage/BlankPage";
 function App() {
     const computers = useLoader(GLTFLoader, "./src/assets/old_computers/scene.gltf");
     const screenConfigs = [
-        { position: [-3.24, 0.61, 1.36], rotation: [0.0, 1.22, 0.0] }, //about me
-        { position: [-2.56, -1.76, -0.44], rotation: [0.0, 1.09, 0.0] }, //works
-        { position: [-1.27, 0.11, -1.7], rotation: [0.0, 1.0, 0] }, //project 1
-        { position: [0.26, -0.86, -2.42], rotation: [0.0, 0.0, 0.0] }, //project 2
-        { position: [1.78, -2.0, -1.59], rotation: [0.0, -0.36, 0.0] }, //project 3
-        { position: [2.98, -0.35, -0.09], rotation: [0.0, -0.8, 0.0] }, //contactme
-        { position: [-3.8, 1.91, -2.48], rotation: [0.0, 0.54, 0.0] }, //blank1
-        { position: [0.97, 1.9, -4.02], rotation: [0.0, -0.1, 0.0] }, //blank2
-        { position: [4.52, 1.9, -1.46], rotation: [0.0, -1.05, 0.0] }, //blank3
+        {
+            screenTitle: "About Me",
+            pageTitle: "About Me",
+            content: <AboutPage></AboutPage>,
+            scale: 0.038,
+            position: [-3.24, 0.61, 1.36],
+            rotation: [0.0, 1.22, 0.0],
+        },
+        {
+            screenTitle: "Work History",
+            pageTitle: "Work History",
+            content: <HistoryPage></HistoryPage>,
+            scale: 0.041,
+            position: [-2.56, -1.76, -0.44],
+            rotation: [0.0, 1.09, 0.0],
+        },
+        {
+            screenTitle: "Project #1",
+            pageTitle: "My Projects",
+            content: <ProjectPage></ProjectPage>,
+            scale: 0.041,
+            position: [-1.27, 0.11, -1.7],
+            rotation: [0.0, 1.0, 0],
+        },
+        {
+            screenTitle: "Project #2",
+            pageTitle: "My Projects",
+            content: <ProjectPage></ProjectPage>,
+            scale: 0.041,
+            position: [0.26, -0.86, -2.42],
+            rotation: [0.0, 0.0, 0.0],
+        },
+        {
+            screenTitle: "Project #3",
+            pageTitle: "My Projects",
+            content: <ProjectPage></ProjectPage>,
+            scale: 0.041,
+            position: [1.78, -2.0, -1.59],
+            rotation: [0.0, -0.36, 0.0],
+        },
+        {
+            screenTitle: "Contacts",
+            pageTitle: null,
+            content: <ContactPage></ContactPage>,
+            scale: 0.041,
+            position: [2.98, -0.35, -0.09],
+            rotation: [0.0, -0.8, 0.0],
+        },
+        {
+            screenTitle: null,
+            pageTitle: null,
+            content: <BlankPage></BlankPage>,
+            scale: 0.041,
+            position: [-3.8, 1.91, -2.48],
+            rotation: [0.0, 0.54, 0.0],
+        },
+        {
+            screenTitle: null,
+            pageTitle: null,
+            content: <BlankPage></BlankPage>,
+            scale: 0.041,
+            position: [0.97, 1.9, -4.02],
+            rotation: [0.0, -0.1, 0.0],
+        },
+        {
+            screenTitle: null,
+            pageTitle: null,
+            content: <BlankPage></BlankPage>,
+            scale: 0.041,
+            position: [4.52, 1.9, -1.46],
+            rotation: [0.0, -1.05, 0.0],
+        },
     ];
     const [spotLightScreenIndex, setSpotLightScreenIndex] = useState(null);
 
@@ -86,18 +149,18 @@ function App() {
     const devObjectRotation = [objectSettings.targetX, objectSettings.targetY, objectSettings.targetZ];
     //DEV TOOLS
 
-    const { posX, posY, posZ, rotX, rotY, rotZ, scaleX, scaleY, scalez, color } = useControls({
-        posX: { value: 0, min: -20, max: 20 },
-        posY: { value: 0, min: -20, max: 20 },
-        posZ: { value: 0, min: -20, max: 20 },
-        rotX: { value: 0, min: -20, max: 20 },
-        rotY: { value: 0, min: -20, max: 20 },
-        rotZ: { value: 0, min: -20, max: 20 },
-        scaleX: { value: 1, min: -20, max: 20 },
-        scaleY: { value: 1, min: -20, max: 20 },
-        scalez: { value: 1, min: -20, max: 20 },
-        color: { r: 200, b: 125, g: 106, a: 0.4 },
-    });
+    // const { posX, posY, posZ, rotX, rotY, rotZ, scaleX, scaleY, scalez, color } = useControls({
+    //     posX: { value: 0, min: -20, max: 20 },
+    //     posY: { value: 0, min: -20, max: 20 },
+    //     posZ: { value: 0, min: -20, max: 20 },
+    //     rotX: { value: 0, min: -20, max: 20 },
+    //     rotY: { value: 0, min: -20, max: 20 },
+    //     rotZ: { value: 0, min: -20, max: 20 },
+    //     scaleX: { value: 1, min: -20, max: 20 },
+    //     scaleY: { value: 1, min: -20, max: 20 },
+    //     scalez: { value: 1, min: -20, max: 20 },
+    //     color: { r: 200, b: 125, g: 106, a: 0.4 },
+    // });
 
     return (
         <div id="canvas-container">
@@ -105,7 +168,7 @@ function App() {
                 <Text
                     font={"./src/assets/fonts/SVN-Determination Sans.otf"}
                     characters="hothaikn.dev"
-                    position={[0, 4.4, -6.6]}
+                    position={[0, 4.6, -6.6]}
                     rotation={[0, 0, 0]}
                     fontSize={4}
                     fillOpacity={1}
@@ -143,102 +206,27 @@ function App() {
                     }}
                 />
 
-                <group>
-                    <ScreenContainer
-                        screenConfigs={screenConfigs}
-                        screenIndex={0}
-                        scale={0.038}
-                        title={"About Me"}
-                        setActiveCameraConfig={setActiveCameraConfig}
-                        setSpotLightScreenIndex={setSpotLightScreenIndex}
-                        activeCameraConfig={activeCameraConfig}
-                    >
-                        <Page title={"About me"}>
-                            <AboutPage></AboutPage>
-                        </Page>
-                    </ScreenContainer>
-
-                    <ScreenContainer
-                        screenConfigs={screenConfigs}
-                        screenIndex={1}
-                        scale={0.041}
-                        title={"Work History"}
-                        setActiveCameraConfig={setActiveCameraConfig}
-                        setSpotLightScreenIndex={setSpotLightScreenIndex}
-                        activeCameraConfig={activeCameraConfig}
-                    >
-                        <Page title={"work history"}>
-                            <HistoryPage></HistoryPage>
-                        </Page>
-                    </ScreenContainer>
-
-                    <ScreenContainer
-                        screenConfigs={screenConfigs}
-                        screenIndex={2}
-                        scale={0.041}
-                        title={"Project #1"}
-                        setActiveCameraConfig={setActiveCameraConfig}
-                        setSpotLightScreenIndex={setSpotLightScreenIndex}
-                        activeCameraConfig={activeCameraConfig}
-                    >
-                        <Page title={"my projects"}>
-                            <ProjectPage></ProjectPage>
-                        </Page>
-                    </ScreenContainer>
-
-                    <ScreenContainer
-                        screenConfigs={screenConfigs}
-                        screenIndex={3}
-                        scale={0.041}
-                        title={"Project #2"}
-                        setActiveCameraConfig={setActiveCameraConfig}
-                        setSpotLightScreenIndex={setSpotLightScreenIndex}
-                        activeCameraConfig={activeCameraConfig}
-                    >
-                        <Page title={"my projects"}>
-                            <ProjectPage></ProjectPage>
-                        </Page>
-                    </ScreenContainer>
-
-                    <ScreenContainer
-                        screenConfigs={screenConfigs}
-                        screenIndex={4}
-                        scale={0.041}
-                        title={"Project #3"}
-                        setActiveCameraConfig={setActiveCameraConfig}
-                        setSpotLightScreenIndex={setSpotLightScreenIndex}
-                        activeCameraConfig={activeCameraConfig}
-                    >
-                        <Page title={"my projects"}>
-                            <ProjectPage></ProjectPage>
-                        </Page>
-                    </ScreenContainer>
-
-                    <ScreenContainer
-                        screenConfigs={screenConfigs}
-                        screenIndex={5}
-                        scale={0.041}
-                        title={"Contacts"}
-                        setActiveCameraConfig={setActiveCameraConfig}
-                        setSpotLightScreenIndex={setSpotLightScreenIndex}
-                        activeCameraConfig={activeCameraConfig}
-                    >
-                        <Page>
-                            <ContactPage></ContactPage>
-                        </Page>
-                    </ScreenContainer>
-
-                    {/* EMPTY SCREENS */}
-                    <ScreenContainer screenConfigs={screenConfigs} screenIndex={6} scale={0.041}>
-                        <Page />
-                    </ScreenContainer>
-                    <ScreenContainer screenConfigs={screenConfigs} screenIndex={7} scale={0.041}>
-                        <Page />
-                    </ScreenContainer>
-                    <ScreenContainer screenConfigs={screenConfigs} screenIndex={8} scale={0.041}>
-                        <Page />
-                    </ScreenContainer>
-                </group>
+                {
+                    <group>
+                        {screenConfigs.map((screen, index) => {
+                            return (
+                                <ScreenContainer
+                                    screenPosition={screen.position}
+                                    screenRotation={screen.rotation}
+                                    screenIndex={index}
+                                    scale={screen.scale}
+                                    title={screen.screenTitle}
+                                    setActiveCameraConfig={setActiveCameraConfig}
+                                    setSpotLightScreenIndex={setSpotLightScreenIndex}
+                                    activeCameraConfig={activeCameraConfig}
+                                    key={index}
+                                >
+                                    <Page title={screen.pageTitle}>{screen.content}</Page>
+                                </ScreenContainer>
+                            );
+                        })}
+                    </group>
+                }
 
                 <DynamicSpotLight
                     screenConfigs={screenConfigs}
@@ -357,7 +345,6 @@ function ScrollObject({ setActiveCameraConfig, activeCameraConfig, cameraConfigs
     useFrame(() => {
         if (data.delta !== 0 && allowScroll.current === false) {
             allowScroll.current = true;
-
             prevScroll.current = data.offset;
             // console.log("START from: " + data.offset);
         } else if (data.delta !== 0 && currentScroll.current == null) {
@@ -380,7 +367,8 @@ function ScrollObject({ setActiveCameraConfig, activeCameraConfig, cameraConfigs
 }
 
 function ScreenContainer({
-    screenConfigs,
+    screenPosition,
+    screenRotation,
     setActiveCameraConfig = () => {},
     setSpotLightScreenIndex = () => {},
     screenIndex,
@@ -431,12 +419,8 @@ function ScreenContainer({
                     <Text
                         font={"./src/assets/fonts/SVN-Determination Sans.otf"}
                         characters="abcdefghijklmnopqrstuvwxyz0123456789!"
-                        position={[
-                            screenConfigs[screenIndex].position[0],
-                            screenConfigs[screenIndex].position[1] + 1.2,
-                            screenConfigs[screenIndex].position[2],
-                        ]}
-                        rotation={screenConfigs[screenIndex].rotation}
+                        position={[screenPosition[0], screenPosition[1] + 1.2, screenPosition[2]]}
+                        rotation={screenRotation}
                         fontSize={0}
                         fillOpacity={0}
                         ref={titleText}
@@ -446,12 +430,8 @@ function ScreenContainer({
                     <Text
                         font={"./src/assets/fonts/SVN-Determination Sans.otf"}
                         characters="v"
-                        position={[
-                            screenConfigs[screenIndex].position[0],
-                            screenConfigs[screenIndex].position[1] + 1,
-                            screenConfigs[screenIndex].position[2],
-                        ]}
-                        rotation={screenConfigs[screenIndex].rotation}
+                        position={[screenPosition[0], screenPosition[1] + 1, screenPosition[2]]}
+                        rotation={screenRotation}
                         fontSize={0}
                         fillOpacity={0}
                         ref={titleArrow}
@@ -461,8 +441,8 @@ function ScreenContainer({
                 </mesh>
             ) : null}
             <Html
-                position={screenConfigs[screenIndex].position}
-                rotation={screenConfigs[screenIndex].rotation}
+                position={screenPosition}
+                rotation={screenRotation}
                 occlude="blending"
                 scale={scale}
                 transform
