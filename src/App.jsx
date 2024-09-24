@@ -26,6 +26,7 @@ import BlankPage from "./components/BlankPage/BlankPage";
 import ComputerModels from "./components/ComputerModels/ComputerModels";
 import Floor from "./components/Floor/Floor";
 import Loader from "./components/Loader/Loader";
+import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
 
 function App() {
     //DEV TOOLS
@@ -145,6 +146,7 @@ function App() {
 
     return (
         <div id="canvas-container">
+            <LoadingScreen canvasLoaded={canvasLoaded} />
             <Canvas>
                 <CameraController
                     bgTextConfig={bgTextConfig}
@@ -196,6 +198,7 @@ function App() {
             </Canvas>
 
             {/* NAV BAR */}
+            {canvasLoaded && (
                 <div className="bottom-nav">
                     <button
                         className={"nav-btn" + " " + (activeCameraConfig == 0 ? "active" : "")}
@@ -252,6 +255,7 @@ function App() {
                         Contact
                     </button>
                 </div>
+            )}
         </div>
     );
 }
@@ -512,6 +516,18 @@ function ScrollController({ activeCameraConfig, setActiveCameraConfig, cameraCon
 }
 
 function CameraController({ bgTextConfig, cameraControlRef, allowMouse, setCanvasLoaded }) {
+    useEffect(() => {
+        cameraControlRef.current?.setLookAt(
+            bgTextConfig.cameraPosition[0],
+            bgTextConfig.cameraPosition[1],
+            bgTextConfig.cameraPosition[2],
+            bgTextConfig.position[0],
+            bgTextConfig.position[1],
+            bgTextConfig.position[2],
+            false
+        );
+        setCanvasLoaded(true);
+    }, []);
     return (
         <CameraControls
             enabled={true}
