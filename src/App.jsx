@@ -83,7 +83,7 @@ function App() {
         {
             screenTitle: null,
             pageTitle: null,
-            content: <BlankPage></BlankPage>,
+            content: null,
             scale: 0.041,
             position: [-3.8, 1.91, -2.48],
             rotation: [0.0, 0.54, 0.0],
@@ -91,7 +91,7 @@ function App() {
         {
             screenTitle: null,
             pageTitle: null,
-            content: <BlankPage></BlankPage>,
+            content: null,
             scale: 0.041,
             position: [0.97, 1.9, -4.02],
             rotation: [0.0, -0.1, 0.0],
@@ -99,7 +99,7 @@ function App() {
         {
             screenTitle: null,
             pageTitle: null,
-            content: <BlankPage></BlankPage>,
+            content: null,
             scale: 0.041,
             position: [4.52, 1.9, -1.46],
             rotation: [0.0, -1.05, 0.0],
