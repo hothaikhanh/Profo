@@ -90,7 +90,7 @@ export default function AboutPage() {
         <div className="about-page">
             <div className="top-content ">
                 <div className="pfp">
-                    <img src="/src/assets/img/pfp-4.png" alt="" />
+                    <img src="/src/assets/img/pfp.png" alt="" />
                     <div className="filter"></div>
                 </div>
                 <div className="side-content">
