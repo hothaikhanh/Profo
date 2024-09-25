@@ -30,6 +30,17 @@
         .mail {
             font-size: 20px;
             margin-bottom: 12px;
+            user-select: text;
+            &::-moz-selection {
+                /* Code for Firefox */
+                color: $primary-color;
+                background: black;
+            }
+
+            &::selection {
+                color: $primary-color;
+                background: black;
+            }
         }
         .message {
             font-family: $basic-font;

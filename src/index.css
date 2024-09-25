@@ -11,6 +11,16 @@ html {
     line-height: 1.15; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
 }
+span,
+p,
+li,
+h1,
+div {
+    -webkit-user-select: none; /* Chrome all / Safari all */
+    -moz-user-select: none; /* Firefox all */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+}
 
 /* Sections
    ========================================================================== */
@@ -21,6 +31,7 @@ html {
 
 body {
     margin: 0;
+    overflow: hidden;
 }
 
 /**
