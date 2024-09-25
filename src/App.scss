@@ -63,18 +63,19 @@
 
 .bottom-nav {
     position: absolute;
-    bottom: 8px;
+    bottom: 0px;
     z-index: 99999999;
-    transform: translateX(-50%);
+    transform: translate(-50%, 0);
     left: 50%;
     @include cell;
     background-color: black;
-
+    border-bottom: 0px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     gap: $cell-gap;
     padding: 0 24px;
+    animation: flyUp 0.3s ease-out forwards;
     .nav-btn {
         font-family: $pixel-font;
         background-color: transparent;
@@ -91,5 +92,14 @@
             background-color: $primary-color;
             color: black;
         }
+    }
+}
+
+@keyframes flyUp {
+    0% {
+        transform: translate(-50%, 80px);
+    }
+    100% {
+        transform: translate(-50%, 0);
     }
 }

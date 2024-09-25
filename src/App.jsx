@@ -1,16 +1,6 @@
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import {
-    OrbitControls,
-    Html,
-    PerspectiveCamera,
-    CameraControls,
-    ScrollControls,
-    Scroll,
-    useScroll,
-    Text,
-    useHelper,
-} from "@react-three/drei";
+import { Html, CameraControls, ScrollControls, Scroll, useScroll, Text, useHelper } from "@react-three/drei";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useControls } from "leva";
@@ -21,19 +11,20 @@ import AboutPage from "./components/AboutPage/AboutPage";
 import HistoryPage from "./components/HistoryPage/HistoryPage";
 import ProjectPage from "./components/ProjectPage/ProjectPage";
 import ContactPage from "./components/ContactPage/ContactPage";
-import "./App.scss";
 import BlankPage from "./components/BlankPage/BlankPage";
 import ComputerModels from "./components/ComputerModels/ComputerModels";
 import Floor from "./components/Floor/Floor";
 import Loader from "./components/Loader/Loader";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
+import "./App.scss";
 
 function App() {
     //DEV TOOLS
     const devMode = false;
-    const allowMouse = true;
+    const allowMouse = false;
 
     const [canvasLoaded, setCanvasLoaded] = useState(false);
+    const [pageReady, setPageReady] = useState(false);
 
     const screenConfigs = [
         {
@@ -87,7 +78,7 @@ function App() {
         {
             screenTitle: null,
             pageTitle: null,
-            content: null,
+            content: <BlankPage />,
             scale: 0.041,
             position: [-3.8, 1.91, -2.48],
             rotation: [0.0, 0.54, 0.0],
@@ -95,7 +86,7 @@ function App() {
         {
             screenTitle: null,
             pageTitle: null,
-            content: null,
+            content: <BlankPage />,
             scale: 0.041,
             position: [0.97, 1.9, -4.02],
             rotation: [0.0, -0.1, 0.0],
@@ -103,7 +94,7 @@ function App() {
         {
             screenTitle: null,
             pageTitle: null,
-            content: null,
+            content: <BlankPage />,
             scale: 0.041,
             position: [4.52, 1.9, -1.46],
             rotation: [0.0, -1.05, 0.0],
@@ -120,7 +111,7 @@ function App() {
         { name: "show project 3", position: [1.56, -2, -1.02], target: screenConfigs[4].position },
         { name: "show contactme", position: [2.64, -0.35, 0.28], target: screenConfigs[5].position },
     ];
-    const [activeCameraConfig, setActiveCameraConfig] = useState(0);
+    const [activeCameraConfig, setActiveCameraConfig] = useState(null);
     const cameraControlRef = useRef(null);
 
     const bgTextConfig = {
@@ -146,13 +137,17 @@ function App() {
 
     return (
         <div id="canvas-container">
-            <LoadingScreen canvasLoaded={canvasLoaded} />
+            {!pageReady && <LoadingScreen canvasLoaded={canvasLoaded} />}
             <Canvas>
                 <CameraController
                     bgTextConfig={bgTextConfig}
                     cameraControlRef={cameraControlRef}
                     allowMouse={allowMouse}
                     setCanvasLoaded={setCanvasLoaded}
+                    setActiveCameraConfig={setActiveCameraConfig}
+                    canvasLoaded={canvasLoaded}
+                    cameraConfigs={cameraConfigs}
+                    setPageReady={setPageReady}
                 ></CameraController>
                 <ScrollControls
                     pages={1}
@@ -198,7 +193,7 @@ function App() {
             </Canvas>
 
             {/* NAV BAR */}
-            {canvasLoaded && (
+            {pageReady && (
                 <div className="bottom-nav">
                     <button
                         className={"nav-btn" + " " + (activeCameraConfig == 0 ? "active" : "")}
@@ -515,7 +510,16 @@ function ScrollController({ activeCameraConfig, setActiveCameraConfig, cameraCon
     return null;
 }
 
-function CameraController({ bgTextConfig, cameraControlRef, allowMouse, setCanvasLoaded }) {
+function CameraController({
+    bgTextConfig,
+    cameraControlRef,
+    allowMouse,
+    setCanvasLoaded,
+    canvasLoaded,
+    setActiveCameraConfig,
+    setPageReady,
+}) {
+    let [smoothTime, setSmoothTime] = useState(1);
     useEffect(() => {
         cameraControlRef.current?.setLookAt(
             bgTextConfig.cameraPosition[0],
@@ -528,10 +532,25 @@ function CameraController({ bgTextConfig, cameraControlRef, allowMouse, setCanva
         );
         setCanvasLoaded(true);
     }, []);
+
+    useEffect(() => {
+        if (canvasLoaded) {
+            setTimeout(() => {
+                setActiveCameraConfig(0);
+            }, 1000);
+
+            setTimeout(() => {
+                setSmoothTime(0.25);
+                setPageReady(true);
+            }, 4000);
+        }
+    }, [canvasLoaded]);
+
     return (
         <CameraControls
             enabled={true}
             ref={cameraControlRef}
+            smoothTime={smoothTime}
             mouseButtons={{
                 left: allowMouse ? 1 : 0,
                 right: allowMouse ? 2 : 0,
