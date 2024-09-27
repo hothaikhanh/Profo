@@ -1,0 +1,294 @@
+{
+    "home": {
+        "title": {
+            "EN": "home",
+            "VN": "trang chủ"
+        }
+    },
+    "aboutMe": {
+        "title": {
+            "EN": "About Me",
+            "VN": "Về Tôi"
+        },
+        "desc": {
+            "title": {
+                "EN": "About Me",
+                "VN": "Về Tôi"
+            },
+            "status": {
+                "looking": {
+                    "EN": "looking for work",
+                    "VN": "đang tìm việc"
+                },
+                "employed": {
+                    "EN": "Currently Employed",
+                    "VN": "đang làm việc"
+                }
+            },
+            "greeting": {
+                "EN": "hi. i'm",
+                "VN": "xin chào, tôi là"
+            },
+            "myName": {
+                "EN": "ho thai khanh",
+                "VN": "hồ thái khanh"
+            },
+            "jobTitle": {
+                "EN": "frontend developer",
+                "VN": "frontend developer"
+            },
+            "content": {
+                "EN": "lorem10",
+                "VN": "lorem10"
+            }
+        },
+        "downloadBtn": {
+            "EN": "download cv",
+            "VN": "tải xuống cv"
+        },
+        "techs": {
+            "title": {
+                "EN": "technologies",
+                "VN": "công nghệ"
+            },
+            "techIconURL": "/src/assets/icons/tech_logos/",
+            "list": [
+                {
+                    "name": "Javascript",
+                    "icon": "js.svg"
+                },
+                {
+                    "name": "ReactJs",
+                    "icon": "reactjs.svg"
+                },
+                {
+                    "name": "NodeJs",
+                    "icon": "nodejs.svg"
+                },
+                {
+                    "name": "Vite",
+                    "icon": "vite.svg"
+                },
+                {
+                    "name": "Express",
+                    "icon": "express.svg"
+                },
+                {
+                    "name": "AngularJs",
+                    "icon": "angular.svg"
+                },
+                {
+                    "name": "Tailwind",
+                    "icon": "tailwind.svg"
+                },
+                {
+                    "name": "Git",
+                    "icon": "git.svg"
+                },
+                {
+                    "name": "ThreeJs",
+                    "icon": "threejs.svg"
+                },
+                {
+                    "name": "Html",
+                    "icon": "html.svg"
+                },
+                {
+                    "name": "CSS",
+                    "icon": "css.svg"
+                },
+                {
+                    "name": "SASS",
+                    "icon": "sass.svg"
+                },
+                {
+                    "name": "Figma",
+                    "icon": "figma.svg"
+                }
+            ]
+        },
+        "relatedSkills": {
+            "title": {
+                "EN": "related skills",
+                "VN": "kỹ năng khác"
+            },
+            "list": [
+                {
+                    "name": "EN",
+                    "title": {
+                        "EN": "English",
+                        "VN": "tiếng anh"
+                    },
+                    "content": {
+                        "EN": [
+                            "line1",
+                            "line2",
+                            "line3"
+                        ],
+                        "VN": [
+                            "line1",
+                            "line2",
+                            "line3"
+                        ]
+                    }
+                },
+                {
+                    "name": "GD",
+                    "title": {
+                        "EN": "graphic design",
+                        "VN": "thiết kế đồ họa"
+                    },
+                    "content": {
+                        "EN": [
+                            "line1 GD",
+                            "line2",
+                            "line3"
+                        ],
+                        "VN": [
+                            "line1",
+                            "line2 GD",
+                            "line3"
+                        ]
+                    }
+                },
+                {
+                    "name": "VE",
+                    "title": {
+                        "EN": "video editing",
+                        "VN": "chỉnh sửa video"
+                    },
+                    "content": {
+                        "EN": [
+                            "line1 VE",
+                            "line2",
+                            "line3"
+                        ],
+                        "VN": [
+                            "line1",
+                            "line2 VE",
+                            "line3"
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    "workHistory": {
+        "title": {
+            "EN": "Work History",
+            "VN": "Lịch Sử Làm Việc"
+        },
+        "list": [
+            {
+                "companyName": {
+                    "EN": "",
+                    "VN": ""
+                },
+                "startYear": 2018,
+                "endYear": 2021,
+                "jobTitle": "Instructional Designer",
+                "duties": {
+                    "EN": [
+                        "line1",
+                        "line2"
+                    ],
+                    "VN": [
+                        "dòng 1",
+                        "dòng 2"
+                    ]
+                },
+                "achievement": {
+                    "EN": [
+                        "line1",
+                        "line2"
+                    ],
+                    "VN": [
+                        "dòng 1",
+                        "dòng 2"
+                    ]
+                },
+                "contact": {
+                    "name": ""
+                }
+            },
+            {
+                "companyName": {
+                    "EN": "",
+                    "VN": ""
+                },
+                "startYear": 2021,
+                "endYear": 2023,
+                "jobTitle": "Instructional Designer",
+                "duties": {
+                    "EN": [
+                        "line1",
+                        "line2"
+                    ],
+                    "VN": [
+                        "dòng 1",
+                        "dòng 2"
+                    ]
+                },
+                "achievement": {
+                    "EN": [
+                        "line1",
+                        "line2"
+                    ],
+                    "VN": [
+                        "dòng 1",
+                        "dòng 2"
+                    ]
+                },
+                "contact": {
+                    "name": ""
+                }
+            }
+        ]
+    },
+    "project1": {
+        "title": {
+            "EN": "Project #1",
+            "VN": "Dự án #1"
+        },
+        "projectName": "Project Name"
+    },
+    "project2": {
+        "title": {
+            "EN": "Project #2",
+            "VN": "Dự án #2"
+        },
+        "projectName": "Project Name"
+    },
+    "project3": {
+        "title": {
+            "EN": "Project #3",
+            "VN": "Dự án #3"
+        },
+        "projectName": "Project Name"
+    },
+    "contact": {
+        "title": {
+            "EN": "Contact",
+            "VN": "Liên lạc"
+        },
+        "header": {
+            "EN": "contact me",
+            "VN": "email"
+        },
+        "email": "hothaikhanh@gmail.com",
+        "message": {
+            "EN": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, magni ullam! Neque doloribus explicabo quaerat voluptatibus nemo sapiente eveniet aspernatur!",
+            "VN": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, magni ullam! Neque doloribus explicabo quaerat voluptatibus nemo sapiente eveniet aspernatur!"
+        },
+        "actionBtn": {
+            "EN": "let's go!",
+            "VN": "gửi mail"
+        }
+    },
+    "blank": {
+        "title": {
+            "EN": "",
+            "VN": ""
+        }
+    }
+}

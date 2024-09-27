@@ -42,6 +42,7 @@
         display: flex;
         flex-direction: column;
         gap: $cell-gap;
+        flex-grow: 1;
     }
 
     .desc {
@@ -111,6 +112,7 @@
             font-weight: 400;
             text-align: justify;
             color: black;
+            width: 100%;
         }
     }
 
@@ -140,7 +142,7 @@
             padding: 20px;
             height: 100%;
             display: flex;
-            gap: 16px;
+            gap: 12px;
             flex-direction: column;
         }
         .title {
@@ -149,6 +151,7 @@
             background: $primary-color;
             color: black;
             text-align: center;
+            padding: 8px 0;
         }
     }
 
@@ -185,6 +188,7 @@
             display: flex;
             flex-direction: column;
             gap: 4px;
+            text-transform: capitalize;
 
             label span {
                 text-wrap: nowrap;

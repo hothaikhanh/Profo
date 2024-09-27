@@ -18,6 +18,7 @@ import Loader from "./components/Loader/Loader";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
 import "./App.scss";
 
+import data from "/src/resources.json";
 import { LanguageContext } from "./components/Contexts/LanguageContext";
 
 function App() {
@@ -31,47 +32,47 @@ function App() {
 
     const screenConfigs = [
         {
-            screenTitle: "About Me",
-            pageTitle: "About Me",
+            screenTitle: data.aboutMe.title[lang],
+            pageTitle: data.aboutMe.title[lang],
             content: <AboutPage></AboutPage>,
             scale: 0.038,
             position: [-3.24, 0.61, 1.36],
             rotation: [0.0, 1.22, 0.0],
         },
         {
-            screenTitle: "Work History",
-            pageTitle: "Work History",
+            screenTitle: data.workHistory.title[lang],
+            pageTitle: data.workHistory.title[lang],
             content: <HistoryPage></HistoryPage>,
             scale: 0.041,
             position: [-2.56, -1.76, -0.44],
             rotation: [0.0, 1.09, 0.0],
         },
         {
-            screenTitle: "Project #1",
-            pageTitle: "My Projects",
+            screenTitle: data.project1.title[lang],
+            pageTitle: data.project1.projectName,
             content: <ProjectPage></ProjectPage>,
             scale: 0.041,
             position: [-1.27, 0.11, -1.7],
             rotation: [0.0, 1.0, 0],
         },
         {
-            screenTitle: "Project #2",
-            pageTitle: "My Projects",
+            screenTitle: data.project2.title[lang],
+            pageTitle: data.project2.projectName,
             content: <ProjectPage></ProjectPage>,
             scale: 0.041,
             position: [0.26, -0.86, -2.42],
             rotation: [0.0, 0.0, 0.0],
         },
         {
-            screenTitle: "Project #3",
-            pageTitle: "My Projects",
+            screenTitle: data.project3.title[lang],
+            pageTitle: data.project3.projectName,
             content: <ProjectPage></ProjectPage>,
             scale: 0.041,
             position: [1.78, -2.0, -1.59],
             rotation: [0.0, -0.36, 0.0],
         },
         {
-            screenTitle: "Contacts",
+            screenTitle: data.contact.title[lang],
             pageTitle: null,
             content: <ContactPage></ContactPage>,
             scale: 0.041,
@@ -190,6 +191,7 @@ function App() {
                         setSpotLightScreenIndex={setSpotLightScreenIndex}
                         activeCameraConfig={activeCameraConfig}
                         setActiveCameraConfig={setActiveCameraConfig}
+                        lang={lang}
                     ></Scene>
                 </Suspense>
                 <ambientLight color={devMode ? "white" : "#419873"} intensity={devMode ? 5 : 1.8} />
@@ -202,7 +204,7 @@ function App() {
                         className={"nav-btn" + " " + (activeCameraConfig == 0 ? "active" : "")}
                         onClick={() => setActiveCameraConfig(0)}
                     >
-                        Home
+                        {data.home.title[lang]}
                     </button>
                     <button
                         className={"nav-btn" + " " + (activeCameraConfig == 1 ? "active" : "")}
@@ -210,7 +212,7 @@ function App() {
                         onMouseEnter={() => setSpotLightScreenIndex(0)}
                         onMouseLeave={() => setSpotLightScreenIndex(null)}
                     >
-                        About me
+                        {data.aboutMe.title[lang]}
                     </button>
                     <button
                         className={"nav-btn" + " " + (activeCameraConfig == 2 ? "active" : "")}
@@ -218,7 +220,7 @@ function App() {
                         onMouseEnter={() => setSpotLightScreenIndex(1)}
                         onMouseLeave={() => setSpotLightScreenIndex(null)}
                     >
-                        Work Experience
+                        {data.workHistory.title[lang]}
                     </button>
                     <button
                         className={"nav-btn" + " " + (activeCameraConfig == 3 ? "active" : "")}
@@ -226,7 +228,7 @@ function App() {
                         onMouseEnter={() => setSpotLightScreenIndex(2)}
                         onMouseLeave={() => setSpotLightScreenIndex(null)}
                     >
-                        Projects #1
+                        {data.project1.title[lang]}
                     </button>
                     <button
                         className={"nav-btn" + " " + (activeCameraConfig == 4 ? "active" : "")}
@@ -234,7 +236,7 @@ function App() {
                         onMouseEnter={() => setSpotLightScreenIndex(3)}
                         onMouseLeave={() => setSpotLightScreenIndex(null)}
                     >
-                        Projects #2
+                        {data.project2.title[lang]}
                     </button>
                     <button
                         className={"nav-btn" + " " + (activeCameraConfig == 5 ? "active" : "")}
@@ -242,7 +244,7 @@ function App() {
                         onMouseEnter={() => setSpotLightScreenIndex(4)}
                         onMouseLeave={() => setSpotLightScreenIndex(null)}
                     >
-                        Projects #3
+                        {data.project3.title[lang]}
                     </button>
                     <button
                         className={"nav-btn" + " " + (activeCameraConfig == 6 ? "active" : "")}
@@ -250,7 +252,8 @@ function App() {
                         onMouseEnter={() => setSpotLightScreenIndex(5)}
                         onMouseLeave={() => setSpotLightScreenIndex(null)}
                     >
-                        Contact
+                        {data.contact.title[lang]}
+                    </button>
                     <button
                         className={" lang-btn"}
                         onClick={() => {
