@@ -197,7 +197,7 @@ function App() {
 
             {/* NAV BAR */}
             {pageReady && (
-                <div className="bottom-nav">
+                <div className="nav-bar">
                     <button
                         className={"nav-btn" + " " + (activeCameraConfig == 0 ? "active" : "")}
                         onClick={() => setActiveCameraConfig(0)}
