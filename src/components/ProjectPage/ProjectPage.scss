@@ -91,6 +91,10 @@
                 display: flex;
                 gap: $cell-gap;
             }
+            a {
+                text-decoration: none;
+                color: $primary-color;
+            }
         }
 
         .preview {

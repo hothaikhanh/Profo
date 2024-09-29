@@ -7,7 +7,7 @@
     .left-content {
         @include cell;
         padding: 12px;
-        flex-grow: 1;
+        flex-shrink: 0;
         height: 100%;
         position: relative;
         display: flex;
@@ -16,7 +16,7 @@
         .work-entry {
             display: flex;
             flex-direction: column;
-            padding: 0px 12px 0px 16px;
+            padding: 0px 24px 0px 16px;
             margin: 12px 0px;
 
             .company-name {

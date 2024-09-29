@@ -16,14 +16,8 @@
                 "VN": "Về Tôi"
             },
             "status": {
-                "looking": {
-                    "EN": "looking for work",
-                    "VN": "đang tìm việc"
-                },
-                "employed": {
-                    "EN": "Currently Employed",
-                    "VN": "đang làm việc"
-                }
+                "EN": "looking for work",
+                "VN": "đang tìm việc"
             },
             "greeting": {
                 "EN": "hi. i'm",
@@ -46,66 +40,11 @@
             "EN": "download cv",
             "VN": "tải xuống cv"
         },
-        "techs": {
+        "skills": {
             "title": {
                 "EN": "technologies",
                 "VN": "công nghệ"
-            },
-            "techIconURL": "/src/assets/icons/tech_logos/",
-            "list": [
-                {
-                    "name": "Javascript",
-                    "icon": "js.svg"
-                },
-                {
-                    "name": "ReactJs",
-                    "icon": "reactjs.svg"
-                },
-                {
-                    "name": "NodeJs",
-                    "icon": "nodejs.svg"
-                },
-                {
-                    "name": "Vite",
-                    "icon": "vite.svg"
-                },
-                {
-                    "name": "Express",
-                    "icon": "express.svg"
-                },
-                {
-                    "name": "AngularJs",
-                    "icon": "angular.svg"
-                },
-                {
-                    "name": "Tailwind",
-                    "icon": "tailwind.svg"
-                },
-                {
-                    "name": "Git",
-                    "icon": "git.svg"
-                },
-                {
-                    "name": "ThreeJs",
-                    "icon": "threejs.svg"
-                },
-                {
-                    "name": "Html",
-                    "icon": "html.svg"
-                },
-                {
-                    "name": "CSS",
-                    "icon": "css.svg"
-                },
-                {
-                    "name": "SASS",
-                    "icon": "sass.svg"
-                },
-                {
-                    "name": "Figma",
-                    "icon": "figma.svg"
-                }
-            ]
+            }
         },
         "relatedSkills": {
             "title": {
@@ -180,67 +119,111 @@
         },
         "list": [
             {
-                "companyName": {
-                    "EN": "",
-                    "VN": ""
-                },
+                "id": "des",
+                "companyName": "digital education solution",
                 "startYear": 2018,
                 "endYear": 2021,
                 "jobTitle": "Instructional Designer",
                 "duties": {
-                    "EN": [
-                        "line1",
-                        "line2"
-                    ],
-                    "VN": [
-                        "dòng 1",
-                        "dòng 2"
-                    ]
+                    "title": {
+                        "EN": "responsibility",
+                        "VN": "công việc"
+                    },
+                    "content": {
+                        "EN": [
+                            "line1",
+                            "line2"
+                        ],
+                        "VN": [
+                            "dòng 1",
+                            "dòng 2"
+                        ]
+                    }
                 },
                 "achievement": {
-                    "EN": [
-                        "line1",
-                        "line2"
-                    ],
-                    "VN": [
-                        "dòng 1",
-                        "dòng 2"
-                    ]
+                    "title": {
+                        "EN": "achivement",
+                        "VN": "thành tựu"
+                    },
+                    "content": {
+                        "EN": [
+                            "line1",
+                            "line2"
+                        ],
+                        "VN": [
+                            "dòng 1",
+                            "dòng 2"
+                        ]
+                    }
                 },
                 "contact": {
-                    "name": ""
+                    "title": {
+                        "EN": "contact",
+                        "VN": "liên hệ"
+                    },
+                    "name": {
+                        "EN": "name",
+                        "VN": "tên"
+                    },
+                    "jobTitle": {
+                        "EN": "manager",
+                        "VN": "quản lý"
+                    },
+                    "mail": "mail@gmail.com"
                 }
             },
             {
-                "companyName": {
-                    "EN": "",
-                    "VN": ""
-                },
+                "id": "vss",
+                "companyName": "viettel software services",
                 "startYear": 2021,
                 "endYear": 2023,
                 "jobTitle": "Instructional Designer",
                 "duties": {
-                    "EN": [
-                        "line1",
-                        "line2"
-                    ],
-                    "VN": [
-                        "dòng 1",
-                        "dòng 2"
-                    ]
+                    "title": {
+                        "EN": "responsibility",
+                        "VN": "công việc"
+                    },
+                    "content": {
+                        "EN": [
+                            "line1",
+                            "line2"
+                        ],
+                        "VN": [
+                            "dòng 1",
+                            "dòng 2"
+                        ]
+                    }
                 },
                 "achievement": {
-                    "EN": [
-                        "line1",
-                        "line2"
-                    ],
-                    "VN": [
-                        "dòng 1",
-                        "dòng 2"
-                    ]
+                    "title": {
+                        "EN": "achivement",
+                        "VN": "thành tựu"
+                    },
+                    "content": {
+                        "EN": [
+                            "line1",
+                            "line2"
+                        ],
+                        "VN": [
+                            "dòng 1",
+                            "dòng 2"
+                        ]
+                    }
                 },
                 "contact": {
-                    "name": ""
+                    "title": {
+                        "EN": "contact",
+                        "VN": "liên hệ"
+                    },
+                    "name": {
+                        "EN": "name",
+                        "VN": "tên"
+                    },
+                    "jobTitle": {
+                        "EN": "manager",
+                        "VN": "quản lý"
+                    },
+                    "mail": "mail@gmail.com"
                 }
             }
         ]
@@ -250,21 +233,72 @@
             "EN": "Project #1",
             "VN": "Dự án #1"
         },
-        "projectName": "Project Name"
+        "projectName": "Project Name",
+        "desc": {
+            "EN": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, magni ullam! Neque doloribus explicabo quaerat voluptatibus nemo sapiente eveniet aspernatur!",
+            "VN": "VN, dolor sit amet consectetur adipisicing elit. Sit, magni ullam! Neque doloribus explicabo quaerat voluptatibus nemo sapiente eveniet aspernatur!"
+        },
+        "techStack": {
+            "title": {
+                "EN": "tech stack",
+                "VN": "tech stack"
+            },
+            "list": [
+                "Javascript",
+                "ReactJs"
+            ]
+        },
+        "imageUrl": "/src/assets/img/placeholder.jpg",
+        "liveViewUrl": "https://www.google.com/",
+        "gitHubUrl": "https://www.google.com/"
     },
     "project2": {
         "title": {
             "EN": "Project #2",
             "VN": "Dự án #2"
         },
-        "projectName": "Project Name"
+        "projectName": "Project Name",
+        "desc": {
+            "EN": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, magni ullam! Neque doloribus explicabo quaerat voluptatibus nemo sapiente eveniet aspernatur!",
+            "VN": "VN, dolor sit amet consectetur adipisicing elit. Sit, magni ullam! Neque doloribus explicabo quaerat voluptatibus nemo sapiente eveniet aspernatur!"
+        },
+        "techStack": {
+            "title": {
+                "EN": "tech stack",
+                "VN": "tech stack"
+            },
+            "list": [
+                "Javascript",
+                "ReactJs"
+            ]
+        },
+        "imageUrl": "/src/assets/img/placeholder.jpg",
+        "liveViewUrl": "https://www.google.com/",
+        "gitHubUrl": "https://www.google.com/"
     },
     "project3": {
         "title": {
             "EN": "Project #3",
             "VN": "Dự án #3"
         },
-        "projectName": "Project Name"
+        "projectName": "Project Name",
+        "desc": {
+            "EN": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, magni ullam! Neque doloribus explicabo quaerat voluptatibus nemo sapiente eveniet aspernatur!",
+            "VN": "VN, dolor sit amet consectetur adipisicing elit. Sit, magni ullam! Neque doloribus explicabo quaerat voluptatibus nemo sapiente eveniet aspernatur!"
+        },
+        "techStack": {
+            "title": {
+                "EN": "tech stack",
+                "VN": "tech stack"
+            },
+            "list": [
+                "Javascript",
+                "ReactJs"
+            ]
+        },
+        "imageUrl": "/src/assets/img/placeholder.jpg",
+        "liveViewUrl": "https://www.google.com/",
+        "gitHubUrl": "https://www.google.com/"
     },
     "contact": {
         "title": {
@@ -286,9 +320,66 @@
         }
     },
     "blank": {
-        "title": {
-            "EN": "",
-            "VN": ""
+        "message": {
+            "EN": "no signal",
+            "VN": "không tín hiệu"
         }
+    },
+    "skills": {
+        "path": "/src/assets/icons/tech_logos/",
+        "list": [
+            {
+                "name": "Javascript",
+                "icon": "js.svg"
+            },
+            {
+                "name": "ReactJs",
+                "icon": "reactjs.svg"
+            },
+            {
+                "name": "NodeJs",
+                "icon": "nodejs.svg"
+            },
+            {
+                "name": "Vite",
+                "icon": "vite.svg"
+            },
+            {
+                "name": "Express",
+                "icon": "express.svg"
+            },
+            {
+                "name": "AngularJs",
+                "icon": "angular.svg"
+            },
+            {
+                "name": "Tailwind",
+                "icon": "tailwind.svg"
+            },
+            {
+                "name": "Git",
+                "icon": "git.svg"
+            },
+            {
+                "name": "ThreeJs",
+                "icon": "threejs.svg"
+            },
+            {
+                "name": "Html",
+                "icon": "html.svg"
+            },
+            {
+                "name": "CSS",
+                "icon": "css.svg"
+            },
+            {
+                "name": "SASS",
+                "icon": "sass.svg"
+            },
+            {
+                "name": "Figma",
+                "icon": "figma.svg"
+            }
+        ]
     }
 }

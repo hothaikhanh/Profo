@@ -1,56 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./HistoryPage.scss";
 import { RadioButton } from "../Buttons/Buttons";
 
-export default function HistoryPage() {
-    const workHistory = [
-        {
-            companyName: "Digital Education Solution",
-            id: "DES",
-            startYear: 2018,
-            endYear: 2021,
-            role: "Instructional Designer",
-            duties: [
-                "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna.",
-                "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. ",
-                "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna.",
-            ],
-            achievement: [],
-            contact: {
-                name: "John Doe",
-                role: "Direct Manager",
-                mail: "somemail@mail.com",
-            },
-        },
-        {
-            companyName: "Viettel Software Services",
-            id: "VSS",
-            startYear: 2021,
-            endYear: 2023,
-            role: "Instructional Designer",
-            duties: [
-                "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. ",
-                "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna.",
-                "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. ",
-            ],
-            achievement: [
-                "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna.",
-                "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna.",
-                "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna.",
-            ],
-            contact: {
-                name: "Peter",
-                role: "Direct Manager",
-                mail: "somemailagain@mail.com",
-            },
-        },
-    ];
-    const [toggleItem, setToggleItem] = useState(workHistory[0].id);
+import { LanguageContext } from "../Contexts/LanguageContext";
+
+export default function HistoryPage({ data }) {
+    const [toggleItem, setToggleItem] = useState(data.list[0].id);
+    const lang = useContext(LanguageContext);
 
     return (
         <div className="history-page">
             <div className="left-content">
-                {workHistory.map((entry) => {
+                {data.list.map((entry) => {
                     return (
                         <RadioButton
                             key={entry.id}
@@ -63,7 +24,7 @@ export default function HistoryPage() {
                                 company={entry.companyName}
                                 startYear={entry.startYear}
                                 endYear={entry.endYear}
-                                role={entry.role}
+                                role={entry.jobTitle}
                             />
                         </RadioButton>
                     );
@@ -71,7 +32,7 @@ export default function HistoryPage() {
             </div>
             <div className="right-content">
                 <div className="content-container">
-                    {workHistory
+                    {data.list
                         .filter((entry) => {
                             return entry.id == toggleItem;
                         })
@@ -82,22 +43,25 @@ export default function HistoryPage() {
                                     <h3>
                                         {entry.startYear} - {entry.endYear}
                                     </h3>
-                                    <p>{entry.role}</p>
+                                    <p>{entry.jobTitle}</p>
                                     <hr />
-                                    <p>Responsibilities</p>
-                                    {entry.duties.map((line, index) => {
+                                    <p>{entry.duties.title[lang]}</p>
+                                    {entry.duties.content[lang].map((line, index) => {
                                         return <li key={index}>{line}</li>;
                                     })}
 
-                                    {entry.achievement.length > 0 ? <p>Achievements</p> : null}
-                                    {entry.achievement.map((line, index) => {
+                                    {entry.achievement.content[lang].length > 0 ? (
+                                        <p>{entry.achievement.title[lang]}</p>
+                                    ) : null}
+                                    {entry.achievement.content[lang].map((line, index) => {
                                         return <li key={index}>{line}</li>;
                                     })}
 
                                     <br />
-                                    <p>Contact</p>
+                                    <p>{entry.contact.title[lang]}</p>
                                     <li>
-                                        {entry.contact.role}: {entry.contact.name} - {entry.contact.mail}
+                                        {entry.contact.jobTitle[lang]}: {entry.contact.name[lang]} -{" "}
+                                        {entry.contact.mail}
                                     </li>
                                 </div>
                             );

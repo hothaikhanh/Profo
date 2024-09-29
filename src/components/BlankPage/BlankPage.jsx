@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./BlankPage.scss";
+import { LanguageContext } from "../Contexts/LanguageContext";
 
-export default function BlankPage() {
+export default function BlankPage({ data }) {
+    const lang = useContext(LanguageContext);
     return (
         <div className="blank-page">
             <img src="/src/assets/img/no-signal.png" alt="" />
-            <div>No signal</div>
+            <div>{data.message[lang]}</div>
         </div>
     );
 }

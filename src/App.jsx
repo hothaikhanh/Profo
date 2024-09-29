@@ -34,7 +34,7 @@ function App() {
         {
             screenTitle: data.aboutMe.title[lang],
             pageTitle: data.aboutMe.title[lang],
-            content: <AboutPage></AboutPage>,
+            content: <AboutPage data={data.aboutMe} skills={data.skills}></AboutPage>,
             scale: 0.038,
             position: [-3.24, 0.61, 1.36],
             rotation: [0.0, 1.22, 0.0],
@@ -42,7 +42,7 @@ function App() {
         {
             screenTitle: data.workHistory.title[lang],
             pageTitle: data.workHistory.title[lang],
-            content: <HistoryPage></HistoryPage>,
+            content: <HistoryPage data={data.workHistory}></HistoryPage>,
             scale: 0.041,
             position: [-2.56, -1.76, -0.44],
             rotation: [0.0, 1.09, 0.0],
@@ -50,7 +50,7 @@ function App() {
         {
             screenTitle: data.project1.title[lang],
             pageTitle: data.project1.projectName,
-            content: <ProjectPage></ProjectPage>,
+            content: <ProjectPage data={data.project1} skills={data.skills}></ProjectPage>,
             scale: 0.041,
             position: [-1.27, 0.11, -1.7],
             rotation: [0.0, 1.0, 0],
@@ -58,7 +58,7 @@ function App() {
         {
             screenTitle: data.project2.title[lang],
             pageTitle: data.project2.projectName,
-            content: <ProjectPage></ProjectPage>,
+            content: <ProjectPage data={data.project2} skills={data.skills}></ProjectPage>,
             scale: 0.041,
             position: [0.26, -0.86, -2.42],
             rotation: [0.0, 0.0, 0.0],
@@ -66,7 +66,7 @@ function App() {
         {
             screenTitle: data.project3.title[lang],
             pageTitle: data.project3.projectName,
-            content: <ProjectPage></ProjectPage>,
+            content: <ProjectPage data={data.project3} skills={data.skills}></ProjectPage>,
             scale: 0.041,
             position: [1.78, -2.0, -1.59],
             rotation: [0.0, -0.36, 0.0],
@@ -74,7 +74,7 @@ function App() {
         {
             screenTitle: data.contact.title[lang],
             pageTitle: null,
-            content: <ContactPage></ContactPage>,
+            content: <ContactPage data={data.contact}></ContactPage>,
             scale: 0.041,
             position: [2.98, -0.35, -0.09],
             rotation: [0.0, -0.8, 0.0],
@@ -82,7 +82,7 @@ function App() {
         {
             screenTitle: null,
             pageTitle: null,
-            content: <BlankPage />,
+            content: <BlankPage data={data.blank} />,
             scale: 0.041,
             position: [-3.8, 1.91, -2.48],
             rotation: [0.0, 0.54, 0.0],
@@ -90,7 +90,7 @@ function App() {
         {
             screenTitle: null,
             pageTitle: null,
-            content: <BlankPage />,
+            content: <BlankPage data={data.blank} />,
             scale: 0.041,
             position: [0.97, 1.9, -4.02],
             rotation: [0.0, -0.1, 0.0],
@@ -98,7 +98,7 @@ function App() {
         {
             screenTitle: null,
             pageTitle: null,
-            content: <BlankPage />,
+            content: <BlankPage data={data.blank} />,
             scale: 0.041,
             position: [4.52, 1.9, -1.46],
             rotation: [0.0, -1.05, 0.0],
