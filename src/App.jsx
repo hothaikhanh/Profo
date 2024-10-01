@@ -49,7 +49,7 @@ function App() {
         },
         {
             screenTitle: data.project1.title[lang],
-            pageTitle: data.project1.projectName,
+            pageTitle: data.projectPages.title[lang],
             content: <ProjectPage data={data.project1} skills={data.skills}></ProjectPage>,
             scale: 0.041,
             position: [-1.27, 0.11, -1.7],
@@ -57,7 +57,7 @@ function App() {
         },
         {
             screenTitle: data.project2.title[lang],
-            pageTitle: data.project2.projectName,
+            pageTitle: data.projectPages.title[lang],
             content: <ProjectPage data={data.project2} skills={data.skills}></ProjectPage>,
             scale: 0.041,
             position: [0.26, -0.86, -2.42],
@@ -65,7 +65,7 @@ function App() {
         },
         {
             screenTitle: data.project3.title[lang],
-            pageTitle: data.project3.projectName,
+            pageTitle: data.projectPages.title[lang],
             content: <ProjectPage data={data.project3} skills={data.skills}></ProjectPage>,
             scale: 0.041,
             position: [1.78, -2.0, -1.59],

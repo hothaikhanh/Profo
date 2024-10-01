@@ -8,7 +8,7 @@
     "aboutMe": {
         "title": {
             "EN": "About Me",
-            "VN": "giới thiệu"
+            "VN": "Giới Thiệu"
         },
         "desc": {
             "title": {
@@ -227,6 +227,12 @@
                 }
             }
         ]
+    },
+    "projectPages": {
+        "title": {
+            "EN": "My Projects",
+            "VN": "Dự án của tôi"
+        }
     },
     "project1": {
         "title": {
