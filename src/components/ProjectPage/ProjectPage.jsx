@@ -10,7 +10,7 @@ export default function ProjectPage({ data, skills }) {
         <div className="project-page">
             <div className="side-bar">
                 <div className="project-info">
-                    <h2 className="project-title">{data.title[lang]}</h2>
+                    <h2 className="project-title">{data.projectName}</h2>
                     <p className="project-desc">{data.desc[lang]}</p>
                 </div>
 
@@ -33,6 +33,10 @@ export default function ProjectPage({ data, skills }) {
                 </div>
             </div>
             <div className="main-content">
+                <div className="preview">
+                    <img src={data.imageUrl} alt="" />
+                    <div className="filter"></div>
+                </div>
                 <nav className="nav-btns">
                     <div className="btn-row">
                         <HoverButton>
@@ -56,11 +60,6 @@ export default function ProjectPage({ data, skills }) {
                         </HoverButton>
                     </div> */}
                 </nav>
-
-                <div className="preview">
-                    <img src={data.imageUrl} alt="" />
-                    <div className="filter"></div>
-                </div>
             </div>
         </div>
     );
