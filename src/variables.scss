@@ -23,3 +23,9 @@ $cell-gap: 12px;
     text-transform: uppercase;
     padding: 6px 12px;
 }
+
+@mixin scroller {
+    overflow-y: scroll;
+    scrollbar-color: $primary-color black;
+    scrollbar-width: thin;
+}

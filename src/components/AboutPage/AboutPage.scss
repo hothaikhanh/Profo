@@ -183,6 +183,7 @@
         .content-container {
             display: flex;
             gap: 8px;
+            height: 140px;
         }
         .toggle-btns {
             display: flex;
@@ -190,6 +191,9 @@
             gap: 4px;
             text-transform: capitalize;
 
+            label {
+                height: 100%;
+            }
             label span {
                 text-wrap: nowrap;
             }
@@ -202,6 +206,8 @@
             font-family: $basic-font;
             font-weight: 600;
             font-size: 1rem;
+            height: 100%;
+            @include scroller;
         }
     }
 }

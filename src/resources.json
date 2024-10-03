@@ -28,12 +28,12 @@
                 "VN": "hồ thái khanh"
             },
             "jobTitle": {
-                "EN": "frontend developer",
-                "VN": "frontend developer"
+                "EN": "fresher frontend developer",
+                "VN": "fresher frontend developer"
             },
             "content": {
-                "EN": "I'm a self-taught developer",
-                "VN": "lorem10"
+                "EN": "A Passion for programming and a love for problem-solving. With over 4 years of experience in developing, delivering product while working, collaborating in a team. Open-minded and ready to adapt to new technologies while self-motivated and determined to deliver the product at the highest quality with great attention to detail and within the desired time limit.",
+                "VN": "Là một người đam mê lập trình và yêu thích giải quyết vấn đề. Với hơn 4 năm kinh nghiệm trong việc sản xuất, phát triển sản phẩm và làm việc, phối hợp trong một nhóm. Cởi mở và sẵn sàng học học hỏi các công nghệ mới, đồng thời chủ động và quyết tâm để có thể bàn giao với sẩn phẩm với sự tỉ mỉ và chất lượng tốt nhất trong khoảng thời gian đã định trước"
             }
         },
         "downloadBtn": {
@@ -60,14 +60,16 @@
                     },
                     "content": {
                         "EN": [
-                            "Toeic Certificate 950",
-                            "",
-                            "line3"
+                            "950 Toeic score",
+                            "Strong Comminication skills",
+                            "Proficient at reading technical documents",
+                            "Capable of translating documents from English to vietnamese"
                         ],
                         "VN": [
                             "Chứng chỉ Toeic 950",
-                            "Khả năng giao tiếp thành thạo",
-                            "Có khả năng biên dịch tài liệu từ tiếng anh sang tiếng việt và ngược lại"
+                            "Giao tiếp thành thạo",
+                            "Dễ dàng đọc hiểu tài liệu",
+                            "Có kinh nghiệm biên dịch tài liệu từ tiếng Anh sang tiếng Việt"
                         ]
                     }
                 },
@@ -79,14 +81,12 @@
                     },
                     "content": {
                         "EN": [
-                            "line1 GD",
-                            "line2",
-                            "line3"
+                            "Experienced with making 2D vector based graphics",
+                            "Proficient at Powerpoint and Illustrator"
                         ],
                         "VN": [
                             "Thiết kế ấn phẩm, đồ họa 2D",
-                            "Có kinh nghiệm làm việc với powerpoint, illustrator",
-                            ""
+                            "Thành thạo Powerpoint, Illustrator"
                         ]
                     }
                 },
@@ -98,14 +98,14 @@
                     },
                     "content": {
                         "EN": [
-                            "line1 VE",
-                            "line2",
-                            "line3"
+                            "Proficient with After Effects, Premiere ",
+                            "Experienced with video editing",
+                            "Capable of making short 2D animations, motion graphics"
                         ],
                         "VN": [
-                            "line1",
-                            "line2 VE",
-                            "line3"
+                            "Thành thạo với After Effects, Premiere",
+                            "Có kinh nghiệm chỉnh sửa, edit video",
+                            "Có thể tạo, dựng video với animation 2D ngắn"
                         ]
                     }
                 }
