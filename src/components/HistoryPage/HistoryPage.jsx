@@ -58,11 +58,11 @@ export default function HistoryPage({ data }) {
                                     })}
 
                                     <br />
-                                    <p>{entry.contact.title[lang]}</p>
+                                    {/* <p>{entry.contact.title[lang]}</p>
                                     <li>
                                         {entry.contact.jobTitle[lang]}: {entry.contact.name[lang]} -{" "}
                                         {entry.contact.mail}
-                                    </li>
+                                    </li> */}
                                 </div>
                             );
                         })}

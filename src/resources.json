@@ -126,34 +126,34 @@
                 "jobTitle": "Instructional Designer",
                 "duties": {
                     "title": {
-                        "EN": "responsibility",
-                        "VN": "công việc"
+                        "EN": "key responsibilities",
+                        "VN": "công việc chính"
                     },
                     "content": {
                         "EN": [
-                            "line1",
-                            "line2"
+                            "Create interactive E-Learning courses that enhance the learner's retention and transfer of information",
+                            "Design instructional graphics and user interfaces that simplify complex concepts for learners to understand more easily",
+                            "Create games and activities to increase the learner's engagement",
+                            "Translate educational materials from English to Vietnamese while preserving the source materials' content",
+                            "Decide on the criteria used to judge learner’s completion of the course and their knowledge rentention"
                         ],
                         "VN": [
-                            "dòng 1",
-                            "dòng 2"
+                            "Tạo các khóa học E-Learning giúp người học cải thiện khả năng tiếp thu và lưu giữ kiến thức",
+                            "Thiết kế hình ảnh, đồ họa, biểu đồ giúp người học dễ dàng hình dung các khái niệm phức tạp",
+                            "Phát triển các hình thức gamification, các hoạt động giải trí nhằm thu hút sự chú ý của người học",
+                            "Biên dịch các tài liệu khóa học từ tiếng Anh sang tiếng Việt với mục đích bảo toàn các kiến thức quan trọng",
+                            "Xác định các tiêu chí đánh rằng học viên đã hoàn thành khóa học và khả năng lưu giữ kiến thức của họ"
                         ]
                     }
                 },
                 "achievement": {
                     "title": {
-                        "EN": "achivement",
-                        "VN": "thành tựu"
+                        "EN": "key achivement",
+                        "VN": "thành tựu nổi bật"
                     },
                     "content": {
-                        "EN": [
-                            "line1",
-                            "line2"
-                        ],
-                        "VN": [
-                            "dòng 1",
-                            "dòng 2"
-                        ]
+                        "EN": [],
+                        "VN": []
                     }
                 },
                 "contact": {
@@ -163,7 +163,7 @@
                     },
                     "name": {
                         "EN": "name",
-                        "VN": "tên"
+                        "VN": "name"
                     },
                     "jobTitle": {
                         "EN": "manager",
@@ -180,29 +180,35 @@
                 "jobTitle": "Instructional Designer",
                 "duties": {
                     "title": {
-                        "EN": "responsibility",
-                        "VN": "công việc"
+                        "EN": "key responsibilities",
+                        "VN": "công việc chính"
                     },
                     "content": {
                         "EN": [
-                            "line1",
-                            "line2"
+                            "Create E-Learning courses and design professional slides for internal usage: onboarding, training, product presentation, reporting...",
+                            "Design promotional graphics for events and training programs: posters, banners, backdrops, promotional videos, ",
+                            "Research new ways to implement gamification for existing E-Learning courses",
+                            "Translate E-learning courses from English to Vietnamese while making necessary adjustments to meet the company's needs",
+                            "Organize activities for employees to encourage learning in the workplace"
                         ],
                         "VN": [
-                            "dòng 1",
-                            "dòng 2"
+                            "Sản xuất các khóa học E-learning, thiết kế các slide thuyết trình chuyên nghiệp dành cho các sự kiện như onboarding, đào tạo nhân viên, giới thiệu sản phẩm, báo cáo của nội bộ công ty",
+                            "Thiết kế các ấn phẩm đồ họa dành cho các sự kiện và chương trình đào tạo như thiết kế poster, banner, backdrop, video truyền thông... ",
+                            "Nghiên cứu các giải pháp để áp dụng các hình thức gamification vào các khóa học hiện có",
+                            "Biên dịch nội dung các khóa học E-Learning từ tiếng Anh sang tiếng Việt và có các điều chỉnh nhằm đáp ứng nhu cầu của tổ chức",
+                            "Tổ chức các hoạt động nhằm khuyến khích tinh thần học hỏi tại nơi làm việc"
                         ]
                     }
                 },
                 "achievement": {
                     "title": {
-                        "EN": "achivement",
-                        "VN": "thành tựu"
+                        "EN": "key achivement",
+                        "VN": "thành tựu nổi bật"
                     },
                     "content": {
                         "EN": [
-                            "line1",
-                            "line2"
+                            "Employee of the month 4/2023",
+                            "Award for most Innovatite Course hosted by Viettel Academy"
                         ],
                         "VN": [
                             "dòng 1",
