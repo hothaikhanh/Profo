@@ -26,26 +26,39 @@
         text-align: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        .mail {
-            font-size: 20px;
+        align-items: flex-start;
+        .contact-item {
             margin-bottom: 12px;
-            user-select: text;
-            &::-moz-selection {
-                /* Code for Firefox */
-                color: $primary-color;
-                background: black;
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            justify-content: center;
+            span {
+                @include text-with-no-upper-space(20px);
+                display: inline-block;
+                user-select: text;
+
+                &::-moz-selection {
+                    /* Code for Firefox */
+                    color: $primary-color;
+                    background: black;
+                }
+
+                &::selection {
+                    color: $primary-color;
+                    background: black;
+                }
             }
 
-            &::selection {
-                color: $primary-color;
-                background: black;
+            svg {
+                width: 20px;
             }
         }
         .message {
             font-family: $basic-font;
             font-weight: 600;
             margin-bottom: 32px;
+            text-align: justify;
         }
     }
 

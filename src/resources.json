@@ -317,11 +317,11 @@
         },
         "email": "hothaikhanh@gmail.com",
         "message": {
-            "EN": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, magni ullam! Neque doloribus explicabo quaerat voluptatibus nemo sapiente eveniet aspernatur!",
-            "VN": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, magni ullam! Neque doloribus explicabo quaerat voluptatibus nemo sapiente eveniet aspernatur!"
+            "EN": "Thank you for visiting. Feel free to provide me with any questions or feedback, and please don't hesitate to reach out. I look forward to connecting with you and hope one day I can add great value to your organization.",
+            "VN": "Cảm ơn bạn đã ghé qua trang web này, xin vui lòng để lại các câu hỏi hoặc nhận xét, nếu có. Ý kiến của bạn rất quan trọng đối với tôi và tôi hi vọng một ngày có thể mang lại nhiều giá trị cho tổ chức của bạn."
         },
         "actionBtn": {
-            "EN": "",
+            "EN": "mail me",
             "VN": "gửi mail"
         }
     },
