@@ -76,3 +76,62 @@
         }
     }
 }
+
+.blur-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0;
+    z-index: 6;
+}
+.contact-form {
+    @include cell;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 6;
+    padding: 40px 24px;
+    .adress {
+        color: $primary-color;
+    }
+    input,
+    textarea {
+        background: rgba($color: white, $alpha: 0.07);
+        @include cell;
+        color: white;
+        padding: 8px;
+        outline: none;
+        font-size: 1rem;
+        width: 30vw;
+        &::placeholder {
+            columns: white;
+        }
+    }
+
+    textarea {
+        height: 200px;
+        resize: none;
+        @include scroller;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+
+        color: $primary-color;
+        text-transform: lowercase;
+        position: absolute;
+        right: -2px;
+        top: -3px;
+        span {
+            @include text-with-no-upper-space(24px);
+        }
+    }
+}

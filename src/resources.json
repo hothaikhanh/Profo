@@ -337,8 +337,26 @@
             "VN": "Cảm ơn bạn đã ghé qua trang web này, xin vui lòng để lại các câu hỏi hoặc nhận xét, nếu có. Ý kiến của bạn rất quan trọng đối với tôi và tôi hi vọng một ngày có thể mang lại nhiều giá trị cho tổ chức của bạn."
         },
         "actionBtn": {
-            "EN": "mail me",
-            "VN": "gửi mail"
+            "EN": "leave a message",
+            "VN": "để lại lời nhắn"
+        },
+        "contactForm": {
+            "subject": {
+                "EN": "Subject",
+                "VN": "Tiêu đề"
+            },
+            "body": {
+                "EN": "Body",
+                "VN": "Nội dung"
+            },
+            "sendBtn": {
+                "EN": "Send",
+                "VN": "Gửi"
+            },
+            "message": {
+                "EN": "Email has been sent!",
+                "VN": "Email đã được gửi!"
+            }
         }
     },
     "blank": {

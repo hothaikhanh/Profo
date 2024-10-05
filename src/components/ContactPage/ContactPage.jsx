@@ -5,6 +5,7 @@ import { LanguageContext } from "../Contexts/LanguageContext";
 
 export default function ContactPage({ data }) {
     const lang = useContext(LanguageContext);
+    const [showContactFrom, setContactForm] = useState(false);
     return (
         <div className="contact-page">
             <div className="header">
@@ -29,10 +30,51 @@ export default function ContactPage({ data }) {
             </div>
 
             {/* <div className="action-button">
-                <HoverButton>
+                <HoverButton
+                    onClick={() => {
+                        setContactForm(true);
+                    }}
+                >
                     <span>{data.actionBtn[lang]}</span>
                 </HoverButton>
             </div> */}
+            <ContactForm showContactFrom={showContactFrom} setContactForm={setContactForm} data={data} lang={lang} />
         </div>
+    );
+}
+
+function ContactForm({ showContactFrom, setContactForm, data, lang }) {
+    let handleSend = (e) => {
+        e.preventDefault();
+        alert(data.contactForm.message[lang]);
+        setContactForm(false);
+    };
+    return (
+        <>
+            {showContactFrom && (
+                <>
+                    <div className="blur-background"></div>
+                    <form className="contact-form">
+                        <div className="adress">To: hothaikhanh@gmail.com</div>
+                        <input type="text" name="subject" placeholder={data.contactForm.subject[lang]} />
+                        <textarea type="text" name="body" placeholder={data.contactForm.body[lang]} />
+                        <HoverButton onClick={handleSend}>
+                            <span>{data.contactForm.sendBtn[lang]}</span>
+                        </HoverButton>
+                        <div
+                            className="close-btn"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setContactForm(false);
+                            }}
+                        >
+                            <HoverButton>
+                                <span>X</span>
+                            </HoverButton>
+                        </div>
+                    </form>
+                </>
+            )}
+        </>
     );
 }
