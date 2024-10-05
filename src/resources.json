@@ -265,8 +265,8 @@
             ]
         },
         "imageUrl": "/src/assets/img/youtracker-screenshot.jpg",
-        "liveViewUrl": "https://www.google.com/",
-        "gitHubUrl": "https://www.google.com/"
+        "liveViewUrl": "https://server-blue-wildflower-4967.fly.dev",
+        "gitHubUrl": "https://github.com/hothaikhanh/you-tracker"
     },
     "project2": {
         "title": {
@@ -291,8 +291,8 @@
             ]
         },
         "imageUrl": "/src/assets/img/tictactoe-screenshot.jpg",
-        "liveViewUrl": "https://www.google.com/",
-        "gitHubUrl": "https://www.google.com/"
+        "liveViewUrl": "https://hothaikhanh-tic-tac-toe-app.fly.dev",
+        "gitHubUrl": "https://github.com/hothaikhanh/tic-tac-toe"
     },
     "project3": {
         "title": {
@@ -320,7 +320,7 @@
         },
         "imageUrl": "/src/assets/img/profo-screenshot.png",
         "liveViewUrl": "https://www.google.com/",
-        "gitHubUrl": "https://www.google.com/"
+        "gitHubUrl": "https://github.com/hothaikhanh/Profo"
     },
     "contact": {
         "title": {

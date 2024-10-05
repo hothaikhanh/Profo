@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import "./ProjectPage.scss";
-import { HoverButton } from "../Buttons/Buttons";
+import { AnchorButton, HoverButton } from "../Buttons/Buttons";
 import { LanguageContext } from "../Contexts/LanguageContext";
 
 export default function ProjectPage({ data, skills }) {
@@ -38,26 +38,13 @@ export default function ProjectPage({ data, skills }) {
                 </div>
                 <nav className="nav-btns">
                     <div className="btn-row">
-                        <HoverButton>
-                            <a href={data.liveViewUrl}>
-                                <span>demo</span>
-                            </a>
-                        </HoverButton>
-                        <HoverButton>
-                            <a href={data.gitHubUrl}>
-                                <span>github</span>
-                            </a>
-                        </HoverButton>
+                        <AnchorButton href={data.liveViewUrl}>
+                            <span>demo</span>
+                        </AnchorButton>
+                        <AnchorButton href={data.gitHubUrl}>
+                            <span>github</span>
+                        </AnchorButton>
                     </div>
-
-                    {/* <div className="btn-row">
-                        <HoverButton>
-                            <span>Prev</span>
-                        </HoverButton>
-                        <HoverButton>
-                            <span>Next</span>
-                        </HoverButton>
-                    </div> */}
                 </nav>
             </div>
         </div>
