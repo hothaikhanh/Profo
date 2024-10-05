@@ -35,7 +35,6 @@ export default function ProjectPage({ data, skills }) {
             <div className="main-content">
                 <div className="preview">
                     <img src={data.imageUrl} alt="" />
-                    <div className="filter"></div>
                 </div>
                 <nav className="nav-btns">
                     <div className="btn-row">

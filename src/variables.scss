@@ -25,7 +25,7 @@ $cell-gap: 12px;
 }
 
 @mixin scroller {
-    overflow-y: scroll;
+    overflow-y: auto;
     scrollbar-color: $primary-color black;
     scrollbar-width: thin;
 }
