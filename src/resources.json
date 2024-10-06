@@ -60,13 +60,13 @@
                     },
                     "content": {
                         "EN": [
-                            "950 Toeic score",
+                            "985 Toeic score",
                             "Strong Comminication skills",
                             "Proficient at reading technical documents",
                             "Capable of translating documents from English to vietnamese"
                         ],
                         "VN": [
-                            "Chứng chỉ Toeic 950",
+                            "Chứng chỉ Toeic 985",
                             "Giao tiếp thành thạo",
                             "Dễ dàng đọc hiểu tài liệu",
                             "Có kinh nghiệm biên dịch tài liệu từ tiếng Anh sang tiếng Việt"
@@ -335,6 +335,10 @@
             "VN": "để lại lời nhắn"
         },
         "contactForm": {
+            "email": {
+                "EN": "From",
+                "VN": "Từ"
+            },
             "subject": {
                 "EN": "Subject",
                 "VN": "Tiêu đề"
@@ -348,8 +352,28 @@
                 "VN": "Gửi"
             },
             "message": {
-                "EN": "Email has been sent!",
-                "VN": "Email đã được gửi!"
+                "success": {
+                    "EN": "Email has been sent!",
+                    "VN": "Email đã được gửi!"
+                },
+                "error": {
+                    "EN": "An error has occur, please try again later",
+                    "VN": "Đã xảy ra lỗi, mời bạn thử lại sau"
+                }
+            },
+            "alert": {
+                "email": {
+                    "EN": "Please enter a valid email",
+                    "VN": "Vui lòng nhập một email hợp lệ"
+                },
+                "subject": {
+                    "EN": "Please enter a subject",
+                    "VN": "vui lòng nhập tiêu đề"
+                },
+                "body": {
+                    "EN": "Please enter a message",
+                    "VN": "Vui lòng nhập lời nhắn"
+                }
             }
         }
     },
