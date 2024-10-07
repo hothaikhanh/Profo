@@ -11,7 +11,7 @@ export default function AboutPage({ data, skills }) {
 
     let handleDownload = () => {
         let url = "/src/assets/pdf/" + (lang == "EN" ? "EN.pdf" : "VN.pdf");
-        let fileName = lang == "EN" ? "hothaikhanh-resume.pdf" : "hothaikhanh-cv.pdf";
+        let fileName = lang == "EN" ? "hothaikhanh-resume.pdf" : "hothaikhanh-resume.pdf";
 
         fetch(url)
             .then((response) => response.blob())

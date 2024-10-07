@@ -37,8 +37,8 @@
             }
         },
         "downloadBtn": {
-            "EN": "download cv",
-            "VN": "tải xuống cv"
+            "EN": "download resume",
+            "VN": "tải xuống Resume"
         },
         "skills": {
             "title": {
@@ -135,7 +135,7 @@
                             "Design instructional graphics and user interfaces that simplify complex concepts for learners to understand more easily",
                             "Create games and activities to increase the learner's engagement",
                             "Translate educational materials from English to Vietnamese while preserving the source materials' content",
-                            "Decide on the criteria used to judge learner’s completion of the course and their knowledge rentention"
+                            "Decide on the criteria used to judge learner’s completion of the course and their knowledge retention"
                         ],
                         "VN": [
                             "Tạo các khóa học E-Learning giúp người học cải thiện khả năng tiếp thu và lưu giữ kiến thức",
@@ -258,7 +258,7 @@
                 "Git"
             ]
         },
-        "imageUrl": "/src/assets/img/youtracker-screenshot.jpg",
+        "imageUrl": "./src/assets/img/youtracker-screenshot.jpg",
         "liveViewUrl": "https://server-blue-wildflower-4967.fly.dev",
         "gitHubUrl": "https://github.com/hothaikhanh/you-tracker"
     },
@@ -284,7 +284,7 @@
                 "SASS"
             ]
         },
-        "imageUrl": "/src/assets/img/tictactoe-screenshot.jpg",
+        "imageUrl": "./src/assets/img/tictactoe-screenshot.jpg",
         "liveViewUrl": "https://hothaikhanh-tic-tac-toe-app.fly.dev",
         "gitHubUrl": "https://github.com/hothaikhanh/tic-tac-toe"
     },
@@ -312,7 +312,7 @@
                 "ThreeJs"
             ]
         },
-        "imageUrl": "/src/assets/img/profo-screenshot.png",
+        "imageUrl": "./src/assets/img/profo-screenshot.png",
         "liveViewUrl": "https://www.google.com/",
         "gitHubUrl": "https://github.com/hothaikhanh/Profo"
     },
@@ -384,7 +384,7 @@
         }
     },
     "skills": {
-        "path": "/src/assets/icons/tech_logos/",
+        "path": "./src/assets/icons/tech_logos/",
         "list": [
             {
                 "name": "Javascript",
