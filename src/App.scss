@@ -3,7 +3,9 @@
 
 #canvas-container {
     width: 100vw;
+    min-width: 1200px;
     height: 100vh;
+    min-height: 800px;
     background: black;
 }
 
