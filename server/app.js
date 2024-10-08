@@ -8,6 +8,4 @@ const HOST = process.env.HOST || "0.0.0.0";
 app.use(express.static("./dist"));
 app.use(cors());
 
-app.listen(PORT, HOST, () => {
-    console.log(`Server Works !!! At port ${PORT}`);
-});
+app.listen(PORT, HOST, () => {});
