@@ -313,7 +313,7 @@
             ]
         },
         "imageUrl": "./src/assets/img/profo-screenshot.png",
-        "liveViewUrl": "https://www.google.com/",
+        "liveViewUrl": null,
         "gitHubUrl": "https://github.com/hothaikhanh/Profo"
     },
     "contact": {

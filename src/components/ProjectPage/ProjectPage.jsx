@@ -38,9 +38,11 @@ export default function ProjectPage({ data, skills }) {
                 </div>
                 <nav className="nav-btns">
                     <div className="btn-row">
-                        <AnchorButton href={data.liveViewUrl}>
-                            <span>demo</span>
-                        </AnchorButton>
+                        {data.liveViewUrl && (
+                            <AnchorButton href={data.liveViewUrl}>
+                                <span>demo</span>
+                            </AnchorButton>
+                        )}
                         <AnchorButton href={data.gitHubUrl}>
                             <span>github</span>
                         </AnchorButton>
