@@ -311,11 +311,11 @@ function MobileApp() {
 
                 <div
                     className="mobile-nav-bar"
-                    style={{ height: bottomFrameHeight * 0.28 + "px", padding: "1vh 10vw" }}
+                    style={{ height: bottomFrameHeight * 0.28 + "px", padding: "0 10vw 6vh" }}
                 >
-                    <NavBtn onClick={handleGoBack} imageUrl={"/src/assets/img/btn-back.png"} />
-                    <NavBtn onClick={handleCloseApp} imageUrl={"/src/assets/img/btn-home.png"} />
-                    <NavBtn onClick={handleCloseApp} imageUrl={"/src/assets/img/btn-menu.png"} />
+                    <NavBtn onClick={handleGoBack} imageUrl={"/src/assets/img/btn-back.png"} textDisplay="Back" />
+                    <NavBtn onClick={handleCloseApp} imageUrl={"/src/assets/img/btn-home.png"} textDisplay="Home" />
+                    <NavBtn onClick={handleCloseApp} imageUrl={"/src/assets/img/btn-menu.png"} textDisplay="Recent" />
                 </div>
             </div>
         </LanguageContext.Provider>
@@ -423,7 +423,7 @@ function TopBar({ time }) {
     );
 }
 
-function NavBtn({ onClick, imageUrl }) {
+function NavBtn({ onClick, imageUrl, textDisplay }) {
     const [isClicking, setClicking] = useState(false);
 
     const handleMouseDown = () => {
@@ -441,8 +441,11 @@ function NavBtn({ onClick, imageUrl }) {
             onClick={onClick}
             onMouseDown={handleMouseDown}
         >
-            <div className="darken"></div>
-            <img src={imageUrl} alt="" />
+            <span>{textDisplay}</span>
+            <div className="button-container">
+                <div className="darken"></div>
+                <img src={imageUrl} alt="" />
+            </div>
         </div>
     );
 }

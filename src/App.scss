@@ -146,7 +146,8 @@
 
         z-index: 999999999;
 
-        justify-content: space-between;
+        justify-content: center;
+        gap: 10vw;
         align-items: center;
         position: absolute;
         bottom: 0;
@@ -154,7 +155,33 @@
         .mobile-nav-btn {
             position: relative;
             height: 100%;
-            &.clicked > .darken {
+            display: flex;
+
+            justify-content: center;
+            align-items: flex-start;
+            span {
+                color: white;
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: $font-size--2;
+                opacity: 0.5;
+                font-family: $basic-font;
+                width: 0;
+                height: 0%;
+
+                left: -2px;
+                top: 5%;
+                position: relative;
+                transform: rotate(-270deg);
+            }
+
+            .button-container {
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            &.clicked > .button-container .darken {
                 display: block;
             }
             .darken {
@@ -170,8 +197,8 @@
                 pointer-events: none;
             }
             img {
-                height: 100%;
-                aspect-ratio: 1/1;
+                max-height: 100%;
+
                 pointer-events: none;
             }
         }
