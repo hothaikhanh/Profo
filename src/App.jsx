@@ -48,25 +48,25 @@ function App() {
             rotation: [0.0, 1.09, 0.0],
         },
         {
-            screenTitle: data.project1.title[lang],
+            screenTitle: data.projectPages.projects[0].title[lang],
             pageTitle: data.projectPages.title[lang],
-            content: <ProjectPage data={data.project1} skills={data.skills}></ProjectPage>,
+            content: <ProjectPage data={data.projectPages.projects[0]} skills={data.skills}></ProjectPage>,
             scale: 0.041,
             position: [-1.27, 0.11, -1.7],
             rotation: [0.0, 1.0, 0],
         },
         {
-            screenTitle: data.project2.title[lang],
+            screenTitle: data.projectPages.projects[1].title[lang],
             pageTitle: data.projectPages.title[lang],
-            content: <ProjectPage data={data.project2} skills={data.skills}></ProjectPage>,
+            content: <ProjectPage data={data.projectPages.projects[1]} skills={data.skills}></ProjectPage>,
             scale: 0.041,
             position: [0.26, -0.86, -2.42],
             rotation: [0.0, 0.0, 0.0],
         },
         {
-            screenTitle: data.project3.title[lang],
+            screenTitle: data.projectPages.projects[2].title[lang],
             pageTitle: data.projectPages.title[lang],
-            content: <ProjectPage data={data.project3} skills={data.skills}></ProjectPage>,
+            content: <ProjectPage data={data.projectPages.projects[2]} skills={data.skills}></ProjectPage>,
             scale: 0.041,
             position: [1.78, -2.0, -1.59],
             rotation: [0.0, -0.36, 0.0],
@@ -228,7 +228,7 @@ function App() {
                         onMouseEnter={() => setSpotLightScreenIndex(2)}
                         onMouseLeave={() => setSpotLightScreenIndex(null)}
                     >
-                        {data.project1.title[lang]}
+                        {data.projectPages.projects[0].title[lang]}
                     </button>
                     <button
                         className={"nav-btn" + " " + (activeCameraConfig == 4 ? "active" : "")}
@@ -236,7 +236,7 @@ function App() {
                         onMouseEnter={() => setSpotLightScreenIndex(3)}
                         onMouseLeave={() => setSpotLightScreenIndex(null)}
                     >
-                        {data.project2.title[lang]}
+                        {data.projectPages.projects[1].title[lang]}
                     </button>
                     <button
                         className={"nav-btn" + " " + (activeCameraConfig == 5 ? "active" : "")}
@@ -244,7 +244,7 @@ function App() {
                         onMouseEnter={() => setSpotLightScreenIndex(4)}
                         onMouseLeave={() => setSpotLightScreenIndex(null)}
                     >
-                        {data.project3.title[lang]}
+                        {data.projectPages.projects[2].title[lang]}
                     </button>
                     <button
                         className={"nav-btn" + " " + (activeCameraConfig == 6 ? "active" : "")}
