@@ -56,13 +56,15 @@ export default function HistoryPage({ data }) {
                                     {entry.achievement.content[lang].map((line, index) => {
                                         return <li key={index}>{line}</li>;
                                     })}
-
-                                    <br />
-                                    {/* <p>{entry.contact.title[lang]}</p>
-                                    <li>
-                                        {entry.contact.jobTitle[lang]}: {entry.contact.name[lang]} -{" "}
-                                        {entry.contact.mail}
-                                    </li> */}
+                                    {false && (
+                                        <>
+                                            <p>{entry.contact.title[lang]}</p>
+                                            <li>
+                                                {entry.contact.jobTitle[lang]}: {entry.contact.name[lang]} -{" "}
+                                                {entry.contact.mail}
+                                            </li>
+                                        </>
+                                    )}
                                 </div>
                             );
                         })}

@@ -5,6 +5,12 @@
     width: 100vw;
     height: 100vh;
     background: black;
+    .mini-size {
+        display: none;
+    }
+    .full-size {
+        display: block;
+    }
 }
 
 @font-face {
@@ -60,6 +66,7 @@
         border: none;
         flex-grow: 0.3;
         display: flex;
+        justify-content: center;
         gap: 8px;
         font-size: 16px;
         padding: 0;
@@ -80,5 +87,107 @@
     }
     100% {
         transform: translate(-50%, 0);
+    }
+}
+
+#mobile-container {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .frame-top,
+    .frame-bottom,
+    .frame-left,
+    .frame-right {
+        position: absolute;
+        z-index: 99999999;
+        pointer-events: none;
+    }
+
+    .frame-top,
+    .frame-bottom {
+        width: 100vw;
+    }
+    .frame-top {
+        top: 0;
+    }
+    .frame-bottom {
+        bottom: 0;
+    }
+
+    .frame-left,
+    .frame-right {
+        width: 5vw;
+        height: 100vh;
+    }
+
+    .frame-left {
+        left: 0;
+    }
+
+    .frame-right {
+        right: 0;
+        scale: -1 1;
+    }
+
+    .mini-size {
+        display: block;
+    }
+    .full-size {
+        display: none;
+    }
+
+    .mobile-nav-bar {
+        display: flex;
+        width: 100%;
+
+        z-index: 999999999;
+
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        bottom: 0;
+
+        .mobile-nav-btn {
+            position: relative;
+            height: 100%;
+            &.clicked > .darken {
+                display: block;
+            }
+            .darken {
+                display: none;
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                border-radius: 12%;
+                background: rgba($color: black, $alpha: 0.3);
+                top: 0;
+                left: 0;
+                mix-blend-mode: darken;
+                pointer-events: none;
+            }
+            img {
+                height: 100%;
+                aspect-ratio: 1/1;
+                pointer-events: none;
+            }
+        }
+    }
+
+    .title-display {
+        position: absolute;
+        left: 0;
+        text-align: center;
+        font-family: $pixel-font;
+        text-transform: uppercase;
+        color: $primary-color;
+        font-size: $font-size-1;
+        width: 65vw;
+        padding-left: 25vw;
+        bottom: 0;
+        z-index: 99999999;
     }
 }

@@ -1,0 +1,56 @@
+@use "../../variables.scss" as *;
+
+.mobile .setting-page {
+    flex-direction: column;
+    padding: $box-padding;
+    height: fit-content;
+    color: white;
+
+    .header {
+        margin: 0;
+        width: 100%;
+        transform: none;
+        font-size: $font-size-2;
+        position: static;
+    }
+
+    .options-list {
+        display: flex;
+        flex-direction: column;
+        margin-top: $font-size-2;
+    }
+    .option-item {
+        border: $default-border;
+        border-left: none;
+        border-right: none;
+        padding: $box-padding;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .option-name {
+        text-transform: uppercase;
+    }
+
+    .option-container {
+        display: flex;
+        align-items: center;
+        width: max-content;
+        gap: $font-size-0;
+    }
+    .option-control {
+        background: black;
+        border: $default-border;
+        width: calc($box-padding * 3);
+        aspect-ratio: 1/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .option-value {
+        text-transform: uppercase;
+        width: 10ch;
+        text-align: center;
+        text-wrap: nowrap;
+    }
+}

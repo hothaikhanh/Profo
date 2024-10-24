@@ -1,9 +1,9 @@
 import React from "react";
 import "./Page.scss";
 
-export default function Page({ title, children }) {
+export default function Page({ title, children, className, style }) {
     return (
-        <div className="page crt">
+        <div className={"page crt " + className} style={style}>
             {title ? (
                 <>
                     <header className="header">

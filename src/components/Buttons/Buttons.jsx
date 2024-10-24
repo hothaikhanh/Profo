@@ -24,9 +24,9 @@ export function RadioButton({ btnName, btnGroup, setToggleBtn, checked, children
     );
 }
 
-export function HoverButton({ children, onClick = null, type = "button" }) {
+export function HoverButton({ children, onClick = null, type = "button", className }) {
     return (
-        <button type={type} className="button-type-hover" onClick={onClick}>
+        <button type={type} className={"button-type-hover " + className} onClick={onClick}>
             <div className="button-background"></div>
             <div className="button-content">{children}</div>
             <div className="button-border"></div>

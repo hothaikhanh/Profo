@@ -1,5 +1,84 @@
 @use "../../variables.scss" as *;
 
+.mobile .about-page {
+    overflow: auto;
+    height: fit-content;
+    padding-bottom: $box-padding;
+    color: white;
+
+    .row:first-child {
+        gap: 0px;
+        .current-status {
+            text-wrap: nowrap;
+        }
+    }
+
+    .bottom-content,
+    .top-content {
+        flex-direction: column;
+    }
+
+    .pfp {
+        margin-top: $cell-gap;
+        width: 100%;
+        aspect-ratio: 1/1;
+        overflow: hidden;
+
+        img {
+            bottom: auto;
+            top: 0;
+        }
+    }
+
+    .desc {
+        .row + .row {
+            flex-wrap: wrap;
+        }
+        .my-name {
+            @include text-with-no-upper-space($font-size-4);
+        }
+        .job-title span {
+            @include text-with-no-upper-space($font-size-3);
+        }
+        .details {
+            text-align: left;
+        }
+    }
+
+    .tech {
+        .tech-item {
+            max-width: calc(100% / 2);
+        }
+    }
+    @media (max-width: 480px) {
+        .related-tech {
+            .content-container {
+                flex-direction: column;
+                gap: 0px;
+                height: fit-content;
+                .toggle-btns {
+                    flex-direction: row;
+                    gap: 0;
+                    label {
+                        flex-grow: 1;
+                    }
+                    .button-content {
+                        padding-left: 0px;
+                        padding-right: 0px;
+                        text-align: center;
+                    }
+                }
+
+                .display-content {
+                    height: auto;
+                    overflow: visible;
+                    border-top: none;
+                }
+            }
+        }
+    }
+}
+
 .about-page {
     display: flex;
     flex-direction: column;

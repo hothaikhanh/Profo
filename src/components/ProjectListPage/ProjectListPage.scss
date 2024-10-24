@@ -1,0 +1,174 @@
+@use "../../variables.scss" as *;
+
+.mobile .project-list-page {
+    flex-direction: column;
+    padding: $box-padding;
+    height: 100%;
+    color: white;
+    display: flex;
+    padding-bottom: 15%;
+    overflow: auto;
+    scrollbar-width: none;
+
+    .header {
+        margin: 0;
+        width: 100%;
+        transform: none;
+        font-size: $font-size-2;
+        position: static;
+    }
+
+    .project-page {
+        border: $default-border;
+        border-top: none;
+        background: black;
+    }
+
+    .project-list {
+        flex-grow: 1;
+        border: $default-border;
+        border-top: none;
+        background: black;
+        height: 100%;
+        width: 100%;
+        height: fit-content;
+        flex-direction: column;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .project-item {
+        display: flex;
+        padding: $box-padding;
+        width: 100%;
+        gap: $box-padding;
+        align-items: center;
+        .project-icon {
+            img {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .project-name {
+        }
+    }
+
+    .project-item + .project-item {
+        border-top: $default-border;
+        border-color: $secondary-color;
+    }
+
+    .project-item:last-child {
+        border-bottom: $default-border;
+        border-color: $secondary-color;
+    }
+
+    .navigation {
+        position: absolute;
+        background: black;
+        height: fit-content;
+        width: 100vw;
+        left: -7vw;
+        padding: 8px 7vw;
+        bottom: 0;
+        display: flex;
+        gap: 8px;
+
+        a {
+            flex-grow: 1;
+            text-decoration: none;
+
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: uppercase;
+            gap: 8px;
+            svg {
+                height: 20px;
+            }
+        }
+
+        .github {
+            background-color: $secondary-color;
+            color: white;
+            fill: white;
+        }
+        .live-view {
+            background-color: $primary-color;
+            color: black;
+            fill: black;
+        }
+    }
+
+    .project-page {
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        margin-bottom: 80px;
+        padding: 0;
+        gap: 0px;
+        .project-preview {
+            img {
+                width: 100%;
+                aspect-ratio: 1/1;
+                overflow: hidden;
+                object-fit: cover;
+            }
+        }
+
+        .project-info {
+            padding: $box-padding;
+            .project-title {
+                margin-top: 4px;
+                color: $primary-color;
+            }
+            .project-desc {
+                font-family: $basic-font;
+                font-size: $font-size-0;
+                font-weight: 600;
+                text-align: left;
+                white-space: pre-line;
+            }
+        }
+
+        .tech {
+            display: flex;
+            gap: 8px;
+            flex-direction: column;
+            padding: $box-padding;
+
+            .title {
+                @include text-box;
+                @include text-with-no-upper-space($font-size-1);
+                background: $primary-color;
+                color: black;
+                text-align: left;
+            }
+            .tech-list {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            .tech-item {
+                background: $secondary-color;
+                flex-grow: 1;
+                padding: 6px $box-padding;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                max-width: calc(100% / 2);
+                gap: 8px;
+                span {
+                    @include text-with-no-upper-space($font-size-0);
+                }
+                img {
+                    height: $font-size-0;
+                }
+            }
+        }
+    }
+}
