@@ -142,7 +142,7 @@ function App() {
     return (
         <div id="canvas-container">
             {!pageReady && <LoadingScreen toFade={canvasLoaded} />}
-            <Canvas>
+            <Canvas frameloop="demand">
                 <CameraController
                     bgTextConfig={bgTextConfig}
                     cameraControlRef={cameraControlRef}

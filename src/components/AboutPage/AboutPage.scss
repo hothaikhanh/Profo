@@ -5,7 +5,6 @@
     flex-direction: column;
     gap: $cell-gap;
     height: 100%;
-
     .top-content {
         display: flex;
         width: 100%;
@@ -48,25 +47,23 @@
     .desc {
         @include cell;
         flex-grow: 1;
-        padding: 24px;
+        padding: $box-padding;
         display: flex;
         flex-direction: column;
 
         .row {
             display: flex;
-            gap: 12px;
+            gap: $font-size--2;
             align-items: flex-end;
         }
         .row + .row {
             margin-top: 24px;
         }
-        .row + .box {
-            margin-top: 16px;
-        }
+
         .box {
+            margin-top: 16px;
             background: $primary-color;
-            padding: 20px;
-            padding-right: 32px;
+            padding: $box-padding;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -74,13 +71,13 @@
 
         .title {
             @include text-box;
-            @include text-with-no-upper-space(20px);
+            @include text-with-no-upper-space($font-size-1);
             color: black;
             background: $primary-color;
         }
         .current-status {
             @include text-box;
-            @include text-with-no-upper-space(20px);
+            @include text-with-no-upper-space($font-size-1);
             background: black;
             display: flex;
             gap: 8px;
@@ -91,23 +88,30 @@
         }
 
         .introduction {
-            @include text-with-no-upper-space(24px);
+            @include text-with-no-upper-space($font-size-2);
             text-transform: uppercase;
         }
         .my-name {
-            @include text-with-no-upper-space(40px);
+            @include text-with-no-upper-space($font-size-5);
             color: $primary-color;
             text-transform: uppercase;
+            text-wrap: nowrap;
         }
 
         .job-title {
             color: black;
-            @include text-with-no-upper-space(40px);
             text-transform: uppercase;
+            flex-wrap: wrap;
+            display: flex;
+            row-gap: 0.5rem;
+            column-gap: 0.5rem;
             margin-bottom: 1rem;
+            span {
+                @include text-with-no-upper-space($font-size-4);
+            }
         }
         .details {
-            font-size: 1rem;
+            font-size: $font-size-0;
             font-family: $basic-font;
             font-weight: 400;
             text-align: justify;
@@ -126,7 +130,7 @@
             fill: $primary-color;
         }
         span {
-            @include text-with-no-upper-space(24px);
+            @include text-with-no-upper-space($font-size-2);
         }
     }
 
@@ -136,18 +140,18 @@
         height: max-content;
         gap: $cell-gap;
 
-        > div {
+        .tech,
+        .related-tech {
             width: 100%;
             @include cell;
-            padding: 20px;
-            height: 100%;
+            padding: $box-padding;
             display: flex;
             gap: 12px;
             flex-direction: column;
         }
         .title {
             @include text-box;
-            @include text-with-no-upper-space(20px);
+            @include text-with-no-upper-space($font-size-2);
             background: $primary-color;
             color: black;
             text-align: center;
@@ -163,15 +167,17 @@
         }
 
         .tech-item {
-            background: $secondary-color;
+            background: black;
+            border: $default-border;
             flex-grow: 1;
             padding: 4px 8px;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 8px;
+            max-width: calc(100% / 3);
             span {
-                @include text-with-no-upper-space(16px);
+                @include text-with-no-upper-space($font-size-0);
             }
             img {
                 height: 20px;
@@ -194,8 +200,12 @@
             label {
                 height: 100%;
             }
-            label span {
-                text-wrap: nowrap;
+            .button-content {
+                text-align: left;
+                span {
+                    text-wrap: nowrap;
+                    font-size: $font-size-0;
+                }
             }
         }
         .display-content {
@@ -205,8 +215,9 @@
             margin: 0;
             font-family: $basic-font;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: $font-size-0;
             height: 100%;
+            background-color: black;
             @include scroller;
         }
     }

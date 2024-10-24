@@ -21,7 +21,7 @@ $cell-gap: 12px;
 @mixin text-box {
     border: $default-border;
     text-transform: uppercase;
-    padding: 6px 12px;
+    padding: 6px $font-size--2;
 }
 
 @mixin scroller {
@@ -29,3 +29,13 @@ $cell-gap: 12px;
     scrollbar-color: $primary-color black;
     scrollbar-width: thin;
 }
+
+$font-size--2: clamp(0.6076rem, 0.5929rem + 0.0628vw, 0.64rem);
+$font-size--1: clamp(0.7292rem, 0.697rem + 0.1374vw, 0.8rem);
+$font-size-0: clamp(0.875rem, 0.8182rem + 0.2424vw, 1rem);
+$font-size-1: clamp(1.05rem, 0.9591rem + 0.3879vw, 1.25rem);
+$font-size-2: clamp(1.26rem, 1.1225rem + 0.5867vw, 1.5625rem);
+$font-size-3: clamp(1.512rem, 1.3115rem + 0.8555vw, 1.9531rem);
+$font-size-4: clamp(1.8144rem, 1.5294rem + 1.216vw, 2.4414rem);
+$font-size-5: clamp(2.1773rem, 1.7798rem + 1.696vw, 3.0518rem);
+$box-padding: clamp(12px, 2vw, 24px);

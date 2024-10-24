@@ -55,7 +55,10 @@ export default function AboutPage({ data, skills }) {
                             <span className="my-name">{data.desc.myName[lang]}</span>
                         </div>
                         <div className="box">
-                            <div className="job-title">{data.desc.jobTitle[lang]}</div>
+                            <div className="job-title">
+                                <span>{data.desc.jobTitle[0]}</span>
+                                <span>{data.desc.jobTitle[1]}</span>
+                            </div>
                             <div className="details">{data.desc.content[lang]}</div>
                         </div>
                     </div>

@@ -14,7 +14,7 @@
         margin: 0px;
         width: 50%;
         transform: none;
-        font-size: 24px;
+        font-size: $font-size-2;
     }
 
     .content {
@@ -27,6 +27,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        font-size: $font-size-0;
         .contact-item {
             margin-bottom: 12px;
             display: flex;
@@ -34,7 +35,7 @@
             align-items: center;
             justify-content: center;
             span {
-                @include text-with-no-upper-space(20px);
+                @include text-with-no-upper-space($font-size-1);
                 display: inline-block;
                 user-select: text;
 
@@ -69,7 +70,7 @@
 
         span {
             display: inline-block;
-            @include text-with-no-upper-space(24px);
+            @include text-with-no-upper-space($font-size-2);
         }
     }
 }
@@ -97,7 +98,7 @@
         color: white;
         padding: 8px;
         outline: none;
-        font-size: 1rem;
+        font-size: $font-size-0;
         width: 30vw;
         &::placeholder {
             columns: white;

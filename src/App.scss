@@ -3,9 +3,7 @@
 
 #canvas-container {
     width: 100vw;
-    min-width: 1200px;
     height: 100vh;
-    min-height: 800px;
     background: black;
 }
 
@@ -28,18 +26,23 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: $cell-gap;
-    padding: 0 24px;
+    padding: 0;
     animation: flyUp 0.3s ease-out forwards;
+    max-width: 1000px;
+
+    width: 100%;
+
     .nav-btn {
         font-family: $pixel-font;
         background-color: transparent;
         color: $primary-color;
         border: none;
         flex-grow: 1;
-        padding: 24px;
+        padding: 24px 0;
+        max-width: calc(100% / 8);
+        overflow: hidden;
         text-wrap: nowrap;
-        font-size: 16px;
+        font-size: $font-size-0;
         text-transform: capitalize;
         &:hover {
             color: white;
@@ -55,13 +58,11 @@
         background-color: transparent;
         color: $primary-color;
         border: none;
-        flex-grow: 1;
+        flex-grow: 0.3;
         display: flex;
         gap: 8px;
         font-size: 16px;
-
-        // border-left: 1px solid $primary-color;
-        padding: 0px 24px;
+        padding: 0;
 
         svg {
             width: 20px;

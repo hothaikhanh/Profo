@@ -9,6 +9,7 @@
     position: relative;
     font-family: $pixel-font;
     background-image: radial-gradient(ellipse, rgba($color: $primary-color, $alpha: 0.3) 0%, black 90%);
+    overflow: hidden;
 
     .outer-border {
         height: 100%;
