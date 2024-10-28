@@ -13,7 +13,7 @@ dist
 dist-ssr
 downloads
 *.local
-server
+
 
 # Editor directories and files
 .vscode/*
