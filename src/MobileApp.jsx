@@ -20,6 +20,7 @@ function MobileApp() {
     const [navBarHeight, setNavBarHeight] = useState(0);
     const [bottomFrameHeight, setBottomFrameHeight] = useState(0);
     const [titleFrameHeight, setTitleFrameHeight] = useState(0);
+    const [sideFrameWidth, setSideFrameWidth] = useState("7vw");
 
     const [currentPageIndex, setCurrentPageIndex] = useState(0);
     const [transitionType, setTransitionType] = useState(null);
@@ -210,6 +211,7 @@ function MobileApp() {
                     data={data.projectPages}
                     skills={data.skills}
                     bottomFrameHeight={bottomFrameHeight}
+                    sideFrameWidth={sideFrameWidth}
                     goBack={goBack}
                     handleCloseApp={handleCloseApp}
                 />
@@ -285,26 +287,46 @@ function MobileApp() {
                     className="mobile"
                     style={{
                         height: "calc(100vh - " + navBarHeight + "px)",
-                        paddingTop: topFrameHeight + "px",
-                        paddingBottom: bottomFrameHeight + "px",
                     }}
                 >
-                    <TopBar time={time}></TopBar>
+                    <TopBar
+                        time={time}
+                        style={{
+                            paddingTop: topFrameHeight + "px",
+                            paddingLeft: sideFrameWidth,
+                            paddingRight: sideFrameWidth,
+                        }}
+                    ></TopBar>
 
-                    <div className="app-content" ref={appContent}>
-                        {pages.filter((page) => page.index == currentPageIndex)[0].content}
-                    </div>
-
-                    {currentPageIndex == 0 && (
-                        <>
+                    {currentPageIndex == 0 ? (
+                        <div
+                            className="home-page"
+                            style={{
+                                paddingLeft: sideFrameWidth,
+                                paddingRight: sideFrameWidth,
+                                paddingBottom: bottomFrameHeight,
+                            }}
+                        >
                             <TimeDisplay time={time} setTime={setTime} lang={lang} />
 
-                            <div className={"app-list"} style={{ paddingBottom: bottomFrameHeight * 2 + "px" }}>
+                            <div className={"app-list"}>
                                 {pages.map((page, index) => {
                                     return <AppItem data={page} key={index} handleOpenApp={handleOpenApp}></AppItem>;
                                 })}
                             </div>
-                        </>
+                        </div>
+                    ) : (
+                        <div
+                            className="app-content"
+                            ref={appContent}
+                            style={{
+                                paddingLeft: sideFrameWidth,
+                                paddingRight: sideFrameWidth,
+                                paddingBottom: bottomFrameHeight,
+                            }}
+                        >
+                            {pages.filter((page) => page.index == currentPageIndex)[0].content}
+                        </div>
                     )}
 
                     <div className="blocker" ref={blocker}></div>
@@ -404,17 +426,15 @@ function TimeDisplay({ time, lang }) {
     );
 }
 
-function TopBar({ time }) {
+function TopBar({ time, style }) {
     const timeOptions = {
         hour: "2-digit",
         minute: "2-digit",
-
         hourCycle: "h12",
     };
     return (
-        <div className="top-bar">
+        <div className="top-bar" style={style}>
             <div className="time">{time.toLocaleTimeString("en-US", timeOptions)}</div>
-            {/* <span className="site-name">hothaikhanh.dev</span> */}
             <div className="power-display">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
                     <path d="M54.2 202.9C123.2 136.7 216.8 96 320 96s196.8 40.7 265.8 106.9c12.8 12.2 33 11.8 45.2-.9s11.8-33-.9-45.2C549.7 79.5 440.4 32 320 32S90.3 79.5 9.8 156.7C-2.9 169-3.3 189.2 8.9 202s32.5 13.2 45.2 .9zM320 256c56.8 0 108.6 21.1 148.2 56c13.3 11.7 33.5 10.4 45.2-2.8s10.4-33.5-2.8-45.2C459.8 219.2 393 192 320 192s-139.8 27.2-190.5 72c-13.3 11.7-14.5 31.9-2.8 45.2s31.9 14.5 45.2 2.8c39.5-34.9 91.3-56 148.2-56zm64 160a64 64 0 1 0 -128 0 64 64 0 1 0 128 0z" />

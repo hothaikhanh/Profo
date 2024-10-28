@@ -2,11 +2,11 @@
 
 .mobile .project-list-page {
     flex-direction: column;
-    padding: $box-padding;
+    // padding: $box-padding;
     height: 100%;
     color: white;
     display: flex;
-    padding-bottom: 15%;
+    // padding-bottom: 15%;
     overflow: auto;
     scrollbar-width: none;
 
@@ -70,8 +70,8 @@
         background: black;
         height: fit-content;
         width: 100vw;
-        left: -7vw;
-        padding: 1vh 7vw 0;
+        left: 0;
+        padding-top: 1vh;
         bottom: 0;
         display: flex;
         gap: 8px;
