@@ -17,7 +17,10 @@ import ProjectListPage from "./components/ProjectListPage/ProjectListPage";
 
 function MobileApp() {
     const [topFrameHeight, setTopFrameHeight] = useState(0);
+    const [navBarHeight, setNavBarHeight] = useState(0);
     const [bottomFrameHeight, setBottomFrameHeight] = useState(0);
+    const [titleFrameHeight, setTitleFrameHeight] = useState(0);
+
     const [currentPageIndex, setCurrentPageIndex] = useState(0);
     const [transitionType, setTransitionType] = useState(null);
     const transitionDuration = 0.6;
@@ -30,7 +33,7 @@ function MobileApp() {
 
     //set up interval for clock update
     useEffect(() => {
-        const timer = setInterval(() => {
+        setInterval(() => {
             setTime(new Date());
         }, 1000);
     }, []);
@@ -266,19 +269,24 @@ function MobileApp() {
                     src="/src/assets/img/top.png"
                     alt=""
                     className="frame-top"
-                    onLoad={(e) => setTopFrameHeight(e.target.clientHeight)}
+                    onLoad={(e) => setTopFrameHeight(e.target.clientHeight * 0.2)}
                 />
                 <img
                     src="/src/assets/img/bottom.png"
                     alt=""
                     className="frame-bottom"
-                    onLoad={(e) => setBottomFrameHeight(e.target.clientHeight)}
+                    onLoad={(e) => {
+                        setBottomFrameHeight(e.target.clientHeight * 0.2);
+                        setNavBarHeight(e.target.clientHeight * 0.19);
+                        setTitleFrameHeight(e.target.clientHeight * 0.14);
+                    }}
                 />
                 <Page
                     className="mobile"
                     style={{
-                        height: "calc(100vh - " + bottomFrameHeight * 0.38 + "px)",
-                        paddingTop: topFrameHeight / 5 + "px",
+                        height: "calc(100vh - " + navBarHeight + "px)",
+                        paddingTop: topFrameHeight + "px",
+                        paddingBottom: bottomFrameHeight + "px",
                     }}
                 >
                     <TopBar time={time}></TopBar>
@@ -291,7 +299,7 @@ function MobileApp() {
                         <>
                             <TimeDisplay time={time} setTime={setTime} lang={lang} />
 
-                            <div className={"app-list"} style={{ paddingBottom: topFrameHeight / 5 + "px" }}>
+                            <div className={"app-list"} style={{ paddingBottom: bottomFrameHeight * 2 + "px" }}>
                                 {pages.map((page, index) => {
                                     return <AppItem data={page} key={index} handleOpenApp={handleOpenApp}></AppItem>;
                                 })}
@@ -305,14 +313,14 @@ function MobileApp() {
                     </div>
                 </Page>
 
-                <div className="title-display" style={{ paddingBottom: bottomFrameHeight * 0.32 + "px" }}>
+                <div
+                    className="title-display"
+                    style={{ marginBottom: navBarHeight + "px", height: titleFrameHeight + "px" }}
+                >
                     <span> {pages[currentPageIndex].displayName()}</span>
                 </div>
 
-                <div
-                    className="mobile-nav-bar"
-                    style={{ height: bottomFrameHeight * 0.28 + "px", padding: "0 10vw 6vh" }}
-                >
+                <div className="mobile-nav-bar" style={{ height: navBarHeight + "px", padding: "0 10vw" }}>
                     <NavBtn onClick={handleGoBack} imageUrl={"/src/assets/img/btn-back.png"} textDisplay="Back" />
                     <NavBtn onClick={handleCloseApp} imageUrl={"/src/assets/img/btn-home.png"} textDisplay="Home" />
                     <NavBtn onClick={handleCloseApp} imageUrl={"/src/assets/img/btn-menu.png"} textDisplay="Recent" />
