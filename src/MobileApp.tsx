@@ -8,14 +8,14 @@ import MobileHistoryPage from "./components/HistoryPage/MobileHistoryPage";
 import ContactPage from "./components/ContactPage/ContactPage";
 import SettingPage from "./components/SettingPage/SettingPage";
 
-import { LanguageContext } from "./components/Contexts/LanguageContext";
+import LanguageContext from "./components/Contexts/LanguageContext";
 
 import "./App.scss";
 
 import data from "/src/resources.json";
 import ProjectListPage from "./components/ProjectListPage/ProjectListPage";
 
-function MobileApp() {
+const MobileApp = () => {
     const [topFrameHeight, setTopFrameHeight] = useState(0);
     const [navBarHeight, setNavBarHeight] = useState(0);
     const [bottomFrameHeight, setBottomFrameHeight] = useState(0);
@@ -350,9 +350,7 @@ function MobileApp() {
             </div>
         </LanguageContext.Provider>
     );
-}
-
-export default MobileApp;
+};
 
 function AppItem({ data, handleOpenApp = () => {} }) {
     if (data.content) {
@@ -477,3 +475,5 @@ function NavBtn({ onClick, imageUrl, textDisplay }) {
         </div>
     );
 }
+
+export default MobileApp;

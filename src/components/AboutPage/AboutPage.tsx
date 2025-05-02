@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import "./AboutPage.scss";
 import { HoverButton, RadioButton } from "../Buttons/Buttons";
 
-import { LanguageContext } from "../Contexts/LanguageContext";
+import LanguageContext from "../Contexts/LanguageContext";
 
 export default function AboutPage({ data, skills }) {
     const [toggleSkill, setToggleSkill] = useState(data.relatedSkills.list[0].name);

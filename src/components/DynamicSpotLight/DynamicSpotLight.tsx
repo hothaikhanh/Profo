@@ -1,0 +1,79 @@
+import { Coordinate } from "@/types";
+import { useGSAP } from "@gsap/react";
+import { useFrame } from "@react-three/fiber";
+import { gsap } from "gsap";
+import { useRef } from "react";
+
+type Props = any;
+
+const DynamicSpotLight = ({ screenConfigs, spotLightScreenIndex, activeCameraConfig }: Props) => {
+    const spotlight = useRef<any>();
+    const target = useRef<any>();
+    const idlePosition: Coordinate = [0, 0, 0];
+    const lightIntensity = 10;
+    const lightDistance = 30;
+
+    useGSAP(() => {
+        if (spotLightScreenIndex !== null && activeCameraConfig === 0) {
+            gsap.to(spotlight.current, { intensity: lightIntensity, distance: lightDistance, duration: 0.3 });
+            gsap.to(target.current.position, {
+                x: screenConfigs[spotLightScreenIndex].position[0],
+                y: screenConfigs[spotLightScreenIndex].position[1],
+                z: screenConfigs[spotLightScreenIndex].position[2],
+                duration: 0.3,
+            });
+        }
+    }, [spotLightScreenIndex]);
+
+    useGSAP(() => {
+        if (activeCameraConfig !== 0) {
+            gsap.to(spotlight.current, { intensity: 0, distance: 0, duration: 0.5, delay: 0.5 });
+            gsap.to(target.current.position, {
+                x: 0,
+                y: 0,
+                z: 0,
+                duration: 0.3,
+            });
+        }
+    }, [activeCameraConfig]);
+
+    // useHelper(spotlight, THREE.SpotLightHelper, "white");
+    // const { intensity, penumbra, positionX, positionY, positionZ, angle, distance, target_X, target_Y, target_Z } =
+    //     useControls({
+    //         intensity: { value: 20, min: 0, max: 50 },
+    //         penumbra: { value: 0, min: 0, max: 1 },
+
+    //         positionX: { value: 0, min: -20, max: 20 },
+    //         positionY: { value: 2, min: -20, max: 20 },
+    //         positionZ: { value: 0, min: -20, max: 20 },
+
+    //         target_X: { value: 0, min: -20, max: 20 },
+    //         target_Y: { value: 0, min: -20, max: 20 },
+    //         target_Z: { value: 0, min: -20, max: 20 },
+
+    //         angle: { value: 0.1, min: 0, max: 1 },
+    //         distance: { value: 20, min: 0, max: 50 },
+    //     });
+
+    useFrame(() => {
+        spotlight.current.target = target.current;
+    });
+
+    return (
+        <mesh>
+            <spotLight
+                ref={spotlight}
+                color="white"
+                position={[0, 20, 5]}
+                decay={0}
+                angle={0.05}
+                penumbra={0}
+                intensity={0}
+                distance={0}
+            />
+            <mesh ref={target} position={idlePosition}></mesh>
+        </mesh>
+    );
+};
+
+export default DynamicSpotLight;

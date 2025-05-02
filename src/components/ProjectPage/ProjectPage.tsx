@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./ProjectPage.scss";
 import { AnchorButton, HoverButton } from "../Buttons/Buttons";
-import { LanguageContext } from "../Contexts/LanguageContext";
+import LanguageContext from "../Contexts/LanguageContext";
 
 export default function ProjectPage({ data, skills }) {
     const lang = useContext(LanguageContext);

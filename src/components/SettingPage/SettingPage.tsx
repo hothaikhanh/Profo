@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import "./SettingPage.scss";
 
-import { LanguageContext } from "../Contexts/LanguageContext";
+import LanguageContext from "../Contexts/LanguageContext";
 
 export default function SettingPage({ data, setLang }) {
     const lang = useContext(LanguageContext);

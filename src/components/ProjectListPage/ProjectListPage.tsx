@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useContext, useState } from "react";
 import "./ProjectListPage.scss";
 
-import { LanguageContext } from "../Contexts/LanguageContext";
+import LanguageContext from "../Contexts/LanguageContext";
 
 export default function ProjectListPage({ data, skills, bottomFrameHeight, sideFrameWidth, goBack, handleCloseApp }) {
     const lang = useContext(LanguageContext);

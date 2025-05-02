@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import "./HistoryPage.scss";
 import { RadioButton } from "../Buttons/Buttons";
 
-import { LanguageContext } from "../Contexts/LanguageContext";
+import LanguageContext from "../Contexts/LanguageContext";
 
 export default function HistoryPage({ data }) {
     const [toggleItem, setToggleItem] = useState(data.list[0].id);
