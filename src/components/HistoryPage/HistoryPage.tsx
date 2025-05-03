@@ -2,11 +2,16 @@ import React, { useState, useContext } from "react";
 import "./HistoryPage.scss";
 import { RadioButton } from "../Buttons/Buttons";
 
-import LanguageContext from "../Contexts/LanguageContext";
+import { useLocale } from "@/contexts/Locale/LocaleContext";
+import { WorkHistory } from "@/types";
 
-export default function HistoryPage({ data }) {
+type Props = {
+    data: WorkHistory;
+};
+
+export default function HistoryPage({ data }: Props) {
     const [toggleItem, setToggleItem] = useState(data.list[0].id);
-    const lang = useContext(LanguageContext);
+    const { locale } = useLocale();
 
     return (
         <div className="history-page">
@@ -45,22 +50,22 @@ export default function HistoryPage({ data }) {
                                     </h3>
                                     <p>{entry.jobTitle}</p>
                                     <hr />
-                                    <p>{entry.duties.title[lang]}</p>
-                                    {entry.duties.content[lang].map((line, index) => {
+                                    <p>{entry.duties.title[locale]}</p>
+                                    {entry.duties.content[locale].map((line, index) => {
                                         return <li key={index}>{line}</li>;
                                     })}
 
-                                    {entry.achievement.content[lang].length > 0 ? (
-                                        <p>{entry.achievement.title[lang]}</p>
+                                    {entry.achievement.content[locale].length > 0 ? (
+                                        <p>{entry.achievement.title[locale]}</p>
                                     ) : null}
-                                    {entry.achievement.content[lang].map((line, index) => {
+                                    {entry.achievement.content[locale].map((line, index) => {
                                         return <li key={index}>{line}</li>;
                                     })}
-                                    {false && (
+                                    {entry.contact && (
                                         <>
-                                            <p>{entry.contact.title[lang]}</p>
+                                            <p>{entry.contact.title[locale]}</p>
                                             <li>
-                                                {entry.contact.jobTitle[lang]}: {entry.contact.name[lang]} -{" "}
+                                                {entry.contact.jobTitle[locale]}: {entry.contact.name[locale]} -{" "}
                                                 {entry.contact.mail}
                                             </li>
                                         </>
@@ -74,7 +79,14 @@ export default function HistoryPage({ data }) {
     );
 }
 
-function WorkEntry({ company, startYear, endYear, role }) {
+type WorkEntryProps = {
+    company: WorkHistory["list"][0]["companyName"];
+    startYear: WorkHistory["list"][0]["startYear"];
+    endYear: WorkHistory["list"][0]["endYear"];
+    role: WorkHistory["list"][0]["jobTitle"];
+};
+
+function WorkEntry({ company, startYear, endYear, role }: WorkEntryProps) {
     return (
         <div className="work-entry">
             <span className="company-name">{company}</span>

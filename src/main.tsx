@@ -7,5 +7,6 @@ createRoot(document.getElementById("root") as HTMLElement).render(<Main></Main>)
 
 function Main() {
     const isPC = window.innerWidth >= 720;
-    return <>{isPC ? <App /> : <MobileApp />}</>;
+    // return <>{isPC ? <App /> : <MobileApp />}</>;
+    return <App />;
 }

@@ -2,21 +2,26 @@ export type Locale = "EN" | "VN"
 
 export type Coordinate = [x: number, y: number, z: number]
 
-type Content = {
+export type Content = {
     EN: string | string[],
     VN: string | string[]
 }
 
-type Title = {
+export type ContentList = {
+    EN: string[],
+    VN: string[]
+}
+
+export type Title = {
     EN: string,
     VN: string
 }
 
-type HomePage = {
+export type HomePage = {
     title: Title
 }
 
-type AboutMe = {
+export type AboutMe = {
     title: Title
     desc: {
         title: Title
@@ -35,12 +40,12 @@ type AboutMe = {
         list: {
             name: string,
             title: Title
-            content: Content
+            content: ContentList
         }[]
     }
 }
 
-type WorkHistory = {
+export type WorkHistory = {
     title: Title
     list:
     {
@@ -51,23 +56,23 @@ type WorkHistory = {
         jobTitle: string,
         duties: {
             title: Title
-            content: Content
+            content: ContentList
         },
         achievement: {
             title: Title
-            content: Content,
+            content: ContentList,
         },
         contact: {
             title: Title
             name: Content,
             jobTitle: Content,
             mail: string
-        } | {} | null
+        } | null
 
     }[],
 }
 
-type Project = {
+export type Project = {
     title: Title
     projectName: string,
     desc: Content,
@@ -78,14 +83,15 @@ type Project = {
     imageUrl: string,
     icon: string,
     liveViewUrl: string | null
+    gitHubUrl: string
 }
 
-type ProjectPages = {
+export type ProjectPages = {
     title: Content
     projects: Project[],
 }
 
-type ContactPage = {
+export type ContactPage = {
     title: Title,
     header: Title,
     email: string,
@@ -108,7 +114,7 @@ type ContactPage = {
     }
 }
 
-type SettingPage = {
+export type SettingPage = {
     title: Title,
     options:
     {
@@ -122,11 +128,11 @@ type SettingPage = {
 
 }
 
-type BlankPage = {
+export type BlankPage = {
     message: Title,
 }
 
-type Skills = {
+export type Skills = {
     path: string,
     list:
     {

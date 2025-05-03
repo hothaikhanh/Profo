@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import { useLocale } from "../../contexts/Locale/LocaleContext";
 import "./BlankPage.scss";
-import LanguageContext from "../Contexts/LanguageContext";
 
-export default function BlankPage({ data }) {
-    const lang = useContext(LanguageContext);
+type Props = any;
+
+export default function BlankPage({ data }: Props) {
+    const { locale } = useLocale();
     return (
         <div className="blank-page">
             <img src="/src/assets/img/no-signal.png" alt="" />
-            <div>{data.message[lang]}</div>
+            <div>{data.message[locale]}</div>
         </div>
     );
 }

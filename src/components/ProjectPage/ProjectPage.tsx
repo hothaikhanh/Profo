@@ -1,21 +1,27 @@
 import React, { useState, useContext } from "react";
 import "./ProjectPage.scss";
 import { AnchorButton, HoverButton } from "../Buttons/Buttons";
-import LanguageContext from "../Contexts/LanguageContext";
+import { useLocale } from "@/contexts/Locale/LocaleContext";
+import { Project, ProjectPages, Skills } from "@/types";
 
-export default function ProjectPage({ data, skills }) {
-    const lang = useContext(LanguageContext);
+type Props = {
+    data: Project;
+    skills: Skills;
+};
+
+export default function ProjectPage({ data, skills }: Props) {
+    const { locale } = useLocale();
 
     return (
         <div className="project-page">
             <div className="side-bar">
                 <div className="project-info">
                     <h2 className="project-title">{data.projectName}</h2>
-                    <p className="project-desc">{data.desc[lang]}</p>
+                    <p className="project-desc">{data.desc[locale]}</p>
                 </div>
 
                 <div className="tech">
-                    <div className="title">{data.techStack.title[lang]}</div>
+                    <div className="title">{data.techStack.title[locale]}</div>
                     <div className="tech-list">
                         {skills.list
                             .filter((skill) => {

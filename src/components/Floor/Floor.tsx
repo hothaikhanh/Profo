@@ -1,5 +1,4 @@
 import { useTexture } from "@react-three/drei";
-import React from "react";
 
 export default function Floor() {
     const [colorMap, displacementMap, normalMap, roughnessMap, aoMap] = useTexture([

@@ -2,7 +2,7 @@ import AboutPage from "@components/AboutPage/AboutPage";
 import BlankPage from "@components/BlankPage/BlankPage";
 import CameraController from "@components/CameraController/CameraController";
 import ContactPage from "@components/ContactPage/ContactPage";
-import LanguageContext from "@components/Contexts/LanguageContext";
+import { useLocale, LocaleProvider } from "@/contexts/Locale/LocaleContext";
 import HistoryPage from "@components/HistoryPage/HistoryPage";
 import Loader from "@components/Loader/Loader";
 import LoadingScreen from "@components/LoadingScreen/LoadingScreen";
@@ -14,7 +14,7 @@ import { CameraControls, Scroll, ScrollControls, Text } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
 import "./App.scss";
-import siteData from "./resources.json";
+import siteData from "@/constants";
 import type { BGTextConfig, CameraConfigs, Locale, ScreenConfigs, SiteData } from "./types";
 
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
 
     const [canvasLoaded, setCanvasLoaded] = useState<boolean>(false);
     const [pageReady, setPageReady] = useState<boolean>(false);
-    const [locale, setLocale] = useState<Locale>("EN");
+    const { locale, setLocale } = useLocale();
     const [data] = useState<SiteData>(siteData);
 
     const screenConfigs: ScreenConfigs = [
@@ -141,7 +141,7 @@ const App = () => {
 
     return (
         <div id="canvas-container">
-            <LanguageContext.Provider value={locale}>
+            <LocaleProvider>
                 {!pageReady && <LoadingScreen isLoaded={canvasLoaded} />}
                 <Canvas frameloop="demand">
                     <CameraController
@@ -265,7 +265,7 @@ const App = () => {
                         </button>
                     </div>
                 )}
-            </LanguageContext.Provider>
+            </LocaleProvider>
         </div>
     );
 };

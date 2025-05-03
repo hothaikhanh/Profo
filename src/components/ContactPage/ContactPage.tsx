@@ -1,30 +1,33 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState, useRef, FormEvent, ChangeEvent } from "react";
 import "./ContactPage.scss";
 import { HoverButton } from "../Buttons/Buttons";
-import LanguageContext from "../Contexts/LanguageContext";
+import { useLocale } from "@/contexts/Locale/LocaleContext";
 import emailjs from "@emailjs/browser";
 import LoadingScreen from "../LoadingScreen/LoadingScreen";
 
-export default function ContactPage({ data }) {
-    const lang = useContext(LanguageContext);
+type Props = any;
+
+export default function ContactPage({ data }: Props) {
+    const { locale } = useLocale();
     const [showContactFrom, setContactForm] = useState(false);
     const [isLoading, setLoading] = useState(false);
-    const form = useRef();
+    const formRef = useRef<HTMLFormElement>(null);
 
-    let handleSend = (e) => {
+    let handleSend = (e: FormEvent) => {
         e.preventDefault();
+        if (!formRef.current) return;
         setLoading(true);
         emailjs
-            .sendForm("service_x4ysd1g", "template_i37apn4", form.current, {
+            .sendForm("service_x4ysd1g", "template_i37apn4", formRef.current, {
                 publicKey: "3MG2_VhOYmKhSYsG7",
             })
             .then((res) => {
                 // console.log(res);
-                alert(data.contactForm.message.success[lang]);
+                alert(data.contactForm.message.success[locale]);
             })
             .catch((error) => {
                 // console.log("FAILED...", error.text);
-                alert(data.contactForm.message.error[lang]);
+                alert(data.contactForm.message.error[locale]);
             })
             .finally(() => {
                 setLoading(false);
@@ -32,7 +35,7 @@ export default function ContactPage({ data }) {
             });
     };
 
-    let handleChange = (e) => {
+    let handleChange = (e: ChangeEvent) => {
         e.target.classList.remove("unchanged");
     };
     return (
@@ -40,7 +43,7 @@ export default function ContactPage({ data }) {
             {!showContactFrom ? (
                 <div className="contact-page">
                     <div className="header">
-                        <span>{data.header[lang]}</span>
+                        <span>{data.header[locale]}</span>
                     </div>
 
                     <div className="content">
@@ -57,7 +60,7 @@ export default function ContactPage({ data }) {
                             <span>0773329426</span>
                         </div>
 
-                        <div className="message">{data.message[lang]}</div>
+                        <div className="message">{data.message[locale]}</div>
                     </div>
 
                     <div className="action-button">
@@ -66,42 +69,41 @@ export default function ContactPage({ data }) {
                                 setContactForm(true);
                             }}
                         >
-                            <span>{data.actionBtn[lang]}</span>
+                            <span>{data.actionBtn[locale]}</span>
                         </HoverButton>
                     </div>
                 </div>
             ) : (
-                <form className="contact-form" ref={form} onSubmit={handleSend}>
+                <form className="contact-form" ref={formRef} onSubmit={handleSend}>
                     <div className="address">To: hothaikhanh@gmail.com</div>
                     <input
                         className="unchanged"
                         type="email"
                         name="from_name"
-                        placeholder={data.contactForm.email[lang]}
+                        placeholder={data.contactForm.email[locale]}
                         required
                         onChange={handleChange}
                     />
-                    <p className="input-warn">{data.contactForm.alert.email[lang]}</p>
+                    <p className="input-warn">{data.contactForm.alert.email[locale]}</p>
                     <input
                         type="text"
                         className="unchanged"
                         name="subject"
-                        placeholder={data.contactForm.subject[lang]}
+                        placeholder={data.contactForm.subject[locale]}
                         required
                         onChange={handleChange}
                     />
-                    <p className="input-warn">{data.contactForm.alert.subject[lang]}</p>
+                    <p className="input-warn">{data.contactForm.alert.subject[locale]}</p>
                     <textarea
-                        type="text"
                         className="unchanged"
                         name="message"
-                        placeholder={data.contactForm.body[lang]}
+                        placeholder={data.contactForm.body[locale]}
                         required
                         onChange={handleChange}
                     />
-                    <p className="input-warn">{data.contactForm.alert.body[lang]}</p>
+                    <p className="input-warn">{data.contactForm.alert.body[locale]}</p>
                     <HoverButton onClick={handleSend} type="submit">
-                        <span>{data.contactForm.sendBtn[lang]}</span>
+                        <span>{data.contactForm.sendBtn[locale]}</span>
                     </HoverButton>
                     <div
                         className="close-btn"

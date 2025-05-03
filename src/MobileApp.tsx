@@ -1,36 +1,36 @@
-import { gsap } from "gsap";
+import siteData from "@/constants";
 import { useGSAP } from "@gsap/react";
-
-import { useState, useRef, useEffect, useContext, createContext } from "react";
-import Page from "./components/Page/Page";
-import AboutPage from "./components/AboutPage/AboutPage";
-import MobileHistoryPage from "./components/HistoryPage/MobileHistoryPage";
-import ContactPage from "./components/ContactPage/ContactPage";
-import SettingPage from "./components/SettingPage/SettingPage";
-
-import LanguageContext from "./components/Contexts/LanguageContext";
-
+import { gsap } from "gsap";
+import { CSSProperties, ReactEventHandler, useEffect, useRef, useState } from "react";
 import "./App.scss";
-
-import data from "/src/resources.json";
+import AboutPage from "./components/AboutPage/AboutPage";
+import ContactPage from "./components/ContactPage/ContactPage";
+import MobileHistoryPage from "./components/HistoryPage/MobileHistoryPage";
+import Page from "./components/Page/Page";
 import ProjectListPage from "./components/ProjectListPage/ProjectListPage";
+import SettingPage from "./components/SettingPage/SettingPage";
+import { LocaleProvider, useLocale } from "./contexts/Locale/LocaleContext";
+import { Locale } from "./types";
+
+type TransitionType = "in" | "out" | null;
 
 const MobileApp = () => {
-    const [topFrameHeight, setTopFrameHeight] = useState(0);
-    const [navBarHeight, setNavBarHeight] = useState(0);
-    const [bottomFrameHeight, setBottomFrameHeight] = useState(0);
-    const [titleFrameHeight, setTitleFrameHeight] = useState(0);
-    const [sideFrameWidth, setSideFrameWidth] = useState("7vw");
+    const { locale } = useLocale();
+    const [topFrameHeight, setTopFrameHeight] = useState<number>(0);
+    const [navBarHeight, setNavBarHeight] = useState<number>(0);
+    const [bottomFrameHeight, setBottomFrameHeight] = useState<number>(0);
+    const [titleFrameHeight, setTitleFrameHeight] = useState<number>(0);
+    const [currentPageIndex, setCurrentPageIndex] = useState<number>(0);
+    const [transitionType, setTransitionType] = useState<TransitionType>(null);
+    const [selectedApp, setSelectedApp] = useState<number>(0);
+    const [time, setTime] = useState<Date>(new Date());
+    const [goBack, setGoBack] = useState<boolean>(false);
+    const blockerRef = useRef<HTMLDivElement>(null);
+    const blockerIconRef = useRef<HTMLDivElement>(null);
+    const appContentRef = useRef<HTMLDivElement>(null);
 
-    const [currentPageIndex, setCurrentPageIndex] = useState(0);
-    const [transitionType, setTransitionType] = useState(null);
+    const sideFrameWidth = "7vw";
     const transitionDuration = 0.6;
-
-    let [selectedApp, setSelectedApp] = useState(0);
-    const [lang, setLang] = useState("EN");
-
-    const [time, setTime] = useState(new Date());
-    const [goBack, setGoBack] = useState(false);
 
     //set up interval for clock update
     useEffect(() => {
@@ -42,118 +42,120 @@ const MobileApp = () => {
 
     //transition animation
     useGSAP(() => {
-        if (transitionType == "in") {
-            let transit = gsap.timeline();
-            transit
-                .to(blocker.current, {
-                    height: "100%",
-                    ease: "power1.out",
-                    duration: transitionDuration * 0.3,
-                    onComplete: () => {
-                        setCurrentPageIndex(selectedApp);
-                    },
-                })
-                .fromTo(
-                    blockerIcon.current,
-                    {
-                        scale: 0,
-                    },
-                    {
-                        scale: 1,
-                        opacity: "1",
-                        ease: "power1.out",
-                        delay: 0.1,
-                        duration: transitionDuration * 0.3,
-                    },
-                    "<"
-                )
-                .to(blocker.current, {
-                    opacity: "0",
-                    ease: "power1.out",
-                    duration: transitionDuration * 0.3,
-                    delay: transitionDuration * 0.4,
-                })
-                .to(
-                    blockerIcon.current,
-                    {
-                        opacity: "0",
-                        ease: "power1.out",
-                        duration: transitionDuration * 0.3,
-                    },
-                    "<"
-                )
-                .set(blocker.current, {
-                    height: "0%",
-                    opacity: "1",
-                })
-                .set(blockerIcon.current, {
-                    opacity: "0",
-                    onComplete: () => {
-                        setTransitionType(null);
-                    },
-                });
-        } else if (transitionType == "out") {
-            let transit = gsap.timeline();
-            transit
-                .fromTo(
-                    blocker.current,
-                    {
+        if (blockerRef.current && blockerIconRef.current) {
+            if (transitionType == "in") {
+                let transit = gsap.timeline();
+                transit
+                    .to(blockerRef.current, {
                         height: "100%",
-                        opacity: "0",
-                    },
-                    {
-                        opacity: "1",
-                        duration: transitionDuration * 0.3,
                         ease: "power1.out",
-                    }
-                )
-                .fromTo(
-                    blockerIcon.current,
-                    {
-                        opacity: "0",
-                    },
-                    {
-                        opacity: "1",
                         duration: transitionDuration * 0.3,
+                        onComplete: () => {
+                            setCurrentPageIndex(selectedApp);
+                        },
+                    })
+                    .fromTo(
+                        blockerIconRef.current,
+                        {
+                            scale: 0,
+                        },
+                        {
+                            scale: 1,
+                            opacity: "1",
+                            ease: "power1.out",
+                            delay: 0.1,
+                            duration: transitionDuration * 0.3,
+                        },
+                        "<"
+                    )
+                    .to(blockerRef.current, {
+                        opacity: "0",
                         ease: "power1.out",
-                    },
-                    "<"
-                )
-                .to(blockerIcon.current, {
-                    scale: 0,
-                    opacity: "0",
-                    duration: transitionDuration * 0.2,
-                    delay: transitionDuration * 0.3,
-                    ease: "power1.out",
-                    onComplete: () => {
-                        setCurrentPageIndex(0);
-                    },
-                })
-                .to(
-                    blocker.current,
-                    {
+                        duration: transitionDuration * 0.3,
+                        delay: transitionDuration * 0.4,
+                    })
+                    .to(
+                        blockerIconRef.current,
+                        {
+                            opacity: "0",
+                            ease: "power1.out",
+                            duration: transitionDuration * 0.3,
+                        },
+                        "<"
+                    )
+                    .set(blockerRef.current, {
                         height: "0%",
-                        duration: transitionDuration * 0.3,
+                        opacity: "1",
+                    })
+                    .set(blockerIconRef.current, {
+                        opacity: "0",
+                        onComplete: () => {
+                            setTransitionType(null);
+                        },
+                    });
+            } else if (transitionType == "out") {
+                let transit = gsap.timeline();
+                transit
+                    .fromTo(
+                        blockerRef.current,
+                        {
+                            height: "100%",
+                            opacity: "0",
+                        },
+                        {
+                            opacity: "1",
+                            duration: transitionDuration * 0.3,
+                            ease: "power1.out",
+                        }
+                    )
+                    .fromTo(
+                        blockerIconRef.current,
+                        {
+                            opacity: "0",
+                        },
+                        {
+                            opacity: "1",
+                            duration: transitionDuration * 0.3,
+                            ease: "power1.out",
+                        },
+                        "<"
+                    )
+                    .to(blockerIconRef.current, {
+                        scale: 0,
+                        opacity: "0",
+                        duration: transitionDuration * 0.2,
+                        delay: transitionDuration * 0.3,
                         ease: "power1.out",
-                    },
-                    "<0.2"
-                )
+                        onComplete: () => {
+                            setCurrentPageIndex(0);
+                        },
+                    })
+                    .to(
+                        blockerRef.current,
+                        {
+                            height: "0%",
+                            duration: transitionDuration * 0.3,
+                            ease: "power1.out",
+                        },
+                        "<0.2"
+                    )
 
-                .set(blocker.current, {
-                    opacity: "1",
-                })
-                .set(blockerIcon.current, {
-                    scale: 0,
-                    opacity: "1",
+                    .set(blockerRef.current, {
+                        opacity: "1",
+                    })
+                    .set(blockerIconRef.current, {
+                        scale: 0,
+                        opacity: "1",
 
-                    onComplete: () => {
-                        setTransitionType(null);
-                    },
-                });
+                        onComplete: () => {
+                            setTransitionType(null);
+                        },
+                    });
+            }
         }
     }, [transitionType]);
 
-    const handleOpenApp = (index) => {
+    const handleOpenApp = (index: number) => {
         setSelectedApp(index);
         setTransitionType("in");
     };
@@ -170,22 +172,19 @@ const MobileApp = () => {
         }
     };
 
-    const blocker = useRef();
-    const blockerIcon = useRef();
-    const appContent = useRef();
     const pages = [
         {
             index: 0,
-            displayName: () => data.home.title[lang],
+            displayName: () => siteData.home.title[locale],
             content: null,
         },
         {
             index: 1,
-            displayName: () => data.aboutMe.title[lang],
+            displayName: () => siteData.aboutMe.title[locale],
             content: (
                 <>
-                    <AboutPage data={data.aboutMe} skills={data.skills} />
-                    <MobileHistoryPage data={data.workHistory} />
+                    <AboutPage data={siteData.aboutMe} skills={siteData.skills} />
+                    <MobileHistoryPage data={siteData.workHistory} />
                 </>
             ),
             icon: (
@@ -203,13 +202,13 @@ const MobileApp = () => {
         {
             index: 2,
             displayName: () => {
-                return lang == "EN" ? "Projects" : "Dự án";
+                return locale == "EN" ? "Projects" : "Dự án";
             },
 
             content: (
                 <ProjectListPage
-                    data={data.projectPages}
-                    skills={data.skills}
+                    data={siteData.projectPages}
+                    skills={siteData.skills}
                     bottomFrameHeight={bottomFrameHeight}
                     sideFrameWidth={sideFrameWidth}
                     goBack={goBack}
@@ -230,8 +229,8 @@ const MobileApp = () => {
         },
         {
             index: 3,
-            displayName: () => data.contact.title[lang],
-            content: <ContactPage data={data.contact} />,
+            displayName: () => siteData.contact.title[locale],
+            content: <ContactPage data={siteData.contact} />,
             icon: (
                 <>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -246,8 +245,8 @@ const MobileApp = () => {
         },
         {
             index: 4,
-            displayName: () => data.setting.title[lang],
-            content: <SettingPage data={data.setting} setLang={setLang} />,
+            displayName: () => siteData.setting.title[locale],
+            content: <SettingPage data={siteData.setting} />,
             icon: (
                 <>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -263,7 +262,7 @@ const MobileApp = () => {
         },
     ];
     return (
-        <LanguageContext.Provider value={lang}>
+        <LocaleProvider>
             <div id="mobile-container">
                 <img src="/src/assets/img/side.png" alt="" className="frame-left" />
                 <img src="/src/assets/img/side.png" alt="" className="frame-right" />
@@ -271,13 +270,13 @@ const MobileApp = () => {
                     src="/src/assets/img/top.png"
                     alt=""
                     className="frame-top"
-                    onLoad={(e) => setTopFrameHeight(e.target.clientHeight * 0.2)}
+                    onLoad={(e: any) => setTopFrameHeight(e.target.clientHeight * 0.2)}
                 />
                 <img
                     src="/src/assets/img/bottom.png"
                     alt=""
                     className="frame-bottom"
-                    onLoad={(e) => {
+                    onLoad={(e: any) => {
                         setBottomFrameHeight(e.target.clientHeight * 0.2);
                         setNavBarHeight(e.target.clientHeight * 0.19);
                         setTitleFrameHeight(e.target.clientHeight * 0.14);
@@ -307,7 +306,7 @@ const MobileApp = () => {
                                 paddingBottom: bottomFrameHeight,
                             }}
                         >
-                            <TimeDisplay time={time} setTime={setTime} lang={lang} />
+                            <TimeDisplay time={time} locale={locale} />
 
                             <div className={"app-list"}>
                                 {pages.map((page, index) => {
@@ -318,7 +317,7 @@ const MobileApp = () => {
                     ) : (
                         <div
                             className="app-content"
-                            ref={appContent}
+                            ref={appContentRef}
                             style={{
                                 paddingLeft: sideFrameWidth,
                                 paddingRight: sideFrameWidth,
@@ -329,8 +328,8 @@ const MobileApp = () => {
                         </div>
                     )}
 
-                    <div className="blocker" ref={blocker}></div>
-                    <div className="blocker-icon" ref={blockerIcon}>
+                    <div className="blocker" ref={blockerRef}></div>
+                    <div className="blocker-icon" ref={blockerIconRef}>
                         <AppItem data={pages[currentPageIndex]}></AppItem>
                     </div>
                 </Page>
@@ -348,11 +347,11 @@ const MobileApp = () => {
                     <NavBtn onClick={handleCloseApp} imageUrl={"/src/assets/img/btn-menu.png"} textDisplay="Recent" />
                 </div>
             </div>
-        </LanguageContext.Provider>
+        </LocaleProvider>
     );
 };
 
-function AppItem({ data, handleOpenApp = () => {} }) {
+function AppItem({ data, handleOpenApp = () => {} }: { data: any; handleOpenApp?: (index: number) => void }) {
     if (data.content) {
         return (
             <div className="app-item" onClick={() => handleOpenApp(data.index)}>
@@ -365,11 +364,10 @@ function AppItem({ data, handleOpenApp = () => {} }) {
     }
 }
 
-function TimeDisplay({ time, lang }) {
-    const timeOptions = {
+function TimeDisplay({ time, locale }: { time: Date; locale: Locale }) {
+    const timeOptions: Intl.DateTimeFormatOptions = {
         hour: "2-digit",
         minute: "2-digit",
-
         hourCycle: "h12",
     };
 
@@ -417,15 +415,15 @@ function TimeDisplay({ time, lang }) {
     return (
         <div className="time-display">
             <div className="date">
-                {weekdayNames[lang][weekday]}, {monthDate} {monthNames[lang][month]} {year}
+                {weekdayNames[locale][weekday]}, {monthDate} {monthNames[locale][month]} {year}
             </div>
             <div className="time">{time.toLocaleTimeString("en-US", timeOptions)}</div>
         </div>
     );
 }
 
-function TopBar({ time, style }) {
-    const timeOptions = {
+function TopBar({ time, style }: { time: Date; style: CSSProperties }) {
+    const timeOptions: Intl.DateTimeFormatOptions = {
         hour: "2-digit",
         minute: "2-digit",
         hourCycle: "h12",
@@ -449,7 +447,15 @@ function TopBar({ time, style }) {
     );
 }
 
-function NavBtn({ onClick, imageUrl, textDisplay }) {
+function NavBtn({
+    onClick,
+    imageUrl,
+    textDisplay,
+}: {
+    onClick: ReactEventHandler;
+    imageUrl: string;
+    textDisplay: string;
+}) {
     const [isClicking, setClicking] = useState(false);
 
     const handleMouseDown = () => {

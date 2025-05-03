@@ -2,7 +2,7 @@ import "./LoadingScreen.scss";
 
 type Props = {
     text?: string;
-    isLoaded: boolean;
+    isLoaded?: boolean;
 };
 
 export default function LoadingScreen({ text = "Loading...", isLoaded = false }: Props) {
