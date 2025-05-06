@@ -1,11 +1,27 @@
 import React, { useEffect } from "react";
 import { useContext, useState } from "react";
 import "./ProjectListPage.scss";
+import { useLocale } from "@/contexts/Locale";
+import { ProjectPages, Skills } from "@/types";
 
-import LanguageContext from "../../contexts/Locale/LocaleContext";
+type Props = {
+    data: ProjectPages;
+    skills: Skills;
+    bottomFrameHeight: any;
+    sideFrameWidth: any;
+    goBack: any;
+    handleCloseApp: () => void;
+};
 
-export default function ProjectListPage({ data, skills, bottomFrameHeight, sideFrameWidth, goBack, handleCloseApp }) {
-    const lang = useContext(LanguageContext);
+export default function ProjectListPage({
+    data,
+    skills,
+    bottomFrameHeight,
+    sideFrameWidth,
+    goBack,
+    handleCloseApp,
+}: Props) {
+    const { locale } = useLocale();
     const [selectedProject, setSelectedProject] = useState(null);
     const [isRendered, setRendered] = useState(false);
 
@@ -25,7 +41,7 @@ export default function ProjectListPage({ data, skills, bottomFrameHeight, sideF
 
     return (
         <div className="mobile project-list-page">
-            <div className="header">{data.title[lang]}</div>
+            <div className="header">{data.title[locale]}</div>
 
             {selectedProject === null ? (
                 <div className="project-list">
@@ -43,7 +59,7 @@ export default function ProjectListPage({ data, skills, bottomFrameHeight, sideF
                 </div>
             ) : (
                 <>
-                    <ProjectPage data={data.projects[selectedProject]} lang={lang} skills={skills} />
+                    <ProjectPage data={data.projects[selectedProject]} lang={locale} skills={skills} />
                     <div
                         className="navigation"
                         style={{
@@ -73,7 +89,7 @@ export default function ProjectListPage({ data, skills, bottomFrameHeight, sideF
     );
 }
 
-function ProjectItem({ name, iconUrl, index, setSelectedProject }) {
+function ProjectItem({ name, iconUrl, index, setSelectedProject }: any) {
     const handleSelect = () => {
         setSelectedProject(index);
     };
@@ -88,7 +104,7 @@ function ProjectItem({ name, iconUrl, index, setSelectedProject }) {
     );
 }
 
-function ProjectPage({ data, lang, skills }) {
+function ProjectPage({ data, lang, skills }: any) {
     return (
         <div className="project-page">
             <div className="project-preview">

@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import "./HistoryPage.scss";
 import { RadioButton } from "../Buttons/Buttons";
 
-import { useLocale } from "@/contexts/Locale/LocaleContext";
+import { useLocale } from "@/contexts/Locale";
 import { WorkHistory } from "@/types";
 
 type Props = {

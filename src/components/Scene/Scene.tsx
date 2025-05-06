@@ -4,6 +4,8 @@ import Page from "@components/Page/Page";
 import ScreenContainer from "@components/ScreenContainer/ScreenContainer";
 import DynamicSpotLight from "@components/DynamicSpotLight/DynamicSpotLight";
 import { ScreenConfigs } from "@/types";
+import { useLocale } from "@/contexts/Locale";
+import { LocaleContext } from "@/contexts/Locale/Context";
 
 type Props = {
     screenConfigs: ScreenConfigs;
@@ -20,6 +22,8 @@ const Scene = ({
     setActiveCameraConfig,
     setSpotLightScreenIndex,
 }: Props) => {
+    const { locale } = useLocale();
+
     return (
         <>
             {screenConfigs.map((screen, index) => {
@@ -35,7 +39,9 @@ const Scene = ({
                         activeCameraConfig={activeCameraConfig}
                         key={index}
                     >
-                        <Page title={screen.pageTitle}>{screen.content}</Page>
+                        <LocaleContext.Provider value={{ locale }}>
+                            <Page title={screen.pageTitle}>{screen.content}</Page>
+                        </LocaleContext.Provider>
                     </ScreenContainer>
                 );
             })}

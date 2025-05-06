@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import "./AboutPage.scss";
+import { useState } from "react";
 import { HoverButton, RadioButton } from "../Buttons/Buttons";
+import "./AboutPage.scss";
 
-import { useLocale } from "../../contexts/Locale/LocaleContext";
+import { LocaleProvider, useLocale } from "@/contexts/Locale";
 import { AboutMe, Skills } from "@/types";
 
 type Props = {

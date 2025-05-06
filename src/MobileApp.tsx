@@ -1,4 +1,4 @@
-import siteData from "@/constants";
+import siteData from "@/localization";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { CSSProperties, ReactEventHandler, useEffect, useRef, useState } from "react";
@@ -9,7 +9,7 @@ import MobileHistoryPage from "./components/HistoryPage/MobileHistoryPage";
 import Page from "./components/Page/Page";
 import ProjectListPage from "./components/ProjectListPage/ProjectListPage";
 import SettingPage from "./components/SettingPage/SettingPage";
-import { LocaleProvider, useLocale } from "./contexts/Locale/LocaleContext";
+import { LocaleProvider, useLocale } from "./contexts/Locale";
 import { Locale } from "./types";
 
 type TransitionType = "in" | "out" | null;
@@ -262,92 +262,90 @@ const MobileApp = () => {
         },
     ];
     return (
-        <LocaleProvider>
-            <div id="mobile-container">
-                <img src="/src/assets/img/side.png" alt="" className="frame-left" />
-                <img src="/src/assets/img/side.png" alt="" className="frame-right" />
-                <img
-                    src="/src/assets/img/top.png"
-                    alt=""
-                    className="frame-top"
-                    onLoad={(e: any) => setTopFrameHeight(e.target.clientHeight * 0.2)}
-                />
-                <img
-                    src="/src/assets/img/bottom.png"
-                    alt=""
-                    className="frame-bottom"
-                    onLoad={(e: any) => {
-                        setBottomFrameHeight(e.target.clientHeight * 0.2);
-                        setNavBarHeight(e.target.clientHeight * 0.19);
-                        setTitleFrameHeight(e.target.clientHeight * 0.14);
-                    }}
-                />
-                <Page
-                    className="mobile"
+        <div id="mobile-container">
+            <img src="/src/assets/img/side.png" alt="" className="frame-left" />
+            <img src="/src/assets/img/side.png" alt="" className="frame-right" />
+            <img
+                src="/src/assets/img/top.png"
+                alt=""
+                className="frame-top"
+                onLoad={(e: any) => setTopFrameHeight(e.target.clientHeight * 0.2)}
+            />
+            <img
+                src="/src/assets/img/bottom.png"
+                alt=""
+                className="frame-bottom"
+                onLoad={(e: any) => {
+                    setBottomFrameHeight(e.target.clientHeight * 0.2);
+                    setNavBarHeight(e.target.clientHeight * 0.19);
+                    setTitleFrameHeight(e.target.clientHeight * 0.14);
+                }}
+            />
+            <Page
+                className="mobile"
+                style={{
+                    height: "calc(100vh - " + navBarHeight + "px)",
+                }}
+            >
+                <TopBar
+                    time={time}
                     style={{
-                        height: "calc(100vh - " + navBarHeight + "px)",
+                        paddingTop: topFrameHeight + "px",
+                        paddingLeft: sideFrameWidth,
+                        paddingRight: sideFrameWidth,
                     }}
-                >
-                    <TopBar
-                        time={time}
+                ></TopBar>
+
+                {currentPageIndex == 0 ? (
+                    <div
+                        className="home-page"
                         style={{
-                            paddingTop: topFrameHeight + "px",
                             paddingLeft: sideFrameWidth,
                             paddingRight: sideFrameWidth,
+                            paddingBottom: bottomFrameHeight,
                         }}
-                    ></TopBar>
+                    >
+                        <TimeDisplay time={time} locale={locale} />
 
-                    {currentPageIndex == 0 ? (
-                        <div
-                            className="home-page"
-                            style={{
-                                paddingLeft: sideFrameWidth,
-                                paddingRight: sideFrameWidth,
-                                paddingBottom: bottomFrameHeight,
-                            }}
-                        >
-                            <TimeDisplay time={time} locale={locale} />
-
-                            <div className={"app-list"}>
-                                {pages.map((page, index) => {
-                                    return <AppItem data={page} key={index} handleOpenApp={handleOpenApp}></AppItem>;
-                                })}
-                            </div>
+                        <div className={"app-list"}>
+                            {pages.map((page, index) => {
+                                return <AppItem data={page} key={index} handleOpenApp={handleOpenApp}></AppItem>;
+                            })}
                         </div>
-                    ) : (
-                        <div
-                            className="app-content"
-                            ref={appContentRef}
-                            style={{
-                                paddingLeft: sideFrameWidth,
-                                paddingRight: sideFrameWidth,
-                                paddingBottom: bottomFrameHeight,
-                            }}
-                        >
-                            {pages.filter((page) => page.index == currentPageIndex)[0].content}
-                        </div>
-                    )}
-
-                    <div className="blocker" ref={blockerRef}></div>
-                    <div className="blocker-icon" ref={blockerIconRef}>
-                        <AppItem data={pages[currentPageIndex]}></AppItem>
                     </div>
-                </Page>
+                ) : (
+                    <div
+                        className="app-content"
+                        ref={appContentRef}
+                        style={{
+                            paddingLeft: sideFrameWidth,
+                            paddingRight: sideFrameWidth,
+                            paddingBottom: bottomFrameHeight,
+                        }}
+                    >
+                        {pages.filter((page) => page.index == currentPageIndex)[0].content}
+                    </div>
+                )}
 
-                <div
-                    className="title-display"
-                    style={{ marginBottom: navBarHeight + "px", height: titleFrameHeight + "px" }}
-                >
-                    <span> {pages[currentPageIndex].displayName()}</span>
+                <div className="blocker" ref={blockerRef}></div>
+                <div className="blocker-icon" ref={blockerIconRef}>
+                    <AppItem data={pages[currentPageIndex]}></AppItem>
                 </div>
+            </Page>
 
-                <div className="mobile-nav-bar" style={{ height: navBarHeight + "px", padding: "0 10vw" }}>
-                    <NavBtn onClick={handleGoBack} imageUrl={"/src/assets/img/btn-back.png"} textDisplay="Back" />
-                    <NavBtn onClick={handleCloseApp} imageUrl={"/src/assets/img/btn-home.png"} textDisplay="Home" />
-                    <NavBtn onClick={handleCloseApp} imageUrl={"/src/assets/img/btn-menu.png"} textDisplay="Recent" />
-                </div>
+            <div
+                className="title-display"
+                style={{ marginBottom: navBarHeight + "px", height: titleFrameHeight + "px" }}
+            >
+                <span> {pages[currentPageIndex].displayName()}</span>
             </div>
-        </LocaleProvider>
+
+            <div className="mobile-nav-bar" style={{ height: navBarHeight + "px", padding: "0 10vw" }}>
+                <NavBtn onClick={handleGoBack} imageUrl={"/src/assets/img/btn-back.png"} textDisplay="Back" />
+                <NavBtn onClick={handleCloseApp} imageUrl={"/src/assets/img/btn-home.png"} textDisplay="Home" />
+                <NavBtn onClick={handleCloseApp} imageUrl={"/src/assets/img/btn-menu.png"} textDisplay="Recent" />
+            </div>
+        </div>
     );
 };
 

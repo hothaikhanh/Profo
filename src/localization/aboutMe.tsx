@@ -11,8 +11,8 @@ export const aboutMe: AboutMe = {
             VN: "tổng quát",
         },
         status: {
-            EN: "looking for work",
-            VN: "đang tìm việc",
+            EN: "currently employed",
+            VN: "đang làm việc",
         },
         greeting: {
             EN: "hi. i'm",

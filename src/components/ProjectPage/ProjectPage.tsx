@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./ProjectPage.scss";
 import { AnchorButton, HoverButton } from "../Buttons/Buttons";
-import { useLocale } from "@/contexts/Locale/LocaleContext";
+import { useLocale } from "@/contexts/Locale";
 import { Project, ProjectPages, Skills } from "@/types";
 
 type Props = {

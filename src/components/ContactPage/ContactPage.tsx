@@ -1,7 +1,7 @@
 import React, { useContext, useState, useRef, FormEvent, ChangeEvent } from "react";
 import "./ContactPage.scss";
 import { HoverButton } from "../Buttons/Buttons";
-import { useLocale } from "@/contexts/Locale/LocaleContext";
+import { useLocale } from "@/contexts/Locale";
 import emailjs from "@emailjs/browser";
 import LoadingScreen from "../LoadingScreen/LoadingScreen";
 

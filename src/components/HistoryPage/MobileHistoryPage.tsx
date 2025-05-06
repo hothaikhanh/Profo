@@ -1,25 +1,22 @@
-import React, { useState, useContext } from "react";
 import "./HistoryPage.scss";
-import { RadioButton } from "../Buttons/Buttons";
+import { useLocale } from "@/contexts/Locale";
 
-import LanguageContext from "../../contexts/Locale/LocaleContext";
-
-export default function MobileHistoryPage({ data }) {
-    const lang = useContext(LanguageContext);
+export default function MobileHistoryPage({ data }: any) {
+    const { locale } = useLocale();
 
     return (
         <div className="history-page">
-            <div className="title">{data.title[lang]}</div>
+            <div className="title">{data.title[locale]}</div>
             <div className="content-container">
                 {data.list.map((entry, index) => {
-                    return <WorkEntry entry={entry} index={index} lang={lang} key={index}></WorkEntry>;
+                    return <WorkEntry entry={entry} index={index} lang={locale} key={index}></WorkEntry>;
                 })}
             </div>
         </div>
     );
 }
 
-function WorkEntry({ entry, lang }) {
+function WorkEntry({ entry, lang }: any) {
     return (
         <div>
             <h3>

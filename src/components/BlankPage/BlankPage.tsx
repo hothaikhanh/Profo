@@ -1,4 +1,4 @@
-import { useLocale } from "../../contexts/Locale/LocaleContext";
+import { useLocale } from "@/contexts/Locale";
 import "./BlankPage.scss";
 
 type Props = any;

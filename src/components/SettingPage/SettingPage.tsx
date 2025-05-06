@@ -1,5 +1,5 @@
 import "./SettingPage.scss";
-import { useLocale } from "@/contexts/Locale/LocaleContext";
+import { useLocale } from "@/contexts/Locale";
 import type { Locale, SettingPage } from "@/types";
 
 type Props = {
