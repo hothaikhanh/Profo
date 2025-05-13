@@ -102,7 +102,7 @@ const App = () => {
             rotation: [0.0, -1.05, 0.0],
         },
     ];
-    const [spotLightScreenIndex, setSpotLightScreenIndex] = useState<number | null>(null);
+    const [spotLightScreenIndex, setSpotLightScreenIndex] = useState<number>(-1);
 
     const cameraConfigs: CameraConfigs = [
         { name: "show default", position: [0.0, 0.8, 5.0], target: [0.0, 0.0, 0.0] },
@@ -142,7 +142,7 @@ const App = () => {
     return (
         <div id="canvas-container">
             {!pageReady && <LoadingScreen isLoaded={canvasLoaded} />}
-            <Canvas frameloop="demand">
+            <Canvas frameloop="always">
                 <CameraController
                     bgTextConfig={bgTextConfig}
                     cameraControlRef={cameraControlRef}
@@ -206,7 +206,7 @@ const App = () => {
                         isActive={activeCameraConfig == 1}
                         onClick={() => setActiveCameraConfig(1)}
                         onMouseEnter={() => setSpotLightScreenIndex(0)}
-                        onMouseLeave={() => setSpotLightScreenIndex(null)}
+                        onMouseLeave={() => setSpotLightScreenIndex(-1)}
                     >
                         {data.aboutMe.title[locale]}
                     </NavButton>
@@ -215,7 +215,7 @@ const App = () => {
                         isActive={activeCameraConfig == 2}
                         onClick={() => setActiveCameraConfig(2)}
                         onMouseEnter={() => setSpotLightScreenIndex(1)}
-                        onMouseLeave={() => setSpotLightScreenIndex(null)}
+                        onMouseLeave={() => setSpotLightScreenIndex(-1)}
                     >
                         {data.workHistory.title[locale]}
                     </NavButton>
@@ -223,7 +223,7 @@ const App = () => {
                         isActive={activeCameraConfig == 3}
                         onClick={() => setActiveCameraConfig(3)}
                         onMouseEnter={() => setSpotLightScreenIndex(2)}
-                        onMouseLeave={() => setSpotLightScreenIndex(null)}
+                        onMouseLeave={() => setSpotLightScreenIndex(-1)}
                     >
                         {data.projectPages.projects[0].title[locale]}
                     </NavButton>
@@ -231,7 +231,7 @@ const App = () => {
                         isActive={activeCameraConfig == 4}
                         onClick={() => setActiveCameraConfig(4)}
                         onMouseEnter={() => setSpotLightScreenIndex(3)}
-                        onMouseLeave={() => setSpotLightScreenIndex(null)}
+                        onMouseLeave={() => setSpotLightScreenIndex(-1)}
                     >
                         {data.projectPages.projects[1].title[locale]}
                     </NavButton>
@@ -239,7 +239,7 @@ const App = () => {
                         isActive={activeCameraConfig == 5}
                         onClick={() => setActiveCameraConfig(5)}
                         onMouseEnter={() => setSpotLightScreenIndex(4)}
-                        onMouseLeave={() => setSpotLightScreenIndex(null)}
+                        onMouseLeave={() => setSpotLightScreenIndex(-1)}
                     >
                         {data.projectPages.projects[2].title[locale]}
                     </NavButton>
@@ -247,7 +247,7 @@ const App = () => {
                         isActive={activeCameraConfig == 6}
                         onClick={() => setActiveCameraConfig(6)}
                         onMouseEnter={() => setSpotLightScreenIndex(5)}
-                        onMouseLeave={() => setSpotLightScreenIndex(null)}
+                        onMouseLeave={() => setSpotLightScreenIndex(-1)}
                     >
                         {data.contact.title[locale]}
                     </NavButton>

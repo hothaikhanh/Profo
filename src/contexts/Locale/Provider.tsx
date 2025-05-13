@@ -9,8 +9,6 @@ type Props = {
 export const LocaleProvider = ({ children }: Props) => {
     const [locale, setLocale] = useState<Locale>("EN");
     const handleSetLocale = (id: Locale) => {
-        console.log(`it works`);
-
         setLocale(id);
     };
     return <LocaleContext.Provider value={{ locale, setLocale: handleSetLocale }}>{children}</LocaleContext.Provider>;

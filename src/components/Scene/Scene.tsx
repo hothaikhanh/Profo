@@ -6,13 +6,15 @@ import DynamicSpotLight from "@components/DynamicSpotLight/DynamicSpotLight";
 import { ScreenConfigs } from "@/types";
 import { useLocale } from "@/contexts/Locale";
 import { LocaleContext } from "@/contexts/Locale/Context";
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 
 type Props = {
     screenConfigs: ScreenConfigs;
     activeCameraConfig: number | null;
     spotLightScreenIndex: number | null;
     setActiveCameraConfig: (id: number | null) => void;
-    setSpotLightScreenIndex: (id: number | null) => void;
+    setSpotLightScreenIndex: (id: number) => void;
 };
 
 const Scene = ({
@@ -45,11 +47,12 @@ const Scene = ({
                     </ScreenContainer>
                 );
             })}
-            {/* <DynamicSpotLight
+            <DynamicSpotLight
                 screenConfigs={screenConfigs}
                 spotLightScreenIndex={spotLightScreenIndex}
                 activeCameraConfig={activeCameraConfig}
-            /> */}
+            />
+
             <ComputerModels scale={1} position={[0, -3, 0]} />
             <Floor></Floor>
         </>
