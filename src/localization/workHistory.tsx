@@ -118,5 +118,34 @@ export const workHistory: WorkHistory = {
                 mail: "",
             },
         },
+        {
+            id: "fpt",
+            companyName: "FPT Software",
+            startYear: 2024,
+            endYear: "Present",
+            jobTitle: "Front-end Developer",
+            duties: {
+                title: {
+                    EN: "key responsibilities",
+                    VN: "công việc chính",
+                },
+                content: {
+                    EN: [
+                        "Developing User Interfaces: Design and implement visually appealing, responsive, and interactive user interfaces using HTML, CSS, and JavaScript.",
+                        "Collaboration with Design and Backend Teams: Work closely with UI/UX designers and back-end developers to ensure smooth integration and a seamless user experience.",
+                        "Optimizing Web Performance: Continuously monitor and improve the website’s performance, ensuring fast load times and optimal functionality across different devices and browsers.",
+                        "Maintaining Code Quality and Best Practices: Write clean, maintainable, and scalable code while adhering to coding standards, version control practices, and testing procedures.",
+                    ],
+                    VN: [
+                        "Phát triển giao diện người dùng: Thiết kế và triển khai giao diện người dùng hấp dẫn, đáp ứng và tương tác sử dụng HTML, CSS và JavaScript.",
+                        "Hợp tác với nhóm thiết kế và backend: Làm việc chặt chẽ với các nhà thiết kế UI/UX và các lập trình viên back-end để đảm bảo tích hợp mượt mà và trải nghiệm người dùng liền mạch.",
+                        "Tối ưu hóa hiệu suất web: Liên tục giám sát và cải thiện hiệu suất trang web, đảm bảo thời gian tải nhanh và hoạt động tối ưu trên các thiết bị và trình duyệt khác nhau.",
+                        "Duy trì chất lượng mã nguồn và các quy chuẩn tốt: Viết mã nguồn sạch, dễ bảo trì và mở rộng, đồng thời tuân thủ các tiêu chuẩn lập trình, quy trình kiểm soát phiên bản và kiểm thử",
+                    ],
+                },
+            },
+            achievement: null,
+            contact: null,
+        },
     ],
 };

@@ -14,7 +14,7 @@ export default function SettingPage({ data }: Props) {
             <div className="header">{data.title[locale]}</div>
             <div className="options-list">
                 {data.options.map((option, index) => {
-                    return <OptionItem optionData={option} key={index} locale={locale} setLocale={setLocale} />;
+                    return <OptionItem optionData={option} key={index} locale={locale} setLocale={setLocale!} />;
                 })}
             </div>
         </div>
@@ -28,7 +28,7 @@ function OptionItem({
 }: {
     optionData: SettingPage["options"][0];
     locale: Locale;
-    setLocale: (locale: Locale) => void;
+    setLocale: (id: Locale) => void;
 }) {
     let changeLang = () => {
         setLocale(locale == "EN" ? "VN" : "EN");

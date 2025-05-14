@@ -88,8 +88,7 @@ const ScreenContainer = ({
                 occlude="blending"
                 scale={scale}
                 transform
-                fov={75}
-                portal={{ current: gl.domElement.parentNode }}
+                portal={{ current: gl.domElement.parentNode as HTMLElement }}
             >
                 <div
                     onClick={() => setActiveCameraConfig(screenIndex + 1)}

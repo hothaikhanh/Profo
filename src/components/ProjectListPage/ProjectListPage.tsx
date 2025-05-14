@@ -120,10 +120,10 @@ function ProjectPage({ data, lang, skills }: any) {
                 <div className="title">{data.techStack.title[lang]}</div>
                 <div className="tech-list">
                     {skills.list
-                        .filter((skill) => {
+                        .filter((skill: any) => {
                             return data.techStack.list.includes(skill.name);
                         })
-                        .map((tech, index) => {
+                        .map((tech: any, index: number) => {
                             return (
                                 <div className="tech-item" key={index}>
                                     <img src={`${skills.path}${tech.icon}`} alt="" />

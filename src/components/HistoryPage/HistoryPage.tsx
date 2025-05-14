@@ -55,12 +55,13 @@ export default function HistoryPage({ data }: Props) {
                                         return <li key={index}>{line}</li>;
                                     })}
 
-                                    {entry.achievement.content[locale].length > 0 ? (
+                                    {entry.achievement && entry.achievement.content[locale].length > 0 ? (
                                         <p>{entry.achievement.title[locale]}</p>
                                     ) : null}
-                                    {entry.achievement.content[locale].map((line, index) => {
-                                        return <li key={index}>{line}</li>;
-                                    })}
+                                    {entry.achievement &&
+                                        entry.achievement.content[locale].map((line, index) => {
+                                            return <li key={index}>{line}</li>;
+                                        })}
                                     {entry.contact && (
                                         <>
                                             <p>{entry.contact.title[locale]}</p>

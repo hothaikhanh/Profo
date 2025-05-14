@@ -61,7 +61,7 @@ export type WorkHistory = {
         achievement: {
             title: Title
             content: ContentList,
-        },
+        } | null,
         contact: {
             title: Title
             name: Content,

@@ -12,6 +12,14 @@ export const skills: Skills = {
             icon: "reactjs.svg",
         },
         {
+            name: "NextJs",
+            icon: "nextjs.svg",
+        },
+        {
+            name: "Typescript",
+            icon: "typescript.svg",
+        },
+        {
             name: "NodeJs",
             icon: "nodejs.svg",
         },

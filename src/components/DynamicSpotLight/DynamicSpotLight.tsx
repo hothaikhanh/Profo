@@ -39,12 +39,6 @@ const DynamicSpotLight = ({ screenConfigs, spotLightScreenIndex, activeCameraCon
     useGSAP(() => {
         if (activeCameraConfig !== 0) {
             gsap.to(spotlight.current, { intensity: 0, distance: 0, duration: 0.5, delay: 0.5 });
-            gsap.to(lightTarget.current.position, {
-                x: 0,
-                y: 0,
-                z: 0,
-                duration: 0.3,
-            });
         }
     }, [activeCameraConfig]);
 
